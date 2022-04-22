@@ -9,9 +9,8 @@ description: >
 Create an application on the Gotify web UI, and use that URL with the token for the application you make.
 
 config.yml:
-```
+```yaml
 gotify:
-  ...
   # As many of these (below) as you like, just ensure they have unique ID's.
   EXAMPLE_GOTIFY_ID:
     url: https://GOTIFY_URL  # Gotify URL to send to

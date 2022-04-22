@@ -12,10 +12,8 @@ that appears, set the 'Webhook Service' to 'GitHub' and save the changes to get 
 the URL and Key for this WebHook.
 
 config.yml:
-```
-...
+```yaml
 webhook:
-  ...
   # As many of these (below) as you like, just ensure they have unique ID's.
   EXAMPLE_WEBHOOK_ID:
     type: github              # Type of WebHook to send
