@@ -255,9 +255,9 @@ service:
 ```
 
 ## hedgedoc/hedgedoc
-Source: 
+Source: https://github.com/hedgedoc/hedgedoc
 ```yaml
-service: https://github.com/hedgedoc/hedgedoc
+service:
   hedgedoc/hedgedoc:
     type: github
     url: hedgedoc/hedgedoc
@@ -337,6 +337,20 @@ service:
     web_url: https://docs.mattermost.com/install/self-managed-changelog.html
 ```
 
+## n8n-io/n8n
+Source: https://github.com/n8n-io/n8n
+```yaml
+service:
+  n8n-io/n8n:
+    type: url
+    url: https://github.com/n8n-io/n8n/tags
+    url_commands:
+      - type: regex_submatch
+        regex: n8n\%40([0-9.]+)
+    web_url: https://github.com/n8n-io/n8n/blob/master/CHANGELOG.md
+    icon: https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png
+```
+
 ## netbox-community/netbox
 Source: https://github.com/netbox-community/netbox
 ```yaml
@@ -384,6 +398,34 @@ service:
         regex: v([0-9.]+)$
     web_url: https://github.com/opencve/opencve/releases/v{{ version }}
     icon: https://raw.githubusercontent.com/opencve/opencve/master/opencve/static/img/logo_white.png
+```
+
+## pterodactyl/panel
+Source: https://github.com/pterodactyl/panel
+```yaml
+service:
+  pterodactyl/panel:
+    type: github
+    url: pterodactyl/panel
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)
+    web_url: https://github.com/pterodactyl/panel/releases/v{{ version }}
+    icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
+```
+
+## pterodactyl/wings
+Source: https://github.com/pterodactyl/wings
+```yaml
+service:
+  pterodactyl/wings:
+    type: github
+    url: pterodactyl/wings
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)
+    web_url: https://github.com/pterodactyl/wings/releases/v{{ version }}
+    icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
 ```
 
 ## prometheus/alertmanager
