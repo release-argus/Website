@@ -283,6 +283,7 @@ service:
     icon: https://github.com/home-assistant/core/raw/dev/tests/components/image/logo.png
     deployed_version:
       url: https://home-assistant.example.io/api/config
+      json: version
       headers:
         - key: Authorization
           value: Bearer <API_TOKEN>
