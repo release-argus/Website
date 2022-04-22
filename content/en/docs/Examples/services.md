@@ -8,11 +8,11 @@ description: >
 ## adnanh/webhook
 Source: https://github.com/adnanh/webhook
 ```yaml
-services:
+service:
   adnanh/webhook:
     type: github
     url: adnanh/webhook
-    web_url: https://github.com/adnanh/webhook/releases
+    web_url: https://github.com/adnanh/webhook/releases/{{ version }}
     regex_content: webhook-linux-amd64\.tar\.gz
     icon: https://raw.githubusercontent.com/adnanh/webhook/development/docs/logo/logo-128x128.png
 ```
@@ -20,23 +20,40 @@ services:
 ## ansible/awx-operator
 Source: https://github.com/ansible/awx-operator
 ```yaml
-services:
+service:
   ansible/awx-operator:
     type: github
     url: ansible/awx-operator
-    web_url: https://github.com/ansible/awx-operator/releases
+    web_url: https://github.com/ansible/awx-operator/releases/{{ version }}
     icon: https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg
 ```
 
 ## dani-garcia/vaultwarden
 Source: https://github.com/dani-garcia/vaultwarden
 ```yaml
-servcies:
+service:
   dani-garcia/vaultwarden:
     type: github
     url: dani-garcia/vaultwarden
-    web_url: https://github.com/dani-garcia/vaultwarden/releases
+    web_url: https://github.com/dani-garcia/vaultwarden/releases/{{ version }}
     icon: https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/src/static/images/vaultwarden-icon.png
+```
+
+## jgraph/drawio
+Source: https://github.com/jgraph/drawio
+```yaml
+service:
+  jgraph/drawio:
+    type: github
+    url: jgraph/drawio
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)$
+    web_url: https://github.com/jgraph/drawio/releases/v{{ version }}
+    icon: https://github.com/jgraph/drawio/raw/dev/src/main/webapp/images/drawlogo-color.svg
+    deployed_version:
+      url: https://draw.example.io/package.json
+      json: version
 ```
 
 ## gitlab-org/gitlab
@@ -66,14 +83,14 @@ service:
 ## go-gitea/gitea
 Source: https://github.com/go-gitea/gitea:
 ```yaml
-services:
+service:
   go-gitea/gitea:
     type: github
     url: go-gitea/gitea
     url_commands:
       - type: regex_submatch
         regex: v([0-9.]+)$
-    web_url: https://github.com/go-gitea/gitea/releases
+    web_url: https://github.com/go-gitea/gitea/releases/v{{ version }}
     regex_content: gitea-{{ version }}-linux-amd64
     regex_version: ^[0-9.]+[0-9]$
     icon: https://raw.githubusercontent.com/go-gitea/gitea/main/public/img/logo.png
@@ -82,7 +99,7 @@ services:
 ## go-vikunja/api
 Source: https://github.com/go-vikunja/api
 ```yaml
-services:
+service:
   go-vikunja/api:
     type: url
     url: https://github.com/go-vikunja/api/tags
@@ -118,7 +135,7 @@ service:
 ## golang/go
 Source: https://github.com/golang/go
 ```yaml
-services:
+service:
   golang/go:
     type: url
     url: https://golang.org/dl/
@@ -133,14 +150,14 @@ services:
 ## gohugoio/hugo
 Source: https://github.com/gohugoio/hugo
 ```yaml
-services:
+service:
 gohugoio/hugo:
     type: github
     url: gohugoio/hugo
     url_commands:
       - type: regex_submatch
         regex: v([0-9.]+)$
-    web_url: https://github.com/gohugoio/hugo/releases
+    web_url: https://github.com/gohugoio/hugo/releases/v{{ version }}
     regex_content: hugo_{{ version }}_Linux-64bit\.deb
     icon: https://raw.githubusercontent.com/gohugoio/hugo/master/docs/static/img/hugo.png
 ```
@@ -148,14 +165,14 @@ gohugoio/hugo:
 ## gotify/server
 Source: https://github.com/gotify/server
 ```yaml
-services:
+service:
   gotify/server:
     type: github
     url: gotify/server
     url_commands:
       - type: regex_submatch
         regex: v([0-9.]+)$
-    web_url: https://github.com/gotify/server/releases
+    web_url: https://github.com/gotify/server/releases/v{{ version }}
     icon: https://github.com/gotify/logo/raw/master/gotify-logo.png
 ```
 
@@ -179,7 +196,7 @@ service:
 ## grafana/loki
 Source: https://github.com/grafana/loki
 ```yaml
-services:
+service:
   grafana/loki:
     type: github
     url: grafana/loki
@@ -188,12 +205,15 @@ services:
         regex: v([0-9.]+)$
     web_url: https://grafana.com/docs/loki/latest/release-notes/v{{ version | split:"." | slice:":2" | join:"-"  }}
     icon: https://grafana.com/static/assets/img/blog/loki.png
+    deployed_version:
+      url: https://loki.example.io/loki/api/v1/status/buildinfo
+      json: version
 ```
 
 ## healthchecks/healthchecks
 Source: https://github.com/healthchecks/healthchecks
 ```yaml
-services:
+service:
   healthchecks/healthchecks:
     type: github
     url: healthchecks/healthchecks
@@ -225,7 +245,7 @@ service: https://github.com/hedgedoc/hedgedoc
 ## home-assistant/core
 Source: https://github.com/home-assistant/core
 ```yaml
-services:
+service:
   home-assistant/core:
     type: github
     url: home-assistant/core
@@ -237,18 +257,18 @@ services:
 ## louislam/uptime-kuma
 Source: https://github.com/louislam/uptime-kuma
 ```yaml
-services:
+service:
   louislam/uptime-kuma:
     type: github
     url: louislam/uptime-kuma
-    web_url: https://github.com/louislam/uptime-kuma/releases
+    web_url: https://github.com/louislam/uptime-kuma/releases/{{ version }}
     icon: https://raw.githubusercontent.com/louislam/uptime-kuma/master/public/icon.png
 ```
 
 ## mailcow/mailcow-dockerized
 Source: https://github.com/mailcow/mailcow-dockerized
 ```yaml
-services:
+service:
   mailcow/mailcow-dockerized:
     type: github
     url: mailcow/mailcow-dockerized
@@ -273,7 +293,7 @@ service:
 ## mattermost/mattermost-server
 Source: https://github.com/mattermost/mattermost-server
 ```yaml
-services:
+service:
   mattermost/mattermost-server:
     type: url
     url: https://mattermost.com/deploy/
@@ -304,7 +324,7 @@ service:
 ## nextcloud/server
 Source: https://github.com/nextcloud/server
 ```yaml
-services:
+service:
   nextcloud/server:
     type: github
     url: nextcloud/server
@@ -316,6 +336,20 @@ services:
     deployed_version:
       url: https://nextcloud.example.io/status.php
       json: versionstring
+```
+
+## opencve/opencve
+Source: https://github.com/opencve/opencve
+```yaml
+service:
+  opencve/opencve:
+    type: github
+    url: opencve/opencve
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)$
+    web_url: https://github.com/opencve/opencve/releases/v{{ version }}
+    icon: https://raw.githubusercontent.com/opencve/opencve/master/opencve/static/img/logo_white.png
 ```
 
 ## prometheus/alertmanager
@@ -330,12 +364,15 @@ service:
         regex: v([0-9.]+)$
     web_url: https://github.com/prometheus/alertmanager/blob/main/CHANGELOG.md
     regex_content: alertmanager-{{ version }}\.linux-amd64.tar.gz
+    deployed_version:
+      url: https://alertmanager.example.io/api/v1/status
+      json: version
 ```
 
 ## prometheus/prometheus
 Source: https://github.com/prometheus/prometheus
 ```yaml
-services:
+service:
   prometheus/prometheus:
     type: github
     url: prometheus/prometheus
@@ -344,6 +381,9 @@ services:
         regex: v([0-9.]+)$
     web_url: https://github.com/prometheus/prometheus/blob/main/CHANGELOG.md
     regex_content: prometheus-{{ version }}\.linux-amd64
+    deployed_version:
+      url: https://prometheus.example.io/api/v1/status/buildinfo
+      json: version
 ```
 
 ## requarks/wiki
@@ -364,7 +404,7 @@ service:
 ## thanos-io/thanos
 Source: https://github.com/thanos-io/thanos
 ```yaml
-services:
+service:
   thanos-io/thanos:
     type: github
     url: thanos-io/thanos
@@ -373,11 +413,10 @@ services:
         regex: v([0-9.]+)$
     web_url: https://github.com/thanos-io/thanos/blob/main/CHANGELOG.md
     regex_content: thanos-{{ version }}\.linux-amd64
-    gotify:
-      default: {}
-    slack:
-      default:
-        icon_url: https://github.com/thanos-io/thanos/blob/main/docs/img/Thanos-logo_fullmedium.png?raw=true
+    icon: https://github.com/thanos-io/thanos/blob/main/docs/img/Thanos-logo_fullmedium.png?raw=true
+    deployed_version:
+      url: https://thanos.example.io/api/v1/status/buildinfo
+      json: version
 ```
 
 ## wekan/wekan
@@ -398,12 +437,12 @@ service:
 ## wowchemy/wowchemy-hugo-themes
 Source: https://github.com/wowchemy/wowchemy-hugo-themes
 ```yaml
-services:
+service:
   wowchemy/wowchemy-hugo-themes:
     type: github
     url: wowchemy/wowchemy-hugo-themes
     url_commands:
       - type: regex_submatch
         regex: v([0-9.]+)$
-    web_url: https://github.com/wowchemy/wowchemy-hugo-themes/releases
+    web_url: https://github.com/wowchemy/wowchemy-hugo-themes/releases/v{{ version }}
 ```
