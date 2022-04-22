@@ -94,6 +94,9 @@ service:
     regex_content: gitea-{{ version }}-linux-amd64
     regex_version: ^[0-9.]+[0-9]$
     icon: https://raw.githubusercontent.com/go-gitea/gitea/main/public/img/logo.png
+    deployed_version:
+      url: https://git.example.io
+      regex: 'Powered by Gitea Version: ([0-9.]+) '
 ```
 
 ## go-vikunja/api
@@ -108,6 +111,10 @@ service:
         regex: \/releases\/tag\/v?([0-9.]+)\"
     web_url: https://github.com/go-vikunja/api/blob/main/CHANGELOG.md
     icon: https://vikunja.io/images/vikunja.png
+    deployed_version:
+      url: https://vikunja.example.io/api/v1/info
+      json: version
+      regex: v?([0-9.]+)
 ```
 
 ## goauthentik/authentik
@@ -174,6 +181,9 @@ service:
         regex: v([0-9.]+)$
     web_url: https://github.com/gotify/server/releases/v{{ version }}
     icon: https://github.com/gotify/logo/raw/master/gotify-logo.png
+    deployed_version:
+      url: https://gotify.example.io/version
+      json: version
 ```
 
 ## grafana/grafana
@@ -261,6 +271,8 @@ service: https://github.com/hedgedoc/hedgedoc
 
 ## home-assistant/core
 Source: https://github.com/home-assistant/core
+
+API_TOKEN from going to /profile and creating a 'Long-Lived Access Token'.
 ```yaml
 service:
   home-assistant/core:
@@ -269,6 +281,11 @@ service:
     web_url: https://www.home-assistant.io/latest-release-notes
     regex_version: ^[0-9.]+$
     icon: https://github.com/home-assistant/core/raw/dev/tests/components/image/logo.png
+    deployed_version:
+      url: https://home-assistant.example.io/api/config
+      headers:
+        - key: Authorization
+          value: Bearer <API_TOKEN>
 ```
 
 ## louislam/uptime-kuma
