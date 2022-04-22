@@ -10,7 +10,7 @@ You can define defaults for [service](/docs/config/service), [gotify](/docs/conf
 
 
 #### **service** portion
-```
+```yaml
 defaults:
   ...
   service:
@@ -23,7 +23,7 @@ defaults:
 ```
 
 #### **gotify** portion
-```
+```yaml
 defaults:
   ...
   gotify:
@@ -35,7 +35,7 @@ defaults:
 ```
 
 #### **slack** portion
-```
+```yaml
 defaults:
   ...
   slack:
@@ -50,7 +50,7 @@ defaults:
 ```
 
 #### **webhook** portion
-```
+```yaml
 defaults:
   ...
   webhook:

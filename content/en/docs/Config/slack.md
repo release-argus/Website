@@ -9,9 +9,8 @@ description: >
 Create an incoming webhook by following [this guidance](https://api.slack.com/messaging/webhooks).
 
 config.yml:
-```
+```yaml
 slack:
-  ...
   # As many of these (below) as you like, just ensure they have unique ID's.
   EXAMPLE_SLACK_ID:
     url: https://SLACK_WEBHOOK_URL           # Slack URL to send to
@@ -31,7 +30,7 @@ don't set both an `icon_emoji` and a `icon_url` as Hymenaios will always use `ic
 
 The `message` used in the Slack messages can be customised with Django-style templating courtesy of [pongo2](https://www.schlachter.tech/solutions/pongo2-template-engine/).
 
-The default message template is 
+The default message template is
 `<{{ service_url }}|{{ service_id }}> - {{ version }} released{% if web_url %} (<{{ web_url }}|changelog>){% endif %}`
 , which with a `service_id` of 'example_service', a `service_url` of 'example.com', no `web_url` and the `version` that triggered
 this message being '1.2.3', woud trigger a message of `example_service - 1.2.3 released` (example_service would be a clickable link to the service_url). If the Service had a `web_url` defined, then ' (changelog)' would appear at the end, where the 'changelog' text would be a clickable link to that `web_url`.

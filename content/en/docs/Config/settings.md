@@ -9,7 +9,7 @@ description: >
 Below are the options available in their default state.
 
 config.yml:
-```
+```yaml
 settings:
   log:
     level: INFO              # Log level, DEBUG/VERBOSE/INFO/WARNING/ERROR

@@ -13,9 +13,8 @@ https://api.github.com/repos/OWNER/REPO/releases.
 It will go through each item in that list and try using `tag_name` as the version. It will run the `url_commands` on this version, check it with `regex_version` and then check the assets against `regex_content`. If all of these pass, that version will be used.
 
 config.yml
-```
+```yaml
 service:
-  ...
   # As many of these (below) as you like, just ensure they have unique ID's.
   EXAMPLE_GITHUB_SERVICE:
     type: github                                  # The type of service to monitor. github/web
@@ -68,7 +67,7 @@ For these vars, if you provide a var with the same ID as in the globals for that
 The following is how you'd define a service to be monitored without using the GitHub API.
 
 config.yml
-```
+```yaml
 service:
   EXAMPLE_WEB_ID:
     type: web                                 # Regular URL, not GitHub API
@@ -99,7 +98,7 @@ For a service of type 'github', 'url_commands' will run against every release 't
 {{< /alert >}}
 
 #### regex
-```
+```yaml
 service:
   example:
     ...
@@ -114,7 +113,7 @@ service:
 {{< /alert >}}
 
 #### regex_submatch
-```
+```yaml
 service:
   example:
     ...
@@ -131,7 +130,7 @@ versioning.
 {{< /alert >}}
 
 #### replace
-```
+```yaml
 service:
   example:
     ...
@@ -143,7 +142,7 @@ service:
 This command replaces `old` with `new`.
 
 #### split
-```
+```yaml
 service:
   example:
     ...
