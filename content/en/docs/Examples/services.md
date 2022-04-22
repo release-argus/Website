@@ -52,7 +52,7 @@ service:
     url: https://gitlab.com/api/v4/projects/278964/repository/tags
     url_commands:
       - type: regex_submatch
-        regex: \"name\":\"v([0-9.]+\-ce)"
+        regex: \"name\":\"v([0-9.]+\-ce)\"
     web_url: https://gitlab.com/gitlab-org/gitlab/-/blob/master/CHANGELOG.md
     icon: https://gitlab.com/gitlab-org/gitlab/-/raw/master/public/slash-command-logo.png
     deployed_version:
@@ -200,8 +200,8 @@ services:
     url_commands:
       - type: regex_submatch
         regex: v([0-9.]+)$
-    web_url: https://github.com/mailcow/mailcow-dockerized/releases/tag/{{ version }}
-    icon: https://raw.githubusercontent.com/mailcow/mailcow-dockerized/master/data/web/img/cow_mailcow.svg
+    web_url: https://github.com/healthchecks/healthchecks/releases/tag/{{ version }}
+    icon: https://healthchecks.io/static/img/logo-rounded.svg
     deployed_version:
       url: https://healthchecks.example.io/docs/
       regex: Healthchecks v([0-9.]+)
