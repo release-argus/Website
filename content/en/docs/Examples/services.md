@@ -39,6 +39,30 @@ servcies:
     icon: https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/src/static/images/vaultwarden-icon.png
 ```
 
+## gitlab-org/gitlab
+Source: https://gitlab.com/gitlab-org/gitlab
+
+You need a Access Token from your GitLab instance to get the current version.
+
+To get the version from a Enterprise Edition change the `ce` to `ee` in the `url_commands` `regex`.
+```yaml
+service:
+  gitlab-org/gitlab:
+    type: url
+    url: https://gitlab.com/api/v4/projects/278964/repository/tags
+    url_commands:
+      - type: regex_submatch
+        regex: \"name\":\"v([0-9.]+\-ce)"
+    web_url: https://gitlab.com/gitlab-org/gitlab/-/blob/master/CHANGELOG.md
+    icon: https://gitlab.com/gitlab-org/gitlab/-/raw/master/public/slash-command-logo.png
+    deployed_version:
+      url: https://gitlab.example.com/api/v4/version
+      headers:
+        - key: PRIVATE-TOKEN
+          value: <Access-Token Own GitLab>
+      json: version
+```
+
 ## go-gitea/gitea
 Source: https://github.com/go-gitea/gitea:
 ```yaml
@@ -183,6 +207,21 @@ services:
       regex: Healthchecks v([0-9.]+)
 ```
 
+## hedgedoc/hedgedoc
+Source: 
+```yaml
+service: https://github.com/hedgedoc/hedgedoc
+  hedgedoc/hedgedoc:
+    type: github
+    url: hedgedoc/hedgedoc
+    regex_version: ^[0-9.]+$
+    web_url: https://github.com/hedgedoc/hedgedoc/releases/tag/{{ version }}
+    icon: https://raw.githubusercontent.com/hedgedoc/hedgedoc/master/public/icons/android-chrome-512x512.png
+    deployed_version:
+      url: https://hedgedoc.example.io/config
+      regex: window.version = '([0-9.]+)-[0-9a-z]+'
+```
+
 ## home-assistant/core
 Source: https://github.com/home-assistant/core
 ```yaml
@@ -219,6 +258,18 @@ services:
     icon: https://raw.githubusercontent.com/mailcow/mailcow-dockerized/master/data/web/img/cow_mailcow.svg
 ```
 
+## matomo-org/matomo
+Source: https://github.com/matomo-org/matomo
+```yaml
+service:
+  matomo-org/matomo:
+    type: github
+    url: matomo-org/matomo
+    regex_version: ^[0-9.]+$
+    web_url: https://github.com/matomo-org/matomo/releases/tag/{{ version }}
+    icon: https://raw.githubusercontent.com/matomo-org/matomo/4.x-dev/plugins/CoreHome/images/applogo_732.png
+```
+
 ## mattermost/mattermost-server
 Source: https://github.com/mattermost/mattermost-server
 ```yaml
@@ -230,6 +281,24 @@ services:
       - type: regex_submatch
         regex: releases\.mattermost\.com\/([^\/]+)\/mattermost-[0-9.]+-linux\-amd64\.tar\.gz
     web_url: https://docs.mattermost.com/install/self-managed-changelog.html
+```
+
+## netbox-community/netbox
+Source: https://github.com/netbox-community/netbox
+```yaml
+service:
+  netbox-community/netbox:
+    type: github
+    url: netbox-community/netbox
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)$
+    regex_version: ^[0-9.]+$
+    web_url: https://github.com/netbox-community/netbox/releases/tag/v{{ version }}
+    icon: https://github.com/netbox-community/netbox/raw/develop/netbox/project-static/img/netbox_logo.svg
+    deployed_version:
+      url: https://netbox.lars-lehmann.net/
+      regex: '[0-9a-z]+ \(v([0-9.]+)\)'
 ```
 
 ## nextcloud/server
@@ -277,6 +346,21 @@ services:
     regex_content: prometheus-{{ version }}\.linux-amd64
 ```
 
+## requarks/wiki
+Source: https://github.com/requarks/wiki
+```yaml
+service:
+  requarks/wiki:
+    type: github
+    url: requarks/wiki
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)$
+    regex_version: ^[0-9.]+$
+    web_url: https://github.com/requarks/wiki/releases/tag/v{{ version }}
+    icon: https://raw.githubusercontent.com/requarks/wiki/main/client/static/svg/logo-wikijs-full.svg
+```
+
 ## thanos-io/thanos
 Source: https://github.com/thanos-io/thanos
 ```yaml
@@ -294,6 +378,21 @@ services:
     slack:
       default:
         icon_url: https://github.com/thanos-io/thanos/blob/main/docs/img/Thanos-logo_fullmedium.png?raw=true
+```
+
+## wekan/wekan
+```yaml
+service:
+  wekan/wekan:
+    type: github
+    url: wekan/wekan
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)$
+    web_url: https://github.com/wekan/wekan/releases/tag/v{{ version }}
+    semantic_versioning: false
+    regex_version: ^[0-9.]+$
+    icon: https://raw.githubusercontent.com/wekan/wekan/df54863e7243b0b067ec2d30d8352ff1838931c4/meta/icons/wekan-150.svg
 ```
 
 ## wowchemy/wowchemy-hugo-themes
