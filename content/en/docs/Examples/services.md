@@ -227,6 +227,23 @@ service:
       regex: Healthchecks v([0-9.]+)
 ```
 
+## hashicorp/vault
+Source: https://github.com/hashicorp/vault
+```yaml
+service:
+  hashicorp/vault:
+    type: github
+    url: hashicorp/vault
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)$
+    web_url: https://github.com/hashicorp/vault/releases/v{{ version }}
+    icon: https://raw.githubusercontent.com/hashicorp/vault/main/ui/public/vault-logo.svg
+    deployed_version:
+      url: https://vault.example.io/v1/sys/health
+      json: version
+```
+
 ## hedgedoc/hedgedoc
 Source: 
 ```yaml
@@ -384,6 +401,20 @@ service:
     deployed_version:
       url: https://prometheus.example.io/api/v1/status/buildinfo
       json: version
+```
+
+## rancher/rancher
+Source: https://github.com/rancher/rancher
+```yaml
+service:
+  rancher/rancher:
+    type: github
+    url: rancher/rancher
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)$
+    web_url: https://github.com/rancher/rancher/releases/v{{ version }}
+    icon: https://raw.githubusercontent.com/rancher/docs/master/static/imgs/rancher-logo-cow-blue.svg
 ```
 
 ## requarks/wiki
