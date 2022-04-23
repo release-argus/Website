@@ -459,7 +459,7 @@ service:
     regex_content: alertmanager-{{ version }}\.linux-amd64.tar.gz
     deployed_version:
       url: https://alertmanager.example.io/api/v1/status
-      json: version
+      json: data.versionInfo.version
 ```
 
 ## prometheus/prometheus
@@ -476,7 +476,7 @@ service:
     regex_content: prometheus-{{ version }}\.linux-amd64
     deployed_version:
       url: https://prometheus.example.io/api/v1/status/buildinfo
-      json: version
+      json: data.version
 ```
 
 ## rancher/rancher
@@ -537,7 +537,7 @@ service:
     icon: https://github.com/thanos-io/thanos/blob/main/docs/img/Thanos-logo_fullmedium.png?raw=true
     deployed_version:
       url: https://thanos.example.io/api/v1/status/buildinfo
-      json: version
+      json: data.version
 ```
 
 ## wekan/wekan
