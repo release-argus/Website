@@ -298,6 +298,9 @@ service:
     url: louislam/uptime-kuma
     web_url: https://github.com/louislam/uptime-kuma/releases/{{ version }}
     icon: https://raw.githubusercontent.com/louislam/uptime-kuma/master/public/icon.png
+    deployed_version:
+      url: https://status.example.io/metrics
+      regex: app_version{version=\"([0-9.]+)\",major=\"[0-9]+\",minor=\"[0-9]+\",patch=\"[0-9]+\"}
 ```
 
 ## mailcow/mailcow-dockerized
@@ -315,6 +318,8 @@ service:
 
 ## matomo-org/matomo
 Source: https://github.com/matomo-org/matomo
+
+You can generate the token in the personal settings under security.
 ```yaml
 service:
   matomo-org/matomo:
@@ -323,6 +328,9 @@ service:
     regex_version: ^[0-9.]+$
     web_url: https://github.com/matomo-org/matomo/releases/tag/{{ version }}
     icon: https://raw.githubusercontent.com/matomo-org/matomo/4.x-dev/plugins/CoreHome/images/applogo_732.png
+    deployed_version:
+      url: https://matomo.example.io/index.php?module=API&method=API.getMatomoVersion&format=JSON&force_api_session=1&token_auth=<TOKEN>
+      json: value
 ```
 
 ## mattermost/mattermost-server
@@ -473,6 +481,8 @@ service:
 
 ## rancher/rancher
 Source: https://github.com/rancher/rancher
+
+To read the deployed_version an API key must be created. The key is constructed like this `<username>:<password>`.
 ```yaml
 service:
   rancher/rancher:
@@ -483,6 +493,12 @@ service:
         regex: v([0-9.]+)$
     web_url: https://github.com/rancher/rancher/releases/v{{ version }}
     icon: https://raw.githubusercontent.com/rancher/docs/master/static/imgs/rancher-logo-cow-blue.svg
+    deployed_version:
+      url: https://rancher.example.io/v3/settings/server-version
+      basic_auth:
+        username: <username>
+        password: <password>
+      json: value
 ```
 
 ## requarks/wiki
@@ -498,6 +514,12 @@ service:
     regex_version: ^[0-9.]+$
     web_url: https://github.com/requarks/wiki/releases/tag/v{{ version }}
     icon: https://static.requarks.io/logo/wikijs-butterfly.svg
+    deployed_version:
+      url: https://wiki.example.io/graphql?query=%7Bsystem%7Binfo%7BcurrentVersion%7D%7D%7D
+      headers:
+        - key: Authorization
+          value: Bearer <TOKEN>
+      josn: data.system.info.currentVersion
 ```
 
 ## thanos-io/thanos
