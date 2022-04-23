@@ -417,6 +417,8 @@ service:
 
 ## pterodactyl/wings
 Source: https://github.com/pterodactyl/wings
+
+To get the version of the Wings daemon, you need the node token. You can find the token in the admin GUI in the node configuration.
 ```yaml
 service:
   pterodactyl/wings:
@@ -427,6 +429,12 @@ service:
         regex: v([0-9.]+)
     web_url: https://github.com/pterodactyl/wings/releases/v{{ version }}
     icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
+    deployed_version:
+      url: https://wings.example.io:8088/api/system
+      headers:
+        - key: Authorization
+          value: Bearer <API Token>
+      json: version
 ```
 
 ## prometheus/alertmanager
