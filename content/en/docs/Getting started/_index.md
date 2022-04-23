@@ -1,6 +1,6 @@
 ---
 #categories: ["Examples", "Placeholders"]
-#tags: ["test","docs"] 
+#tags: ["test","docs"]
 title: "Getting Started"
 linkTitle: "Getting Started"
 weight: 2
@@ -15,7 +15,7 @@ Welcome to Hymenaios! Hymenaios is a software release monitor that can notify an
 [Download the latest release](https://github.com/hymenaios-io/Hymenaios/releases) of Hymenaios for your platform.
 
 The Hymenaios server is a single binary named in the style of `hymenaios-VERSION.PLATFORM.ARCH`. We can run this binary and view help on its options by passing the `-help` flag.
-```
+```bash
 ❯ ./hymenaios-0.0.0.linux-amd64 -help
 Usage of ./hymenaios-0.0.0.linux-amd64:
   -config.check

@@ -13,7 +13,7 @@ https://api.github.com/repos/OWNER/REPO/releases.
 It will go through each item in that list and try using `tag_name` as the version. It will run the `url_commands` on this version, check it with `regex_version` and then check the assets against `regex_content`. If all of these pass, that version will be used.
 
 config.yml
-```
+```yaml
 service:
   ...
   # As many of these (below) as you like, just ensure they have unique ID's
@@ -22,7 +22,7 @@ service:
     url: OWNER/REPO                               # monitor `https://github.com/OWNER/REPO`
     url_commands:                                 # see the `url_commands` secion below for more info on this var
       - type: regex_submatch
-        regex: ^v?([0-9.]+)$                      # Since the type is 'github', this searches the tag_names, so
+        regex: ^v?([0-9.]+)$                      # Since the `type` is 'github', this searches the tag_names, so
                                                   # the '$' is used to ensure the tag name ends in this RegEx
                                                   # and doesn't just omit a '-beta' or similar details
     web_url: 'https://example.com/{{ version }}'  # Overrides URL in the Web UI and can be used in the notifiers
@@ -81,12 +81,12 @@ For these vars, if you provide a var with the same ID as in the globals for that
 The following is how you'd define a service to be monitored without using the GitHub API. (All the options above can be used here. The key difference is that `type` is 'web' and `url` is a full HTTP(S) address with `url_commands` to scrape the version).
 
 config.yml
-```
+```yaml
 service:
   EXAMPLE_WEB_ID:
     type: web                                 # Regular URL, not GitHub API
     url: https://golang.org/dl/               # URL to monitor
-    url_commands:                             # url_commands to grab the latest version number
+    url_commands:                             # Commands to grab the latest version number
       type: regex_submatch                    # RegEx type
       regex: go([0-9.]+[0-9]+)\.src\.tar\.gz  # RegEx to find the version. The most recent version download
                                               # is linked first
@@ -112,7 +112,7 @@ For a service of type 'github', 'url_commands' will run against every release 't
 {{< /alert >}}
 
 #### regex
-```
+```yaml
 service:
   example:
     ...
@@ -127,7 +127,7 @@ service:
 {{< /alert >}}
 
 #### regex_submatch
-```
+```yaml
 service:
   example:
     ...
@@ -144,7 +144,7 @@ versioning.
 {{< /alert >}}
 
 #### replace
-```
+```yaml
 service:
   example:
     ...
@@ -156,7 +156,7 @@ service:
 This command replaces `old` with `new`.
 
 #### split
-```
+```yaml
 service:
   example:
     ...

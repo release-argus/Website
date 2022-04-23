@@ -9,7 +9,7 @@ description: >
 Create an incoming webhook by following [this guidance](https://api.slack.com/messaging/webhooks).
 
 config.yml:
-```
+```yaml
 slack:
   ...
   # As many of these (below) as you like, just ensure they have unique ID's

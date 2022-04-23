@@ -10,13 +10,13 @@ You can define defaults for [service](/docs/config/service), [gotify](/docs/conf
 
 
 #### **service** portion
-```
+```yaml
 defaults:
   ...
   service:
     auto_approve: false           # Whether approval is required on the web UI for sending the new release WebHooks
     allow_invalid_certs: false    # Whether invalid HTTPS certs are allowed in queries
-    ignore_misses: false          # Whether url_command misses will be reported in the logs
+    ignore_misses: true           # Whether url_command misses will be reported in the logs
     interval: 10m                 # How often to query for new releases
     use_prerelease: false         # Whether 'prerelease' GitHub tags can be used
     semantic_versioning: true     # Whether to enforce semantic versioning (required to only alert on newew versions)
@@ -25,7 +25,7 @@ defaults:
 ```
 
 #### **gotify** portion
-```
+```yaml
 defaults:
   ...
   gotify:
@@ -37,7 +37,7 @@ defaults:
 ```
 
 #### **slack** portion
-```
+```yaml
 defaults:
   ...
   slack:
@@ -52,7 +52,7 @@ defaults:
 ```
 
 #### **webhook** portion
-```
+```yaml
 defaults:
   ...
   webhook:
