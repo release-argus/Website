@@ -36,9 +36,10 @@ service:
                                                   # for services of type 'github', this RegEx runs against the
                                                   # version assets 'name' and 'browser_download_url'
     regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
+    use_prerelease: false                         # Whether a 'prerelease' tag (on GitHub) can be used
     deployed_version:                             # Get the `current_version` from a deployed service
       url: https://example.com/version            # URL to use
-      allow_invalid_certs: false                  # Accept Invalid HTTPS certs/not
+      allow_invalid_certs: false                  # Accept invalid HTTPS certs/not
       basic_auth:                                 # Credentials for BasicAuth
         username: user
         password: 123
@@ -49,7 +50,6 @@ service:
                                                   # (Full path to the key, e.g. `data.version`, not `version`)
       regex: 'v?([0-9.]+)'                        # Regex to apply to the data retrieved
                                                   # Will run after the JSON value fetch, or alone (if no JSON)
-    use_prerelease: false                         # Whether a 'prerelease' tag (on GitHub) can be used
     auto_approve: false                           # Whether approval is required for new versions in the Web UI,
                                                   # or whether WebHooks are automatically sent (required for their
                                                   # delay var to be used)
@@ -78,7 +78,7 @@ For these vars, if you provide a var with the same ID as in the globals for that
 {{< /alert >}}
 
 ## Monitor outside GitHub API
-The following is how you'd define a service to be monitored without using the GitHub API. (All the options above can be used here. The key difference is that `type` is 'web' and `url` is a full HTTP(S) address with `url_commands` to scrap the version).
+The following is how you'd define a service to be monitored without using the GitHub API. (All the options above can be used here. The key difference is that `type` is 'web' and `url` is a full HTTP(S) address with `url_commands` to scrape the version).
 
 config.yml
 ```
