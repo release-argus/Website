@@ -366,7 +366,7 @@ service:
     web_url: https://github.com/netbox-community/netbox/releases/tag/v{{ version }}
     icon: https://github.com/netbox-community/netbox/raw/develop/netbox/project-static/img/netbox_icon.svg
     deployed_version:
-      url: https://netbox.lars-lehmann.net/
+      url: https://netbox.example.io/
       regex: '[0-9a-z]+ \(v([0-9.]+)\)'
 ```
 
