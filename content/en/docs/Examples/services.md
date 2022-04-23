@@ -349,7 +349,7 @@ service:
       - type: regex_submatch
         regex: n8n\%40([0-9.]+)
     web_url: https://github.com/n8n-io/n8n/blob/master/CHANGELOG.md
-    icon: https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png
+    icon: https://raw.githubusercontent.com/n8n-io/n8n-docs/main/docs/_images/n8n-docs-icon.svg
 ```
 
 ## netbox-community/netbox
@@ -364,7 +364,7 @@ service:
         regex: v([0-9.]+)$
     regex_version: ^[0-9.]+$
     web_url: https://github.com/netbox-community/netbox/releases/tag/v{{ version }}
-    icon: https://github.com/netbox-community/netbox/raw/develop/netbox/project-static/img/netbox_logo.svg
+    icon: https://github.com/netbox-community/netbox/raw/develop/netbox/project-static/img/netbox_icon.svg
     deployed_version:
       url: https://netbox.lars-lehmann.net/
       regex: '[0-9a-z]+ \(v([0-9.]+)\)'
@@ -497,7 +497,7 @@ service:
         regex: v([0-9.]+)$
     regex_version: ^[0-9.]+$
     web_url: https://github.com/requarks/wiki/releases/tag/v{{ version }}
-    icon: https://raw.githubusercontent.com/requarks/wiki/main/client/static/svg/logo-wikijs-full.svg
+    icon: https://static.requarks.io/logo/wikijs-butterfly.svg
 ```
 
 ## thanos-io/thanos
