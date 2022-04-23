@@ -11,7 +11,8 @@ Create an incoming webhook by following [this guidance](https://api.slack.com/me
 config.yml:
 ```yaml
 slack:
-  # As many of these (below) as you like, just ensure they have unique ID's.
+  ...
+  # As many of these (below) as you like, just ensure they have unique ID's
   EXAMPLE_SLACK_ID:
     url: https://SLACK_WEBHOOK_URL           # Slack URL to send to
     icon_emoji: ':github:'                   # Emoji to use as the sender icon

@@ -14,12 +14,14 @@ You can define defaults for [service](/docs/config/service), [gotify](/docs/conf
 defaults:
   ...
   service:
-    auto_approve: false         # Whether approval is required on the web UI for sending the new release WebHooks
-    allow_invalid_certs: false  # Whether invalid HTTPS certs are allowed in queries
-    ignore_misses: true         # Whether url_command misses will be reported in the logs
-    interval: 10m               # How often to query for new releases
-    use_prerelease: false       # Whether 'prerelease' GitHub tags can be used
-    semantic_versioning: true   # Whether to enforce semantic versioning (required to only alert on newew versions)
+    auto_approve: false           # Whether approval is required on the web UI for sending the new release WebHooks
+    allow_invalid_certs: false    # Whether invalid HTTPS certs are allowed in queries
+    ignore_misses: true           # Whether url_command misses will be reported in the logs
+    interval: 10m                 # How often to query for new releases
+    use_prerelease: false         # Whether 'prerelease' GitHub tags can be used
+    semantic_versioning: true     # Whether to enforce semantic versioning (required to only alert on newew versions)
+    deployed_version:             # Get the `current_version` from a deployed service
+      allow_invalid_certs: false  # Accept invalid HTTPS certs/not
 ```
 
 #### **gotify** portion

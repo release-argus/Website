@@ -15,27 +15,41 @@ It will go through each item in that list and try using `tag_name` as the versio
 config.yml
 ```yaml
 service:
-  # As many of these (below) as you like, just ensure they have unique ID's.
+  ...
+  # As many of these (below) as you like, just ensure they have unique ID's
   EXAMPLE_GITHUB_SERVICE:
-    type: github                                  # The type of service to monitor. github/web
-    url: OWNER/REPO                               # monitor https://github.com/OWNER/REPO
+    type: github                                  # The type of service to monitor, github/web
+    url: OWNER/REPO                               # monitor `https://github.com/OWNER/REPO`
     url_commands:                                 # see the `url_commands` secion below for more info on this var
       - type: regex_submatch
-        regex: ^v?([0-9.]+)$                      # Since the type is 'github', this searches the tag_names, so
+        regex: ^v?([0-9.]+)$                      # Since the `type` is 'github', this searches the tag_names, so
                                                   # the '$' is used to ensure the tag name ends in this RegEx
                                                   # and doesn't just omit a '-beta' or similar details
     web_url: 'https://example.com/{{ version }}'  # Overrides URL in the Web UI and can be used in the notifiers
-    interval: 1h5m                                # Query for a version change every 65 minutes.
+    interval: 1h5m                                # Query for a version change every 65 minutes
                                                   # y=years, w=weeks, d=days, h=hours, m=minutes, s=seconds
     semantic_versioning: true                     # Whether to enforce semantic versioning on versions queried
-                                                  # (url_commands can potentially be used to format it semantically
+                                                  # (`url_commands` can potentially be used to format it semantically
                                                   # - https://semver.org)
     regex_content: 'example-{{ version }}-amd64   # URL queried must contain this RegEx for the new version to be
-                                                  # considered valid (notified)
+                                                  # considered valid (meaning alerts wil fire)
                                                   # for services of type 'github', this RegEx runs against the
                                                   # version assets 'name' and 'browser_download_url'
     regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
-    use_prerelease: false                         # Whether a 'prerelease' tag (on GitHub) can be used.
+    use_prerelease: false                         # Whether a 'prerelease' tag (on GitHub) can be used
+    deployed_version:                             # Get the `current_version` from a deployed service
+      url: https://example.com/version            # URL to use
+      allow_invalid_certs: false                  # Accept invalid HTTPS certs/not
+      basic_auth:                                 # Credentials for BasicAuth
+        username: user
+        password: 123
+      headers:                                    # Headers to send to the URL (Usually an API Key)
+        - key: Authorization
+          value: 'Bearer <API_KEY>'
+      json: data.version                          # Use the value of this JSON key as the `current_version`
+                                                  # (Full path to the key, e.g. `data.version`, not `version`)
+      regex: 'v?([0-9.]+)'                        # Regex to apply to the data retrieved
+                                                  # Will run after the JSON value fetch, or alone (if no JSON)
     auto_approve: false                           # Whether approval is required for new versions in the Web UI,
                                                   # or whether WebHooks are automatically sent (required for their
                                                   # delay var to be used)
@@ -64,7 +78,7 @@ For these vars, if you provide a var with the same ID as in the globals for that
 {{< /alert >}}
 
 ## Monitor outside GitHub API
-The following is how you'd define a service to be monitored without using the GitHub API.
+The following is how you'd define a service to be monitored without using the GitHub API. (All the options above can be used here. The key difference is that `type` is 'web' and `url` is a full HTTP(S) address with `url_commands` to scrape the version).
 
 config.yml
 ```yaml
@@ -72,7 +86,7 @@ service:
   EXAMPLE_WEB_ID:
     type: web                                 # Regular URL, not GitHub API
     url: https://golang.org/dl/               # URL to monitor
-    url_commands:                             # url_commands to grab the latest version number
+    url_commands:                             # Commands to grab the latest version number
       type: regex_submatch                    # RegEx type
       regex: go([0-9.]+[0-9]+)\.src\.tar\.gz  # RegEx to find the version. The most recent version download
                                               # is linked first
