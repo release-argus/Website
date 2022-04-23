@@ -44,9 +44,10 @@ service:
         password: 123
       headers:                                    # Headers to send to the URL (Usually an API Key).
         - key: Authorization
-          value: 'Bearer API_KEY'
-      json: version                               # Use the value of this JSON key as the current_version.
-      regex: 'v?[0-9.]+'                          # Regex to apply to the data retrieved.
+          value: 'Bearer <API_KEY>'
+      json: data.version                          # Use the value of this JSON key as the `current_version`.
+                                                  # (Full path to the key, e.g. `data.version`, not `version`)
+      regex: 'v?([0-9.]+)'                        # Regex to apply to the data retrieved.
                                                   # Will run after the JSON value fetch, or alone (if no JSON).
     use_prerelease: false                         # Whether a 'prerelease' tag (on GitHub) can be used.
     auto_approve: false                           # Whether approval is required for new versions in the Web UI,
