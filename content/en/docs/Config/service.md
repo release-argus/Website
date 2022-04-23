@@ -16,59 +16,59 @@ config.yml
 ```
 service:
   ...
-  # As many of these (below) as you like, just ensure they have unique ID's.
+  # As many of these (below) as you like, just ensure they have unique ID's
   EXAMPLE_GITHUB_SERVICE:
-    type: github                                  # The type of service to monitor. github/web
-    url: OWNER/REPO                               # monitor https://github.com/OWNER/REPO
+    type: github                                  # The type of service to monitor, github/web
+    url: OWNER/REPO                               # monitor `https://github.com/OWNER/REPO`
     url_commands:                                 # see the `url_commands` secion below for more info on this var
       - type: regex_submatch
         regex: ^v?([0-9.]+)$                      # Since the type is 'github', this searches the tag_names, so
                                                   # the '$' is used to ensure the tag name ends in this RegEx
-                                                  # and doesn't just omit a '-beta' or similar details.
-    web_url: 'https://example.com/{{ version }}'  # Overrides URL in the Web UI and can be used in the notifiers.
-    interval: 1h5m                                # Query for a version change every 65 minutes.
+                                                  # and doesn't just omit a '-beta' or similar details
+    web_url: 'https://example.com/{{ version }}'  # Overrides URL in the Web UI and can be used in the notifiers
+    interval: 1h5m                                # Query for a version change every 65 minutes
                                                   # y=years, w=weeks, d=days, h=hours, m=minutes, s=seconds
     semantic_versioning: true                     # Whether to enforce semantic versioning on versions queried
-                                                  # (url_commands can potentially be used to format it semantically
-                                                  # - https://semver.org).
+                                                  # (`url_commands` can potentially be used to format it semantically
+                                                  # - https://semver.org)
     regex_content: 'example-{{ version }}-amd64   # URL queried must contain this RegEx for the new version to be
-                                                  # considered valid (notified)
+                                                  # considered valid (meaning alerts wil fire)
                                                   # for services of type 'github', this RegEx runs against the
                                                   # version assets 'name' and 'browser_download_url'
-    regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid.
-    deployed_version:                             # Get the `current_version` from a deployed service.
-      url: https://example.com/version            # URL to use.
-      allow_invalid_certs: false                  # Accept Invalid HTTPS certs/not.
-      basic_auth:                                 # Credentials for BasicAuth.
+    regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
+    deployed_version:                             # Get the `current_version` from a deployed service
+      url: https://example.com/version            # URL to use
+      allow_invalid_certs: false                  # Accept Invalid HTTPS certs/not
+      basic_auth:                                 # Credentials for BasicAuth
         username: user
         password: 123
-      headers:                                    # Headers to send to the URL (Usually an API Key).
+      headers:                                    # Headers to send to the URL (Usually an API Key)
         - key: Authorization
           value: 'Bearer <API_KEY>'
-      json: data.version                          # Use the value of this JSON key as the `current_version`.
+      json: data.version                          # Use the value of this JSON key as the `current_version`
                                                   # (Full path to the key, e.g. `data.version`, not `version`)
-      regex: 'v?([0-9.]+)'                        # Regex to apply to the data retrieved.
-                                                  # Will run after the JSON value fetch, or alone (if no JSON).
-    use_prerelease: false                         # Whether a 'prerelease' tag (on GitHub) can be used.
+      regex: 'v?([0-9.]+)'                        # Regex to apply to the data retrieved
+                                                  # Will run after the JSON value fetch, or alone (if no JSON)
+    use_prerelease: false                         # Whether a 'prerelease' tag (on GitHub) can be used
     auto_approve: false                           # Whether approval is required for new versions in the Web UI,
                                                   # or whether WebHooks are automatically sent (required for their
-                                                  # delay var to be used).
+                                                  # delay var to be used)
     ignore_misses false                           # Whether to log url_command failures, e.g. RegEx returned no
-                                                  # matches.
+                                                  # matches
     access_token: GITHUB_ACCESS_TOKEN             # GitHub access token. Used when type is github. Useful when you
                                                   # want to exceed the public rate-limit, or want to query a private
-                                                  # repo.
+                                                  # repo
     allow_invalid_certs: false                    # Whether invalid HTTPS certificates on the query site are
-                                                  # accepted or not.
+                                                  # accepted or not
     icon: https://example.com/icon.png            # Icon to use on the Web UI as well as all Slacks for this
-                                                  # Service that have neither an icon_emoji, nor a icon_url.
-    gotify:                                       # Gotify notifiers for this Service.
+                                                  # Service that have neither an icon_emoji, nor a icon_url
+    gotify:                                       # Gotify notifiers for this Service
       EXAMPLE_GOTIFY_ID:
         message: 'overriding template'
-    slack:                                        # Slack notifiers for this Service.
+    slack:                                        # Slack notifiers for this Service
       EXAMPLE_SLACK_ID:
         message: 'overriding template'
-    webhook:                                      # WebHooks for this Service.
+    webhook:                                      # WebHooks for this Service
       EXAMPLE_WEBHOOK_ID:
         secret: 'service-specific secret'
 ```

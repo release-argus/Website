@@ -13,10 +13,9 @@ the URL and Key for this WebHook.
 
 config.yml:
 ```
-...
 webhook:
   ...
-  # As many of these (below) as you like, just ensure they have unique ID's.
+  # As many of these (below) as you like, just ensure they have unique ID's
   EXAMPLE_WEBHOOK_ID:
     type: github              # Type of WebHook to send
     url: https://WEBHOOK_URL  # WebHook URL to send to

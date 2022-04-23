@@ -18,6 +18,6 @@ settings:
     listen_address: 0.0.0.0  # Address to listen on
     listen_port: 8080        # Port to listen on
     route_prefix: /          # Web route prefix, e.g. /demo means http://IP:PORT/demo to access
-    cert_file: ''            # HTTPS Cert path, e.g. cert.pem
-    pkey_file: ''            # HTTPS PrivKey path, e.g. privkey.pem
+    cert_file: ''            # HTTPS Cert path, e.g. `cert.pem`
+    pkey_file: ''            # HTTPS PrivKey path, e.g. `privkey.pem`
 ```
