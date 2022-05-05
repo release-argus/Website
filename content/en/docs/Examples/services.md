@@ -328,7 +328,7 @@ service:
     semantic_versioning: false
     regex_version: ^[0-9-]+$
     icon: https://raw.githubusercontent.com/mailcow/mailcow-dockerized/master/data/web/img/cow_mailcow.svg
-        deployed_version:
+    deployed_version:
       url: https://mailcow.example.io/api/v1/get/status/version
       headers:
         - key: X-Api-Key
