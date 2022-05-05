@@ -521,6 +521,7 @@ service:
         username: <username>
         password: <password>
       json: value
+      regex: v([0-9.]+)
 ```
 
 ## requarks/wiki
