@@ -333,8 +333,6 @@ service:
       headers:
         - key: X-API-Key
           value: <ReadOnly-API-Key>
-        - key: accept
-          value: application/json
       json: version
 ```
 
@@ -521,7 +519,7 @@ service:
         username: <username>
         password: <password>
       json: value
-      regex: v?([0-9.]+)
+      regex: v([0-9.]+)
 ```
 
 ## requarks/wiki
