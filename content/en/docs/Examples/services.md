@@ -326,7 +326,7 @@ service:
     url: mailcow/mailcow-dockerized
     web_url: https://github.com/mailcow/mailcow-dockerized/releases/tag/{{ version }}
     semantic_versioning: false
-    regex_version: ^[0-9-]+$
+    regex_version: ^[0-9-]+[a-z]?$
     icon: https://raw.githubusercontent.com/mailcow/mailcow-dockerized/master/data/web/img/cow_mailcow.svg
     deployed_version:
       url: https://mailcow.example.io/api/v1/get/status/version
