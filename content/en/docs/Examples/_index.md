@@ -4,9 +4,9 @@ linkTitle: "Examples"
 weight: 3
 date: 2017-01-05
 description: >
-  See Hymenaios in action!
+  See Argus in action!
 ---
 
 View the [demo](/demo/approvals)
 
-You can see the redacted config it's using at `Status->Configuration` ([here](https://hymenaios.io/demo/config))
+You can see the redacted config it's using at `Status->Configuration` ([here](https://release-argus.io/demo/config))

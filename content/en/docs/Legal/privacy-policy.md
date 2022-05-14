@@ -10,16 +10,16 @@ description: >
 
 ### PRIVACY NOTICE
 
-This privacy notice for Hymenaios ("Company," "we," "us," or "our"), describes how and why we might collect, store, use, and/or
+This privacy notice for Argus ("Company," "we," "us," or "our"), describes how and why we might collect, store, use, and/or
 share ("process") your information when you use our services ("Services"), such as when you:
 
-- Visit our website at https://hymenaios.io, or any website of ours that links to this privacy notice
+- Visit our website at https://release-argus.io, or any website of ours that links to this privacy notice
 
 - Engage with us in other related ways, including any sales, marketing, or events
 
 Questions or concerns? Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree
 with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at
-contact@hymenaios.io.
+contact@release-argus.io.
 
 ### SUMMARY OF KEY POINTS
 
@@ -28,7 +28,7 @@ clicking the link following each key point or by using our table of contents bel
 also click here to go directly to our table of contents.
 
 What personal information do we process? When you visit, use, or navigate our Services, we may process personal information
-depending on how you interact with Hymenaios and the Services, the choices you make, and the products and features you use.
+depending on how you interact with Argus and the Services, the choices you make, and the products and features you use.
 Click [here](#1-what-information-do-we-collect) to learn more.
 
 Do we process any sensitive personal information? We do not process sensitive personal information.
@@ -47,9 +47,9 @@ What are your rights? Depending on where you are located geographically, the app
 certain rights regarding your personal information. Click [here](#8-what-are-your-privacy-rights) to learn more.
 
 How do I exercise my rights? The easiest way to exercise your rights is by filling out our data subject request form available here:
-https://hymenaios.io/docs/legal/privacy-policy, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.
+https://release-argus.io/docs/legal/privacy-policy, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.
 
-Want to learn more about what Hymenaios does with any information we collect? Click [here](#1-what-information-do-we-collect) to review the notice in full.
+Want to learn more about what Argus does with any information we collect? Click [here](#1-what-information-do-we-collect) to review the notice in full.
 
 ### TABLE OF CONTENTS
 - [1. WHAT INFORMATION DO WE COLLECT?](#1-what-information-do-we-collect)
@@ -99,7 +99,7 @@ information about how and when you use our Services, and other technical informa
 maintain the security and operation of our Services, and for our internal analytics and reporting purposes.
 
 Like many businesses, we also collect information through cookies and similar technologies. You can find out more about this in
-our Cookie Notice: https://hymenaios.io/docs/legal/cookies.
+our Cookie Notice: https://release-argus.io/docs/legal/cookies.
 
 The information we collect includes:
 
@@ -236,7 +236,7 @@ In Short: We may use cookies and other tracking technologies to collect and stor
 
 We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific
 information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice:
-https://hymenaios.io/docs/legal/cookies.
+https://release-argus.io/docs/legal/cookies.
 
 #### 6. HOW LONG DO WE KEEP YOUR INFORMATION?
 
@@ -259,7 +259,7 @@ We do not knowingly solicit data from or market to children under 18 years of ag
 are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the
 Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the
 account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may
-have collected from children under age 18, please contact us at privacy@hymenaios.io.
+have collected from children under age 18, please contact us at privacy@release-argus.io.
 
 #### 8. WHAT ARE YOUR PRIVACY RIGHTS?
 
@@ -290,9 +290,9 @@ consent.
 Cookies and similar technologies: Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose
 to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect
 certain features or services of our Services. To opt out of interest-based advertising by advertisers on our Services visit
-http://www.aboutads.info/choices/. For further information, please see our Cookie Notice: https://hymenaios.io/docs/legal/cookies.
+http://www.aboutads.info/choices/. For further information, please see our Cookie Notice: https://release-argus.io/docs/legal/cookies.
 
-If you have questions or comments about your privacy rights, you may email us at privacy@hymenaios.io.
+If you have questions or comments about your privacy rights, you may email us at privacy@release-argus.io.
 
 #### 9. CONTROLS FOR DO-NOT-TRACK FEATURES
 
@@ -330,9 +330,9 @@ this privacy notice frequently to be informed of how we are protecting your info
 
 #### 12. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
 
-If you have questions or comments about this notice, you may email us at privacy@hymenaios.io or by post to:
+If you have questions or comments about this notice, you may email us at privacy@release-argus.io or by post to:
 
-Hymenaios
+Argus
 
 31 Heather Way
 
@@ -342,9 +342,9 @@ RM1 4SX
 
 United Kingdom
 
-If you are a resident in the United Kingdom, the "data controller" of your personal information is Hymenaios. Hymenaios has
+If you are a resident in the United Kingdom, the "data controller" of your personal information is Argus. Argus has
 appointed Joseph Kavanagh to be its representative in the UK. You can contact them directly regarding the processing of your
-information by Hymenaios, by email at Joseph@kav.io, by visiting https://josephkav.io/, by phone at +447891593411, or by post
+information by Argus, by email at Joseph@kav.io, by visiting https://josephkav.io/, by phone at +447891593411, or by post
 to:
 
 31 Heather Way
@@ -359,4 +359,4 @@ United Kingdom
 
 Based on the applicable laws of your country, you may have the right to request access to the personal information we collect
 from you, change that information, or delete it in some circumstances. To request to review, update, or delete your personal
-information, please email: privacy@hymenaios.io
+information, please email: privacy@release-argus.io

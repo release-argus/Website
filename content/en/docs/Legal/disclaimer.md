@@ -10,7 +10,7 @@ description: >
 
 #### WEBSITE DISCLAIMER
 
-The information provided by Hymenaios ("we", "us", or "our") on hymenaios.io (the "Site") is for general informational purposes
+The information provided by Argus ("we", "us", or "our") on release-argus.io (the "Site") is for general informational purposes
 only. All information on the Site is provided in good faith, however we make no representation or warranty of any kind, express
 or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on the Site.
 UNDER NO CIRCUMSTANCE SHALL WE HAVE ANY LIABILITY TO YOU FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A

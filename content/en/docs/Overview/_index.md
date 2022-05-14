@@ -7,9 +7,9 @@ aliases:
   - /docs/
 ---
 
-### What is Hymenaios?
+### What is Argus?
 
-[Hymenaios](https://github.com/hymenaios-io/Hymenaios) is an open-source monitor for new software releases, be that through GitHub release tracking, or website change detection (through RegEx).
+[Argus](https://github.com/release-argus/Argus) is an open-source monitor for new software releases, be that through GitHub release tracking, or website change detection (through RegEx).
 
 ### Why do I want it?
 
@@ -26,5 +26,5 @@ aliases:
 ### Where should I go next?
 
 
-* [Getting Started](/docs/getting-started/): Get started with Hymenaios
+* [Getting Started](/docs/getting-started/): Get started with Argus
 

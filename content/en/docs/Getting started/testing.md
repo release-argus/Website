@@ -8,7 +8,7 @@ description: >
 
 ## Test a Gotify connection
 ```bash
-❯ ./hymenaios -test.gotify EXAMPLE_GOTIFY
+❯ ./argus -test.gotify EXAMPLE_GOTIFY
 Loading config from "config.yml"
 INFO: Testing (EXAMPLE_GOTIFY)
 INFO: Message sent succesfully with "EXAMPLE_GOTIFY" config
@@ -16,14 +16,14 @@ INFO: Message sent succesfully with "EXAMPLE_GOTIFY" config
 
 ## Test a Slack connection
 ```bash
-❯ ./hymenaios -test.slack EXAMPLE_SLACK
+❯ ./argus -test.slack EXAMPLE_SLACK
 INFO: Testing (EXAMPLE_SLACK)
 INFO: Message sent succesfully with "EXAMPLE_SLACK" config
 ```
 
 ## Test a Service query
 ```bash
-❯ ./hymenaios -config.file public.yml -test.service EXAMPLE/SERVICE
+❯ ./argus -config.file public.yml -test.service EXAMPLE/SERVICE
 Loading config from "public.yml"
 INFO: Testing (EXAMPLE/SERVICE)
 INFO: EXAMPLE/SRVICE, Latest Release - "3.2.1"
@@ -34,7 +34,7 @@ You can go through your `config.yml` and find what ID you defined in the service
 
 e.g.
 ```bash
-❯ ./hymenaios -test.service a
+❯ ./argus -test.service a
 Loading config from "config.yml"
 INFO: Testing (a)
 ERROR: Testing (a), Service "a" could not be found in config.service

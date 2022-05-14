@@ -17,14 +17,14 @@ slack:
     url: https://SLACK_WEBHOOK_URL           # Slack URL to send to
     icon_emoji: ':github:'                   # Emoji to use as the sender icon
     icon_url: https://example.com/image.png  # Link to an icon to use as the sender icon
-    username: Hymenaios                      # Username of the sender
+    username: Argus                          # Username of the sender
     message: MESSAGE                         # Message template
     delay: 0s                                # Time to wait when a new release is found before sending this message
     max_tries: 3                             # Maximum number of times to try sending this message until a send is
                                              # successful
 ```
 {{< alert title="Note" >}}
-don't set both an `icon_emoji` and a `icon_url` as Hymenaios will always use `icon_url` over `icon_emoji`.
+don't set both an `icon_emoji` and a `icon_url` as Argus will always use `icon_url` over `icon_emoji`.
 {{< /alert >}}
 
 #### message templating
@@ -42,7 +42,7 @@ The vars that can be used in both the title and message templates are:
 - web_url
 - version
 
-The default Slack message format assumes that when `web_url` is defined, it is a link to the services changelog. Then, in any notifications by Hymenaios about that service,
+The default Slack message format assumes that when `web_url` is defined, it is a link to the services changelog. Then, in any notifications by Argus about that service,
 you should get a clickable 'changelog' button that takes you to that `web_url`.
 
 

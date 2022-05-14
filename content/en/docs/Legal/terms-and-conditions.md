@@ -37,8 +37,8 @@ description: >
 #### 1. AGREEMENT TO TERMS
 
 These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity
-(“you”) and Hymenaios, doing business as Hymenaios ("Hymenaios," “we," “us," or “our”), concerning your access to and use of
-the https://hymenaios.io website as well as any other media form, media channel, mobile website or mobile application related,
+(“you”) and Argus, doing business as Argus ("Argus," “we," “us," or “our”), concerning your access to and use of
+the https://release-argus.io website as well as any other media form, media channel, mobile website or mobile application related,
 linked, or otherwise connected thereto (collectively, the “Site”). We are registered in England and have our registered office at 31
 Heather Way, Romford RM1 4SX. You agree that by accessing the Site, you have read, understood, and agreed to be bound by all
 of these Terms of Use. IF YOU DO NOT AGREE WITH ALL OF THESE TERMS OF USE, THEN YOU ARE EXPRESSLY PROHIBITED FROM
@@ -237,7 +237,7 @@ to protect our rights and property and to facilitate the proper functioning of t
 
 #### 10. PRIVACY POLICY
 
-We care about data privacy and security. Please review our Privacy Policy: https://hymenaios.io/docs/legal/privacy-policy. By
+We care about data privacy and security. Please review our Privacy Policy: https://release-argus.io/docs/legal/privacy-policy. By
 using the Site, you agree to be bound by our Privacy Policy, which is incorporated into these Terms of Use. Please be advised the
 Site is hosted in Germany. If you access the Site from any other region of the world with laws or other requirements governing
 personal data collection, use, or disclosure that differ from applicable laws in Germany, then through your continued use of the
@@ -286,7 +286,7 @@ support the Site or to supply any corrections, updates, or releases in connectio
 These conditions are governed by and interpreted following the laws of the United Kingdom, and the use of the United Nations
 Convention of Contracts for the International Sale of Goods is expressly excluded. If your habitual residence is in the EU, and you
 are a consumer, you additionally possess the protection provided to you by obligatory provisions of the law of your country of
-residence. Hymenaios and yourself both agree to submit to the non-exclusive jurisdiction of the courts of London, which means
+residence. Argus and yourself both agree to submit to the non-exclusive jurisdiction of the courts of London, which means
 that you may make a claim to defend your consumer protection rights in regards to these Conditions of Use in the United
 Kingdom, or in the EU country in which you reside.
 
@@ -409,7 +409,7 @@ parties hereto to execute these Terms of Use.
 In order to resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us
 at:
 
-Hymenaios
+Argus
 
 31 Heather Way
 
@@ -421,4 +421,4 @@ England
 
 Phone: +447891593411
 
-contact@hymenaios.io
+contact@release-argus.io

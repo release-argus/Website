@@ -289,17 +289,17 @@ service:
           value: Bearer <API_TOKEN>
 ```
 
-## hymenaios-io/Hymenaios
-Source: https://github.com/hymenaios-io/Hymenaios
+## release-argus/argus
+Source: https://github.com/release-argus/Argus
 ```yaml
 service:
-  hymenaios-io/Hymenaios:
+  release-argus/argus:
     type: github
-    url: hymenaios-io/Hymenaios
-    web_url: https://github.com/hymenaios-io/Hymenaios/blob/master/CHANGELOG.md
-    icon: https://github.com/hymenaios-io/Hymenaios/raw/master/web/ui/static/favicon.svg
+    url: release-argus/argus
+    web_url: https://github.com/release-argus/Argus/blob/master/CHANGELOG.md
+    icon: https://github.com/release-argus/Argus/raw/master/web/ui/static/favicon.svg
     deployed_version:
-      url: https://hymenaios.example.io/api/v1/version
+      url: https://argus.example.io/api/v1/version
       json: version
 ```
 

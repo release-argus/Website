@@ -1,4 +1,4 @@
-module github.com/hymenaios-io/website
+module github.com/release-argus/Website
 
 go 1.18
 

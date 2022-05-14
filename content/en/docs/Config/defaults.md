@@ -31,7 +31,7 @@ defaults:
   gotify:
     delay: 0s                                             # Delay before release notifications
     max_tries: 3                                          # Maximum number of tries at sending each message
-    title: Hymenaios                                      # Title template
+    title: Argus                                          # Title template
     message: '{{ service_id }} - {{ version }} released'  # Message template
     priority: 5                                           # Priority to give the messages
 ```
@@ -43,7 +43,7 @@ defaults:
   slack:
     delay: 0s                                 # Delay before release notifications
     max_tries: 3                              # Maximum number of tries at sending each message
-    username: Hymenaios                       # Username template
+    username: Argus                           # Username template
     icon_emoji: ':github:'                    # Sender icon to use in the message
     message: >-                               # Message template
       <{{ service_url }}|{{ service_id }}> -

@@ -5,10 +5,10 @@ title: "Getting Started"
 linkTitle: "Getting Started"
 weight: 2
 description: >
-  Deploying Hymenaios
+  Deploying Argus
 ---
 
-Welcome to Hymenaios (hi-men-ay-ous)! Hymenaios is a software release monitor that can notify and act on new releases that match the filters you set. This guide will show you how to install, configure and monitor your first resource with Hymenaios. You'll download, install and run Hymenaios.
+Welcome to Argus! Argus is a software release monitor that can notify and act on new releases that match the filters you set. This guide will show you how to install, configure and monitor your first resource with Argus. You'll download, install and run Argus.
 
 ---
 ## Installation
@@ -18,30 +18,30 @@ Welcome to Hymenaios (hi-men-ay-ous)! Hymenaios is a software release monitor th
 
 #### Download
 
-[Download the latest release](https://github.com/hymenaios-io/Hymenaios/releases) of Hymenaios for your platform.
+[Download the latest release](https://github.com/release-argus/Argus/releases) of Argus for your platform.
 
-The Hymenaios server is a single binary named in the style of `hymenaios-VERSION.PLATFORM.ARCH`. We can run this binary and view help on its options by passing the `-help` flag.
+The Argus server is a single binary named in the style of `argus-VERSION.PLATFORM.ARCH`. We can run this binary and view help on its options by passing the `-help` flag.
 ```bash
-❯ ./hymenaios-0.0.0.linux-amd64 -help
-Usage of ./hymenaios-0.0.0.linux-amd64:
+❯ ./argus-0.0.0.linux-amd64 -help
+Usage of ./argus-0.0.0.linux-amd64:
   -config.check
         Print the fully-parsed config.
 ...
 ```
 
 #### systemd service
-Example systemd service file @ `/etc/systemd/system/hymenaios.service`
+Example systemd service file @ `/etc/systemd/system/argus.service`
 ```
 [Unit]
-Description=Hymenaios Server
-Documentation=https://hymenaios.io/docs
+Description=Argus Server
+Documentation=https://release-argus.io/docs
 After=network-online.target
 
 [Service]
-User=hymenaios
+User=argus
 Restart=on-failure
-ExecStart=/home/hymenaios/hymenaios \
-  -config.file=/home/hymenaios/hymenaios/config.yml
+ExecStart=/home/argus/argus \
+  -config.file=/home/argus/argus/config.yml
 
 [Install]
 WantedBy=multi-user.target
@@ -50,13 +50,13 @@ WantedBy=multi-user.target
 Enable and start the service:
 ```bash
 systemctl daemon-reload
-systemctl enable hymenaios
-systemctl start hymenaios
+systemctl enable argus
+systemctl start argus
 ```
 ---
 ### Docker
 
-Hymenaios can be found on the Docker Hub at [hymenaios/hymenaios](https://hub.docker.com/r/hymenaios/hymenaios), GHCR at [ghcr.io/hymenaios-io/hymenaios](https://github.com/hymenaios-io/Hymenaios/pkgs/container/hymenaios) and Quay at [quay.io/hymenaios/hymenaios](https://quay.io/repository/hymenaios/hymenaios).
+Argus can be found on the Docker Hub at [releaseargus/argus](https://hub.docker.com/r/releaseargus/argus), GHCR at [ghcr.io/release-argus/argus](https://github.com/release-argus/Argus/pkgs/container/argus) and Quay at [quay.io/argus-io/argus](https://quay.io/repository/argus-io/argus).
 
 The tag format for the docker images are:
 - `latest` is the latest GitHub release
@@ -68,10 +68,10 @@ Example `docker-compose.yml` that uses the latest release:
 version: '3.7'
 
 services:
-  hymenaios:
-    image: hymenaios/hymenaios:latest
+  argus:
+    image: argus/argus:latest
     volumes:
-      - /path/to/local/config.yml:/etc/hymenaios/config.yml
+      - /path/to/local/config.yml:/etc/argus/config.yml
     ports:
       - 8080:8080
     restart: always

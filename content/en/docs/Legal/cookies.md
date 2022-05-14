@@ -56,4 +56,4 @@ For more general information on cookies, please read "[Cookies](https://www.gene
 
 However if you are still looking for more information then you can contact us through one of our preferred contact methods:
 
-- Email: privacy@hymenaios.io
+- Email: privacy@release-argus.io
