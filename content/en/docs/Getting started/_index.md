@@ -8,7 +8,7 @@ description: >
   Deploying Hymenaios
 ---
 
-Welcome to Hymenaios! Hymenaios is a software release monitor that can notify and act on new releases that match the filters you set. This guide will show you how to install, configure and monitor your first resource with Hymenaios. You'll download, install and run Hymenaios.
+Welcome to Hymenaios (hi-men-ay-ous)! Hymenaios is a software release monitor that can notify and act on new releases that match the filters you set. This guide will show you how to install, configure and monitor your first resource with Hymenaios. You'll download, install and run Hymenaios.
 
 ---
 ## Installation
