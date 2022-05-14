@@ -20,7 +20,7 @@ gotify:
     priority: 5              # Priority of the message - <1 = Min, 1-3 = Low, 4-7 = Med, >7 = High
     extras:
       android_action: '{{ web_url }}'       # URL to open on notification delivery
-      cli3nt_display: 'text/plain'          # How the notification will be rendered, either 'text/plain' (default),
+      client_display: 'text/plain'          # How the notification will be rendered, either 'text/plain' (default),
                                             # or 'text/markdown'
       client_notification: '{{ web_url }}'  # URL to open on notification click
     delay: 0s                # Time to wait when a new release is found before sending this message
