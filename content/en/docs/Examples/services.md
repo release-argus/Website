@@ -693,6 +693,23 @@ service:
     icon: https://raw.githubusercontent.com/wekan/wekan/df54863e7243b0b067ec2d30d8352ff1838931c4/meta/icons/wekan-150.svg
 ```
 
+## wordpress/wordpress
+Source: https://github.com/WordPress/WordPress
+```yaml
+service:
+  wordpress/wordpress:
+    type: url
+    url: https://github.com/wordpress/wordpress/tags
+    url_commands:
+      - type: regex_submatch
+        regex: \/releases\/tag\/([0-9.]+)\"
+    web_url: https://wordpress.org/news/category/releases/
+    icon: https://github.com/WordPress/WordPress/raw/master/wp-admin/images/wordpress-logo.svg
+    deployed_version:
+      url: https://wordpress.example.io/feed/
+      regex: '<generator>https:\/\/wordpress\.org\/\?v=([0-9.]*)\<\/generator\>'
+```
+
 ## wowchemy/wowchemy-hugo-themes
 Source: https://github.com/wowchemy/wowchemy-hugo-themes
 ```yaml
