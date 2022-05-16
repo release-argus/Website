@@ -337,37 +337,6 @@ service:
       json: version
 ```
 
-## matrix-org/synapse
-Source: https://github.com/matrix-org/synapse
-```yaml
-service:
-  matrix-org/synapse:
-    type: github
-    url: matrix-org/synapse
-    url_commands:
-      - type: regex
-        regex: v([0-9.]+)$
-    web_url: https://github.com/matrix-org/synapse/releases/tag/v{{ version }}
-    icon: https://github.com/matrix-org/synapse/raw/develop/docs/favicon.svg
-    deployed_version:
-      url: https://matrix.example.io/_synapse/admin/v1/server_version
-      json: server_version
-```
-
-## release-argus/argus
-Source: https://github.com/release-argus/Argus
-```yaml
-service:
-  release-argus/argus:
-    type: github
-    url: release-argus/argus
-    web_url: https://github.com/release-argus/Argus/blob/master/CHANGELOG.md
-    icon: https://github.com/release-argus/Argus/raw/master/web/ui/static/favicon.svg
-    deployed_version:
-      url: https://argus.example.io/api/v1/version
-      json: version
-```
-
 ## louislam/uptime-kuma
 Source: https://github.com/louislam/uptime-kuma
 ```yaml
@@ -416,6 +385,23 @@ service:
     deployed_version:
       url: https://matomo.example.io/index.php?module=API&method=API.getMatomoVersion&format=JSON&force_api_session=1&token_auth=<TOKEN>
       json: value
+```
+
+## matrix-org/synapse
+Source: https://github.com/matrix-org/synapse
+```yaml
+service:
+  matrix-org/synapse:
+    type: github
+    url: matrix-org/synapse
+    url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    web_url: https://github.com/matrix-org/synapse/releases/tag/v{{ version }}
+    icon: https://github.com/matrix-org/synapse/raw/develop/docs/favicon.svg
+    deployed_version:
+      url: https://matrix.example.io/_synapse/admin/v1/server_version
+      json: server_version
 ```
 
 ## mattermost/mattermost-server
@@ -606,6 +592,20 @@ service:
         password: <password>
       json: value
       regex: v([0-9.]+)
+```
+
+## release-argus/argus
+Source: https://github.com/release-argus/Argus
+```yaml
+service:
+  release-argus/argus:
+    type: github
+    url: release-argus/argus
+    web_url: https://github.com/release-argus/Argus/blob/master/CHANGELOG.md
+    icon: https://github.com/release-argus/Argus/raw/master/web/ui/static/favicon.svg
+    deployed_version:
+      url: https://argus.example.io/api/v1/version
+      json: version
 ```
 
 ## requarks/wiki
