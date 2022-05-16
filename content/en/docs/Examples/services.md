@@ -612,6 +612,22 @@ service:
       josn: data.system.info.currentVersion
 ```
 
+## smallstep/certificates
+Source: https://github.com/smallstep/certificates
+```yaml
+  smallstep/certificates:
+    type: github
+    url: smallstep/certificates
+    url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    web_url: https://github.com/smallstep/certificates/releases/tag/v{{ version }}
+    icon: https://github.com/smallstep/docs/raw/main/static/graphics/logo-icon-white.svg
+    deployed_version:
+      url: https://certificates.example.io/version
+      json: version
+```
+
 ## thanos-io/thanos
 Source: https://github.com/thanos-io/thanos
 ```yaml
