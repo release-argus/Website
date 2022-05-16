@@ -139,6 +139,24 @@ service:
       json: version_current
 ```
 
+## goharbor/harbor
+Source: https://github.com/goharbor/harbor
+```yaml
+service:
+  goharbor/harbor:
+    type: github
+    url: goharbor/harbor
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)$
+    web_url: https://github.com/goharbor/harbor/releases/tag/v{{ version }}
+    icon: https://github.com/goharbor/harbor/raw/main/src/portal/src/images/harbor-logo.svg
+    deployed_version:
+      url: https://harbor.example.io/api/v2.0/systeminfo
+      json: harbor_version
+      regex: v([0-9.]+)
+```
+
 ## golang/go
 Source: https://github.com/golang/go
 ```yaml
