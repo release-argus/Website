@@ -593,6 +593,20 @@ service:
       json: data.version
 ```
 
+## vector-im/element-web
+Source: https://github.com/vector-im/element-web
+```yaml
+service:
+  vector-im/element-web:
+    type: github
+    url: vector-im/element-web
+    url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    web_url: https://github.com/vector-im/element-web/releases/tag/v{{ version }}
+    icon: https://github.com/vector-im/element-web/raw/develop/res/vector-icons/150.png
+```
+
 ## wekan/wekan
 ```yaml
 service:
