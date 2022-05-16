@@ -478,6 +478,26 @@ service:
     icon: https://raw.githubusercontent.com/opencve/opencve/master/opencve/static/img/logo_white.png
 ```
 
+## opnsense/core
+Source: https://github.com/opnsense/core
+```yaml
+  opnsense/core:
+    type: url
+    url: https://github.com/opnsense/core/tags
+    url_commands:
+      - type: regex
+        regex: \/releases\/tag\/([0-9.]+)\"
+    web_url: https://docs.opnsense.org/CE_releases.html
+    icon: https://github.com/opnsense/core/raw/master/src/opnsense/www/themes/opnsense/build/images/icon-logo.svg
+    deployed_version:
+      url: https://opnsense.example.io/api/core/firmware/status
+      basic_auth:
+        username: <API Key>
+        password: <API Secret>
+      json: product.product_version
+      regex: ([0-9.]+)
+```
+
 ## pterodactyl/panel
 Source: https://github.com/pterodactyl/panel
 ```yaml
