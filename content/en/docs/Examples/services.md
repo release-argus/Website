@@ -322,6 +322,9 @@ service:
         regex: v([0-9.]+)$
     web_url: https://github.com/matrix-org/synapse/releases/tag/v{{ version }}
     icon: https://github.com/matrix-org/synapse/raw/develop/docs/favicon.svg
+    deployed_version:
+      url: https://matrix.example.io/_synapse/admin/v1/server_version
+      json: server_version
 ```
 
 ## release-argus/argus
