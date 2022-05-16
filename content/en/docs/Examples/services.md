@@ -307,6 +307,20 @@ service:
           value: Bearer <API_TOKEN>
 ```
 
+## matrix-org/synapse
+Source: https://github.com/matrix-org/synapse
+```yaml
+service:
+  matrix-org/synapse:
+    type: github
+    url: matrix-org/synapse
+    url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    web_url: https://github.com/matrix-org/synapse/releases/tag/v{{ version }}
+    icon: https://github.com/matrix-org/synapse/raw/develop/docs/favicon.svg
+```
+
 ## release-argus/argus
 Source: https://github.com/release-argus/Argus
 ```yaml
