@@ -17,6 +17,20 @@ service:
     icon: https://raw.githubusercontent.com/adnanh/webhook/development/docs/logo/logo-128x128.png
 ```
 
+## ansible/awx
+Source: https://github.com/ansible/awx
+```yaml
+service:
+  ansible/awx:
+    type: github
+    url: ansible/awx
+    web_url: https://github.com/ansible/awx/releases/{{ version }}
+    icon: https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg
+    deployed_version:
+      url: https://awx.example.io/api/v2/ping/?format=json
+      json: version
+```
+
 ## ansible/awx-operator
 Source: https://github.com/ansible/awx-operator
 ```yaml
@@ -306,32 +320,20 @@ service:
         - key: Authorization
           value: Bearer <API_TOKEN>
 ```
-
-## matrix-org/synapse
-Source: https://github.com/matrix-org/synapse
+## influxdata/influxdb
+Source: https://github.com/influxdata/influxdb
 ```yaml
 service:
-  matrix-org/synapse:
+  influxdata/influxdb:
     type: github
-    url: matrix-org/synapse
+    url: influxdata/influxdb
     url_commands:
       - type: regex
         regex: v([0-9.]+)$
-    web_url: https://github.com/matrix-org/synapse/releases/tag/v{{ version }}
-    icon: https://github.com/matrix-org/synapse/raw/develop/docs/favicon.svg
-```
-
-## release-argus/argus
-Source: https://github.com/release-argus/Argus
-```yaml
-service:
-  release-argus/argus:
-    type: github
-    url: release-argus/argus
-    web_url: https://github.com/release-argus/Argus/blob/master/CHANGELOG.md
-    icon: https://github.com/release-argus/Argus/raw/master/web/ui/static/favicon.svg
+    web_url: https://github.com/influxdata/influxdb/releases/tag/v{{ version }}
+    icon: https://github.com/influxdata/ui/raw/master/src/writeData/graphics/influxdb.svg
     deployed_version:
-      url: https://argus.example.io/api/v1/version
+      url: https://influxdb.example.io/health
       json: version
 ```
 
@@ -385,6 +387,23 @@ service:
       json: value
 ```
 
+## matrix-org/synapse
+Source: https://github.com/matrix-org/synapse
+```yaml
+service:
+  matrix-org/synapse:
+    type: github
+    url: matrix-org/synapse
+    url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    web_url: https://github.com/matrix-org/synapse/releases/tag/v{{ version }}
+    icon: https://github.com/matrix-org/synapse/raw/develop/docs/favicon.svg
+    deployed_version:
+      url: https://matrix.example.io/_synapse/admin/v1/server_version
+      json: server_version
+```
+
 ## mattermost/mattermost-server
 Source: https://github.com/mattermost/mattermost-server
 ```yaml
@@ -426,8 +445,8 @@ service:
     web_url: https://github.com/netbox-community/netbox/releases/tag/v{{ version }}
     icon: https://github.com/netbox-community/netbox/raw/develop/netbox/project-static/img/netbox_icon.svg
     deployed_version:
-      url: https://netbox.example.io/
-      regex: '[0-9a-z]+ \(v([0-9.]+)\)'
+      url: https://netbox.example.io/api/status/
+      json: netbox-version
 ```
 
 ## nextcloud/server
@@ -459,6 +478,27 @@ service:
         regex: v([0-9.]+)$
     web_url: https://github.com/opencve/opencve/releases/v{{ version }}
     icon: https://raw.githubusercontent.com/opencve/opencve/master/opencve/static/img/logo_white.png
+```
+
+## opnsense/core
+Source: https://github.com/opnsense/core
+```yaml
+service:
+  opnsense/core:
+    type: url
+    url: https://github.com/opnsense/core/tags
+    url_commands:
+      - type: regex
+        regex: \/releases\/tag\/([0-9.]+)\"
+    web_url: https://docs.opnsense.org/CE_releases.html
+    icon: https://github.com/opnsense/core/raw/master/src/opnsense/www/themes/opnsense/build/images/icon-logo.svg
+    deployed_version:
+      url: https://opnsense.example.io/api/core/firmware/status
+      basic_auth:
+        username: <API Key>
+        password: <API Secret>
+      json: product.product_version
+      regex: ([0-9.]+)
 ```
 
 ## pterodactyl/panel
@@ -554,6 +594,20 @@ service:
       regex: v([0-9.]+)
 ```
 
+## release-argus/argus
+Source: https://github.com/release-argus/Argus
+```yaml
+service:
+  release-argus/argus:
+    type: github
+    url: release-argus/argus
+    web_url: https://github.com/release-argus/Argus/blob/master/CHANGELOG.md
+    icon: https://github.com/release-argus/Argus/raw/master/web/ui/static/favicon.svg
+    deployed_version:
+      url: https://argus.example.io/api/v1/version
+      json: version
+```
+
 ## requarks/wiki
 Source: https://github.com/requarks/wiki
 ```yaml
@@ -573,6 +627,23 @@ service:
         - key: Authorization
           value: Bearer <TOKEN>
       josn: data.system.info.currentVersion
+```
+
+## smallstep/certificates
+Source: https://github.com/smallstep/certificates
+```yaml
+service:
+  smallstep/certificates:
+    type: github
+    url: smallstep/certificates
+    url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    web_url: https://github.com/smallstep/certificates/releases/tag/v{{ version }}
+    icon: https://github.com/smallstep/docs/raw/main/static/graphics/logo-icon-white.svg
+    deployed_version:
+      url: https://certificates.example.io/version
+      json: version
 ```
 
 ## thanos-io/thanos
@@ -620,6 +691,23 @@ service:
     semantic_versioning: false
     regex_version: ^[0-9.]+$
     icon: https://raw.githubusercontent.com/wekan/wekan/df54863e7243b0b067ec2d30d8352ff1838931c4/meta/icons/wekan-150.svg
+```
+
+## wordpress/wordpress
+Source: https://github.com/WordPress/WordPress
+```yaml
+service:
+  wordpress/wordpress:
+    type: url
+    url: https://github.com/wordpress/wordpress/tags
+    url_commands:
+      - type: regex_submatch
+        regex: \/releases\/tag\/([0-9.]+)\"
+    web_url: https://wordpress.org/news/category/releases/
+    icon: https://github.com/WordPress/WordPress/raw/master/wp-admin/images/wordpress-logo.svg
+    deployed_version:
+      url: https://wordpress.example.io/feed/
+      regex: '<generator>https:\/\/wordpress\.org\/\?v=([0-9.]*)\<\/generator\>'
 ```
 
 ## wowchemy/wowchemy-hugo-themes
