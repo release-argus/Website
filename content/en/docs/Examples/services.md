@@ -17,6 +17,20 @@ service:
     icon: https://raw.githubusercontent.com/adnanh/webhook/development/docs/logo/logo-128x128.png
 ```
 
+## ansible/awx
+Source: https://github.com/ansible/awx
+```yaml
+service:
+  ansible/awx:
+    type: github
+    url: ansible/awx
+    web_url: https://github.com/ansible/awx/releases/{{ version }}
+    icon: https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg
+    deployed_version:
+      url: https://awx.example.io/api/v2/ping/?format=json
+      json: version
+```
+
 ## ansible/awx-operator
 Source: https://github.com/ansible/awx-operator
 ```yaml
@@ -26,9 +40,6 @@ service:
     url: ansible/awx-operator
     web_url: https://github.com/ansible/awx-operator/releases/{{ version }}
     icon: https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg
-    deployed_version:
-      url: https://awx.example.io/api/v2/ping/
-      json: version
 ```
 
 ## dani-garcia/vaultwarden
