@@ -320,6 +320,22 @@ service:
         - key: Authorization
           value: Bearer <API_TOKEN>
 ```
+## influxdata/influxdb
+Source: https://github.com/influxdata/influxdb
+```yaml
+service:
+  influxdata/influxdb:
+    type: github
+    url: influxdata/influxdb
+    url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    web_url: https://github.com/influxdata/influxdb/releases/tag/v{{ version }}
+    icon: https://github.com/influxdata/ui/raw/master/src/writeData/graphics/influxdb.svg
+    deployed_version:
+      url: https://influxdb.example.io/health
+      json: version
+```
 
 ## matrix-org/synapse
 Source: https://github.com/matrix-org/synapse
@@ -481,6 +497,7 @@ service:
 ## opnsense/core
 Source: https://github.com/opnsense/core
 ```yaml
+service:
   opnsense/core:
     type: url
     url: https://github.com/opnsense/core/tags
@@ -615,6 +632,7 @@ service:
 ## smallstep/certificates
 Source: https://github.com/smallstep/certificates
 ```yaml
+service:
   smallstep/certificates:
     type: github
     url: smallstep/certificates
