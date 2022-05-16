@@ -69,7 +69,7 @@ version: '3.7'
 
 services:
   argus:
-    image: argus/argus:latest
+    image: releaseargus/argus:latest
     volumes:
       - /path/to/local/config.yml:/etc/argus/config.yml
     ports:
