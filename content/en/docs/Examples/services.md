@@ -263,6 +263,7 @@ service:
       - type: regex_submatch
         regex: v([0-9.]+)$
     web_url: https://github.com/healthchecks/healthchecks/releases/tag/{{ version }}
+    semantic_versioning: false
     icon: https://healthchecks.io/static/img/logo-rounded.svg
     deployed_version:
       url: https://healthchecks.example.io/docs/
