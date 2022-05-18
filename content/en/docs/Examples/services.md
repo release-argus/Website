@@ -5,6 +5,7 @@ weight: 2
 description: >
   Example configurations for different services.
 ---
+
 ## adnanh/webhook
 Source: https://github.com/adnanh/webhook
 ```yaml
@@ -53,29 +54,13 @@ service:
     icon: https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/src/static/images/vaultwarden-icon.png
 ```
 
-## jgraph/drawio
-Source: https://github.com/jgraph/drawio
-```yaml
-service:
-  jgraph/drawio:
-    type: github
-    url: jgraph/drawio
-    url_commands:
-      - type: regex_submatch
-        regex: v([0-9.]+)$
-    web_url: https://github.com/jgraph/drawio/releases/v{{ version }}
-    icon: https://github.com/jgraph/drawio/raw/dev/src/main/webapp/images/drawlogo-color.svg
-    deployed_version:
-      url: https://draw.example.io/package.json
-      json: version
-```
-
 ## gitlab-org/gitlab
 Source: https://gitlab.com/gitlab-org/gitlab
 
-You need a Access Token from your GitLab instance to get the current version.
+- To get the latest version of the 'Enterprise Edition', change the `ce` to `ee` in the `url_commands` `regex`.
 
-To get the version from a Enterprise Edition change the `ce` to `ee` in the `url_commands` `regex`.
+- deployed_version - Requires an `Access_Token` from your GitLab instance. ([instructions](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#create-a-personal-access-token))
+
 ```yaml
 service:
   gitlab-org/gitlab:
@@ -90,7 +75,7 @@ service:
       url: https://gitlab.example.com/api/v4/version
       headers:
         - key: PRIVATE-TOKEN
-          value: <Access-Token Own GitLab>
+          value: <Access_Token>
       json: version
 ```
 
@@ -134,7 +119,7 @@ service:
 ## goauthentik/authentik
 Source: https://github.com/goauthentik/authentik
 
-To get the deployed version from authentik you must create a API Token with API Access rights.
+- deployed_version - Requires an `API_Token` with API Access rights. (can be done at `Directory/Tokens & App password` / `/if/admin/#/core/tokens` as of '2022.4.1')
 ```yaml
 service:
   goauthentik/authentik:
@@ -149,7 +134,7 @@ service:
       url: https://authentik.example.io/api/v3/admin/version/
       headers:
         - key: Authorization
-          value: bearer <API Token>
+          value: bearer <API_Token>
       json: version_current
 ```
 
@@ -171,21 +156,6 @@ service:
       regex: v([0-9.]+)
 ```
 
-## golang/go
-Source: https://github.com/golang/go
-```yaml
-service:
-  golang/go:
-    type: url
-    url: https://golang.org/dl/
-    url_commands:
-      - type: regex_submatch
-        regex: go([0-9.]+[0-9]+)\.src\.tar\.gz
-    web_url: https://go.dev/doc/go{{ version | split:"." | slice:":2" | join:"."  }}
-    semantic_versioning: false
-    icon: https://go.dev/images/gophers/motorcycle.svg
-```
-
 ## gohugoio/hugo
 Source: https://github.com/gohugoio/hugo
 ```yaml
@@ -199,6 +169,21 @@ gohugoio/hugo:
     web_url: https://github.com/gohugoio/hugo/releases/v{{ version }}
     regex_content: hugo_{{ version }}_Linux-64bit\.deb
     icon: https://raw.githubusercontent.com/gohugoio/hugo/master/docs/static/img/hugo.png
+```
+
+## golang/go
+Source: https://github.com/golang/go
+```yaml
+service:
+  golang/go:
+    type: url
+    url: https://golang.org/dl/
+    url_commands:
+      - type: regex_submatch
+        regex: go([0-9.]+[0-9]+)\.src\.tar\.gz
+    web_url: https://go.dev/doc/go{{ version | split:"." | slice:":2" | join:"."  }}
+    semantic_versioning: false
+    icon: https://go.dev/images/gophers/motorcycle.svg
 ```
 
 ## gotify/server
@@ -252,6 +237,23 @@ service:
       json: version
 ```
 
+## hashicorp/vault
+Source: https://github.com/hashicorp/vault
+```yaml
+service:
+  hashicorp/vault:
+    type: github
+    url: hashicorp/vault
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)$
+    web_url: https://github.com/hashicorp/vault/releases/v{{ version }}
+    icon: https://raw.githubusercontent.com/hashicorp/vault/main/ui/public/vault-logo.svg
+    deployed_version:
+      url: https://vault.example.io/v1/sys/health
+      json: version
+```
+
 ## healthchecks/healthchecks
 Source: https://github.com/healthchecks/healthchecks
 ```yaml
@@ -269,22 +271,6 @@ service:
       url: https://healthchecks.example.io/docs/
       regex: Healthchecks v([0-9.]+)
 ```
-
-## hashicorp/vault
-Source: https://github.com/hashicorp/vault
-```yaml
-service:
-  hashicorp/vault:
-    type: github
-    url: hashicorp/vault
-    url_commands:
-      - type: regex_submatch
-        regex: v([0-9.]+)$
-    web_url: https://github.com/hashicorp/vault/releases/v{{ version }}
-    icon: https://raw.githubusercontent.com/hashicorp/vault/main/ui/public/vault-logo.svg
-    deployed_version:
-      url: https://vault.example.io/v1/sys/health
-      json: version
 ```
 
 ## hedgedoc/hedgedoc
@@ -305,7 +291,7 @@ service:
 ## home-assistant/core
 Source: https://github.com/home-assistant/core
 
-API_TOKEN from going to /profile and creating a 'Long-Lived Access Token'.
+- deployed_version - `API_Token` obtained by navigating to  '/profile' and creating a 'Long-Lived Access Token'. ([instructions](https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token))
 ```yaml
 service:
   home-assistant/core:
@@ -319,8 +305,9 @@ service:
       json: version
       headers:
         - key: Authorization
-          value: Bearer <API_TOKEN>
+          value: Bearer <API_Token>
 ```
+
 ## influxdata/influxdb
 Source: https://github.com/influxdata/influxdb
 ```yaml
@@ -335,6 +322,23 @@ service:
     icon: https://github.com/influxdata/ui/raw/master/src/writeData/graphics/influxdb.svg
     deployed_version:
       url: https://influxdb.example.io/health
+      json: version
+```
+
+## jgraph/drawio
+Source: https://github.com/jgraph/drawio
+```yaml
+service:
+  jgraph/drawio:
+    type: github
+    url: jgraph/drawio
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)$
+    web_url: https://github.com/jgraph/drawio/releases/v{{ version }}
+    icon: https://github.com/jgraph/drawio/raw/dev/src/main/webapp/images/drawlogo-color.svg
+    deployed_version:
+      url: https://draw.example.io/package.json
       json: version
 ```
 
@@ -374,7 +378,7 @@ service:
 ## matomo-org/matomo
 Source: https://github.com/matomo-org/matomo
 
-You can generate the token in the personal settings under security.
+- deployed_version - `TOKEN` can be generated in the personal settings under security. ([instructions](https://matomo.org/faq/general/faq_114/))
 ```yaml
 service:
   matomo-org/matomo:
@@ -483,6 +487,8 @@ service:
 
 ## opnsense/core
 Source: https://github.com/opnsense/core
+
+- deployed_version - Create an API Key. ([instructions](https://docs.opnsense.org/development/how-tos/api.html#creating-keys))
 ```yaml
 service:
   opnsense/core:
@@ -500,42 +506,6 @@ service:
         password: <API Secret>
       json: product.product_version
       regex: ([0-9.]+)
-```
-
-## pterodactyl/panel
-Source: https://github.com/pterodactyl/panel
-```yaml
-service:
-  pterodactyl/panel:
-    type: github
-    url: pterodactyl/panel
-    url_commands:
-      - type: regex_submatch
-        regex: v([0-9.]+)
-    web_url: https://github.com/pterodactyl/panel/releases/v{{ version }}
-    icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
-```
-
-## pterodactyl/wings
-Source: https://github.com/pterodactyl/wings
-
-To get the version of the Wings daemon, you need the node token. You can find the token in the admin GUI in the node configuration.
-```yaml
-service:
-  pterodactyl/wings:
-    type: github
-    url: pterodactyl/wings
-    url_commands:
-      - type: regex_submatch
-        regex: v([0-9.]+)
-    web_url: https://github.com/pterodactyl/wings/releases/v{{ version }}
-    icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
-    deployed_version:
-      url: https://wings.example.io:8088/api/system
-      headers:
-        - key: Authorization
-          value: Bearer <API Token>
-      json: version
 ```
 
 ## prometheus/alertmanager
@@ -572,10 +542,46 @@ service:
       json: data.version
 ```
 
+## pterodactyl/panel
+Source: https://github.com/pterodactyl/panel
+```yaml
+service:
+  pterodactyl/panel:
+    type: github
+    url: pterodactyl/panel
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)
+    web_url: https://github.com/pterodactyl/panel/releases/v{{ version }}
+    icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
+```
+
+## pterodactyl/wings
+Source: https://github.com/pterodactyl/wings
+
+- deployed_version - Needs the node token which can be found in the admin GUI in the node configuration. ([instructions](https://dashflo.net/docs/api/pterodactyl/v1/#authentication))
+```yaml
+service:
+  pterodactyl/wings:
+    type: github
+    url: pterodactyl/wings
+    url_commands:
+      - type: regex_submatch
+        regex: v([0-9.]+)
+    web_url: https://github.com/pterodactyl/wings/releases/v{{ version }}
+    icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
+    deployed_version:
+      url: https://wings.example.io:8088/api/system
+      headers:
+        - key: Authorization
+          value: Bearer <API Token>
+      json: version
+```
+
 ## rancher/rancher
 Source: https://github.com/rancher/rancher
 
-To read the deployed_version an API key must be created. The key is constructed like this `<username>:<password>`.
+- deployed_version - An API key must be created. This key is constructed in the format of `<username>:<password>`. ([instructions](https://rancher.com/docs/rancher/v2.5/en/user-settings/api-keys/#creating-an-api-key))
 ```yaml
 service:
   rancher/rancher:
@@ -680,6 +686,7 @@ service:
 ```
 
 ## wekan/wekan
+Source: https://github.com/wekan/wekan
 ```yaml
 service:
   wekan/wekan:
