@@ -45,6 +45,9 @@ service:
 
 ## dani-garcia/vaultwarden
 Source: https://github.com/dani-garcia/vaultwarden
+
+- deployed_version - Requires version `1.25.0` of Vaultwarden
+
 ```yaml
 service:
   dani-garcia/vaultwarden:
@@ -52,6 +55,9 @@ service:
     url: dani-garcia/vaultwarden
     web_url: https://github.com/dani-garcia/vaultwarden/releases/{{ version }}
     icon: https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/src/static/images/vaultwarden-icon.png
+    deployed_version:
+      url: https://vaultwarden.example.io/api/version
+      regex: ([0-9.]+)
 ```
 
 ## gitlab-org/gitlab
@@ -270,7 +276,6 @@ service:
     deployed_version:
       url: https://healthchecks.example.io/docs/
       regex: Healthchecks v([0-9.]+)
-```
 ```
 
 ## hedgedoc/hedgedoc
