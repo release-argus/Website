@@ -6,19 +6,12 @@ description: >
   Testing your config
 ---
 
-## Test a Gotify connection
+## Test a Notify connection
 ```bash
-❯ ./argus -test.gotify EXAMPLE_GOTIFY
+❯ ./argus -test.notify EXAMPLE_NOTIFY
 Loading config from "config.yml"
-INFO: Testing (EXAMPLE_GOTIFY)
-INFO: Message sent succesfully with "EXAMPLE_GOTIFY" config
-```
-
-## Test a Slack connection
-```bash
-❯ ./argus -test.slack EXAMPLE_SLACK
-INFO: Testing (EXAMPLE_SLACK)
-INFO: Message sent succesfully with "EXAMPLE_SLACK" config
+INFO: Testing (EXAMPLE_NOTIFY)
+INFO: Message sent succesfully with "EXAMPLE_NOTIFY" config
 ```
 
 ## Test a Service query
@@ -30,7 +23,7 @@ INFO: EXAMPLE/SRVICE, Latest Release - "3.2.1"
 ```
 
 ## Help finding ID
-You can go through your `config.yml` and find what ID you defined in the service/gotify/slack mapping, or you could give an undefined ID to this flag.
+You can go through your `config.yml` and find what ID you defined in the service/notify mapping, or you could give an undefined ID to this flag.
 
 e.g.
 ```bash

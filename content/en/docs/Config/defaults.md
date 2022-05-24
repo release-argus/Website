@@ -3,10 +3,10 @@ title: "Defaults"
 linkTitle: "Defaults"
 weight: 2
 description: >
-  Defaults to give each service/gotify/slack/webhook.
+  Defaults to give each service/notify/slack/webhook.
 ---
 
-You can define defaults for [service](/docs/config/service), [gotify](/docs/config/gotify), [slack](/docs/config/slack) and [webhook](/docs/config/webhook) in `config.yml` like so:
+You can define defaults for [service](/docs/config/service), [notify](/docs/config/notify), [slack](/docs/config/slack) and [webhook](/docs/config/webhook) in `config.yml` like so:
 
 
 #### **service** portion
@@ -15,7 +15,7 @@ defaults:
   ...
   service:
     access_token: ''              # GitHub access token to increase your rate-limit and/or access private repos
-                                  # https://github.com/settings/tokens - w/ repo.public_repo/repo for public/private 
+                                  # https://github.com/settings/tokens - w/ repo.public_repo/repo for public/private
     auto_approve: false           # Whether approval is required on the web UI for sending the new release WebHooks
     allow_invalid_certs: false    # Whether invalid HTTPS certs are allowed in queries
     ignore_misses: true           # Whether url_command misses will be reported in the logs
@@ -26,32 +26,32 @@ defaults:
       allow_invalid_certs: false  # Accept invalid HTTPS certs/not
 ```
 
-#### **gotify** portion
+#### **notify** portion
+Defaults can be defined for each `notify` type. Details about the vars for each type can be found [here](/docs/config/notify).
+
 ```yaml
 defaults:
   ...
-  gotify:
-    delay: 0s                                             # Delay before release notifications
-    max_tries: 3                                          # Maximum number of tries at sending each message
-    title: Argus                                          # Title template
-    message: '{{ service_id }} - {{ version }} released'  # Message template
-    priority: 5                                           # Priority to give the messages
+  notify:
+    discord:
+    email:
+    gotify:
+    googlechat:
+    ifttt:
+    join:
+    mattermost:
+    matrix:
+    opsgenie:
+    pushbullet:
+    pushover:
+    rocketchat:
+    slack:
+    teams:
+    telegram:
+    zulip:
+    shoutrrr:
 ```
 
-#### **slack** portion
-```yaml
-defaults:
-  ...
-  slack:
-    delay: 0s                                 # Delay before release notifications
-    max_tries: 3                              # Maximum number of tries at sending each message
-    username: Argus                           # Username template
-    icon_emoji: ':github:'                    # Sender icon to use in the message
-    message: >-                               # Message template
-      <{{ service_url }}|{{ service_id }}> -
-      {{ version }} released{% if web_url %}
-      (<{{ web_url }}|changelog>){% endif %}
-```
 
 #### **webhook** portion
 ```yaml

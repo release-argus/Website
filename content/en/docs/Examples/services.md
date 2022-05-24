@@ -73,7 +73,7 @@ service:
     type: url
     url: https://gitlab.com/api/v4/projects/278964/repository/tags
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: \"name\":\"v([0-9.]+\-ce)\"
     web_url: https://gitlab.com/gitlab-org/gitlab/-/blob/master/CHANGELOG.md
     icon: https://gitlab.com/gitlab-org/gitlab/-/raw/master/public/slash-command-logo.png
@@ -93,7 +93,7 @@ service:
     type: github
     url: go-gitea/gitea
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/go-gitea/gitea/releases/v{{ version }}
     regex_content: gitea-{{ version }}-linux-amd64
@@ -112,7 +112,7 @@ service:
     type: url
     url: https://github.com/go-vikunja/api/tags
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: \/releases\/tag\/v?([0-9.]+)\"
     web_url: https://github.com/go-vikunja/api/blob/main/CHANGELOG.md
     icon: https://vikunja.io/images/vikunja.png
@@ -132,7 +132,7 @@ service:
     type: github
     url: goauthentik/authentik
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: version\/([0-9.]+[0-9]+(?:-rc[0-9])?)
     web_url: https://goauthentik.io/docs/releases/{{ version | split:"." | slice:":-1" | join:"."  }}
     icon: https://raw.githubusercontent.com/goauthentik/authentik/master/web/icons/icon.png
@@ -152,7 +152,7 @@ service:
     type: github
     url: goharbor/harbor
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/goharbor/harbor/releases/tag/v{{ version }}
     icon: https://github.com/goharbor/harbor/raw/main/src/portal/src/images/harbor-logo.svg
@@ -170,7 +170,7 @@ gohugoio/hugo:
     type: github
     url: gohugoio/hugo
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/gohugoio/hugo/releases/v{{ version }}
     regex_content: hugo_{{ version }}_Linux-64bit\.deb
@@ -185,7 +185,7 @@ service:
     type: url
     url: https://golang.org/dl/
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: go([0-9.]+[0-9]+)\.src\.tar\.gz
     web_url: https://go.dev/doc/go{{ version | split:"." | slice:":2" | join:"."  }}
     semantic_versioning: false
@@ -200,7 +200,7 @@ service:
     type: github
     url: gotify/server
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/gotify/server/releases/v{{ version }}
     icon: https://github.com/gotify/logo/raw/master/gotify-logo.png
@@ -217,7 +217,7 @@ service:
     type: github
     url: grafana/grafana
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://grafana.com/docs/grafana/latest/release-notes/release-notes-{{ version | split:"." | join:"-"  }}
     icon: https://cdn.worldvectorlogo.com/logos/grafana.svg
@@ -234,7 +234,7 @@ service:
     type: github
     url: grafana/loki
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://grafana.com/docs/loki/latest/release-notes/v{{ version | split:"." | slice:":2" | join:"-"  }}
     icon: https://grafana.com/static/assets/img/blog/loki.png
@@ -251,7 +251,7 @@ service:
     type: github
     url: hashicorp/vault
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/hashicorp/vault/releases/v{{ version }}
     icon: https://raw.githubusercontent.com/hashicorp/vault/main/ui/public/vault-logo.svg
@@ -268,7 +268,7 @@ service:
     type: github
     url: healthchecks/healthchecks
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/healthchecks/healthchecks/releases/tag/{{ version }}
     semantic_versioning: false
@@ -338,7 +338,7 @@ service:
     type: github
     url: jgraph/drawio
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/jgraph/drawio/releases/v{{ version }}
     icon: https://github.com/jgraph/drawio/raw/dev/src/main/webapp/images/drawlogo-color.svg
@@ -422,7 +422,7 @@ service:
     type: url
     url: https://mattermost.com/deploy/
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: releases\.mattermost\.com\/([^\/]+)\/mattermost-[0-9.]+-linux\-amd64\.tar\.gz
     web_url: https://docs.mattermost.com/install/self-managed-changelog.html
 ```
@@ -435,7 +435,7 @@ service:
     type: url
     url: https://github.com/n8n-io/n8n/tags
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: n8n\%40([0-9.]+)
     web_url: https://github.com/n8n-io/n8n/blob/master/CHANGELOG.md
     icon: https://raw.githubusercontent.com/n8n-io/n8n-docs/main/docs/_images/n8n-docs-icon.svg
@@ -449,7 +449,7 @@ service:
     type: github
     url: netbox-community/netbox
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     regex_version: ^[0-9.]+$
     web_url: https://github.com/netbox-community/netbox/releases/tag/v{{ version }}
@@ -467,7 +467,7 @@ service:
     type: github
     url: nextcloud/server
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://nextcloud.com/changelog/#latest{{ version | split:"." | slice:":1" | join:""  }}
     icon: https://github.com/nextcloud/server/raw/master/core/img/favicon.png
@@ -484,7 +484,7 @@ service:
     type: github
     url: opencve/opencve
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/opencve/opencve/releases/v{{ version }}
     icon: https://raw.githubusercontent.com/opencve/opencve/master/opencve/static/img/logo_white.png
@@ -521,7 +521,7 @@ service:
     type: github
     url: prometheus/alertmanager
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/prometheus/alertmanager/blob/main/CHANGELOG.md
     regex_content: alertmanager-{{ version }}\.linux-amd64.tar.gz
@@ -538,7 +538,7 @@ service:
     type: github
     url: prometheus/prometheus
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/prometheus/prometheus/blob/main/CHANGELOG.md
     regex_content: prometheus-{{ version }}\.linux-amd64
@@ -555,7 +555,7 @@ service:
     type: github
     url: pterodactyl/panel
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)
     web_url: https://github.com/pterodactyl/panel/releases/v{{ version }}
     icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
@@ -571,7 +571,7 @@ service:
     type: github
     url: pterodactyl/wings
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)
     web_url: https://github.com/pterodactyl/wings/releases/v{{ version }}
     icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
@@ -593,7 +593,7 @@ service:
     type: github
     url: rancher/rancher
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/rancher/rancher/releases/v{{ version }}
     icon: https://raw.githubusercontent.com/rancher/docs/master/static/imgs/rancher-logo-cow-blue.svg
@@ -628,7 +628,7 @@ service:
     type: github
     url: requarks/wiki
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     regex_version: ^[0-9.]+$
     web_url: https://github.com/requarks/wiki/releases/tag/v{{ version }}
@@ -666,7 +666,7 @@ service:
     type: github
     url: thanos-io/thanos
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/thanos-io/thanos/blob/main/CHANGELOG.md
     regex_content: thanos-{{ version }}\.linux-amd64
@@ -698,7 +698,7 @@ service:
     type: github
     url: wekan/wekan
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/wekan/wekan/releases/tag/v{{ version }}
     semantic_versioning: false
@@ -714,7 +714,7 @@ service:
     type: url
     url: https://github.com/wordpress/wordpress/tags
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: \/releases\/tag\/([0-9.]+)\"
     web_url: https://wordpress.org/news/category/releases/
     icon: https://github.com/WordPress/WordPress/raw/master/wp-admin/images/wordpress-logo.svg
@@ -731,7 +731,7 @@ service:
     type: github
     url: wowchemy/wowchemy-hugo-themes
     url_commands:
-      - type: regex_submatch
+      - type: regex
         regex: v([0-9.]+)$
     web_url: https://github.com/wowchemy/wowchemy-hugo-themes/releases/v{{ version }}
 ```
