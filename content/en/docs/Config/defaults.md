@@ -58,9 +58,10 @@ defaults:
 defaults:
   ...
   webhook:
-    delay: 0s                 # Delay before sending the webhooks when a new release is found
-                              # (only used when auto_approve is true for the service)
-    max_tries: 3              # Maximum number of tries at sending each webhook
-    desired_status_code: 201  # Status code to use indicating a success. Using 0 will accept any 2XX status code
-    silent_fails: false       # Whether to notify the service's notifiers if max_tries fails occur
+    delay: 0s                   # Delay before sending the webhooks when a new release is found
+                                # (only used when auto_approve is true for the service)
+    max_tries: 3                # Maximum number of tries at sending each webhook
+    allow_invalid_certs: false  # Whether invalid HTTPS certs are allowed in this webhook
+    desired_status_code: 201    # Status code to use indicating a success. Using 0 will accept any 2XX status code
+    silent_fails: false         # Whether to notify the service's notifiers if max_tries fails occur
 ```
