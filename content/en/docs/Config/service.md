@@ -62,10 +62,9 @@ service:
                                                   # accepted or not
     icon: https://example.com/icon.png            # Icon to use on the Web UI as well as all Slacks for this
                                                   # Service that have neither an icon_emoji, nor a icon_url
-    gotify:                                       # Gotify notifiers for this Service
+    notify:                                       # Notifiers for this Service
       EXAMPLE_GOTIFY_ID:
         message: 'overriding template'
-    slack:                                        # Slack notifiers for this Service
       EXAMPLE_SLACK_ID:
         message: 'overriding template'
     webhook:                                      # WebHooks for this Service
@@ -73,7 +72,7 @@ service:
         secret: 'service-specific secret'
 ```
 {{< alert title="Note" >}}
-the number of `gotify`/`slack`/`webhook`'s you give the Service can be any number (you can even omit the var altogether).
+the number of `notify/`webhook`'s you give the Service can be any number (you can even omit the var altogether).
 For these vars, if you provide a var with the same ID as in the globals for that var, the options provided in the service will override those globals. e.g. if you have `slack.main` defined in the `config.yml` with all the required fields, but would like to override the message on some services for example, you can simply defined `slack.main.message` inside the service, and it will use that var in messages for this service.
 {{< /alert >}}
 

@@ -16,8 +16,22 @@ aliases:
 - To keep track of new releases of one or more pieces of (most likely open-source) software.
 
 - To be notified of these new releases via:
+  - Discord
+  - Email
   - Gotify
+  - Google Chat
+  - IFTTT
+  - Join
+  - Mattermost
+  - Matrix
+  - OpsGenie
+  - Pushbullet
+  - Pushover
+  - Rocket.Chat
   - Slack
+  - Teams
+  - Telegram
+  - Zulip
 
 - To be able to send WebHook(s) to services in order to trigger the upgrade. (e.g. an AWX server with PlayBooks that will deploy the latest version, thanks to [awx-operator](https://github.com/ansible/awx-operator))
 
