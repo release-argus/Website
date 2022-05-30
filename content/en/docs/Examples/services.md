@@ -638,7 +638,7 @@ service:
       headers:
         - key: Authorization
           value: Bearer <TOKEN>
-      josn: data.system.info.currentVersion
+      json: data.system.info.currentVersion
 ```
 
 ## smallstep/certificates

@@ -225,6 +225,8 @@ notify:
 #     Path: sub/path              # e.g. for mattermost.example.io/sub/path/hooks/TOKEN
       Token: TOKEN
 #     Channel: releases
+#   params:
+#     Icon: https://release-argus.io/favicons/android-chrome-512x512.png # url/emoji
 ```
 
 #### Matrix

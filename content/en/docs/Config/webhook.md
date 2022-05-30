@@ -17,12 +17,13 @@ webhook:
   ...
   # As many of these (below) as you like, just ensure they have unique ID's
   EXAMPLE_WEBHOOK_ID:
-    type: github              # Type of WebHook to send
-    url: https://WEBHOOK_URL  # WebHook URL to send to
-    secret: SECRET            # WebHook Key/Secret
-    DesiredStatusCode: 201    # Status code to use indicating a success. Using 0 will accept any 2XX status code
-    delay: 0s                 # Delay before sending the webhooks when a new release is found
-                              # (only used when `auto_approve` is true for the service)
-    max_tries: 3              # Maximum number of times to try sending this message until a send is successful
-    silent_fails: false       # Whether to notify the service's notifiers if max_tries fails occur
+    type: github                # Type of WebHook to send
+    url: https://WEBHOOK_URL    # WebHook URL to send to
+    allow_invalid_certs: false  # Accept invalid HTTPS certs/not
+    secret: SECRET              # WebHook Key/Secret
+    DesiredStatusCode: 201      # Status code to use indicating a success. Using 0 will accept any 2XX status code
+    delay: 0s                   # Delay before sending the webhooks when a new release is found
+                                # (only used when `auto_approve` is true for the service)
+    max_tries: 3                # Maximum number of times to try sending this message until a send is successful
+    silent_fails: false         # Whether to notify the service's notifiers if max_tries fails occur
 ```
