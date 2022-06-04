@@ -53,7 +53,7 @@ service:
     auto_approve: false                           # Whether approval is required for new versions in the Web UI,
                                                   # or whether WebHooks are automatically sent (required for their
                                                   # delay var to be used)
-    ignore_misses false                           # Whether to log url_command failures, e.g. RegEx returned no
+    ignore_misses: false                          # Whether to log url_command failures, e.g. RegEx returned no
                                                   # matches
     access_token: GITHUB_ACCESS_TOKEN             # GitHub access token. Used when type is github. Useful when you
                                                   # want to exceed the public rate-limit, or want to query a private
@@ -67,6 +67,8 @@ service:
         message: 'overriding template'
       EXAMPLE_SLACK_ID:
         message: 'overriding template'
+    command:                                      # Commands for this Service
+      - ["COMMAND", "ARG1", "ARG2"]
     webhook:                                      # WebHooks for this Service
       EXAMPLE_WEBHOOK_ID:
         secret: 'service-specific secret'
@@ -97,6 +99,17 @@ service:
 ## web_url
 Without defining this var, the Web UI will link to `url`, but when this var has a value, the Web UI will link to that value.
 You could, for example use [message templating](/docs/help/templating), to use all/some variation of the version in this URL and make it link to the sevices changelog (which you could also link to in your update notifiers).
+
+## command
+Under `command`, you can give a list of commands (with or without arguments) to approve and run when a new release is found.
+The formatting of `command` is as a list of lists, for example:
+```yaml
+  command:
+    - ["COMMAND", "ARG1", "ARG2"...]
+    - ["bash", "/opt/script.sh", "foo"]
+    - ["bash", "/opt/other.sh", "bar"]
+```
+
 
 ## url_commands
 `url_commands` are defined in a YAML list, with them being executed in order starting from the top.
