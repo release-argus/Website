@@ -31,7 +31,7 @@ webhook:
     silent_fails: false         # Whether to notify the service's notifiers if max_tries fails occur
 ```
 
-## custom_headers
+### custom_headers
 Say you had one script that could handle a few different services, `custom_headers` could be used to give the receiver of the WebHook a param that tells it which service to update.
 If using something like [adnanh/webhook](https://github.com/adnanh/webhook), you can setup params for your WebHook with something like:
 
@@ -63,7 +63,7 @@ The `token` must be stored as secret and doesn't have to be added to the URL.
 
 Example URL: `https://gitlab.com/api/v4/projects/<project_id>/ref/<ref_name>/trigger/pipeline`
 
-config.yaml
+config.yml
 ```yaml
 webhook:
   ...
@@ -80,7 +80,7 @@ webhook:
     silent_fails: false         # Whether to notify the service's notifiers if max_tries fails occur
 ```
 
-## Custom variables
+### Custom variables
 To use a GitLab CI for multiple services or functions, you can specify custom variables (like when triggering a pipeline via the Web UI).
 
 Example:  
