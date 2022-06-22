@@ -37,10 +37,12 @@ If using something like [adnanh/webhook](https://github.com/adnanh/webhook), you
 
 ```yaml
 - id: something
-  execute-command: SOMETHING.SH
+  execute-command: something.sh
   pass-arguments-to-command:
   - source: header
-    name: CUSTOM_HEADER_NAME
+    name: SOMETHING
+  - source: header
+    name: VERSION
 ```
 
 Then, in Argus' `config.yml`
@@ -48,10 +50,11 @@ Then, in Argus' `config.yml`
     webhook:
       some_name:
         custom_headers:
-          CUSTOM_HEADER_NAME: hello123
+          SOMETHING: 'foo'
+          VERSION: '{{ version }}'
 ```
 
-would execute ["SOMETHING.SH" "hello123"]
+would execute ["something.sh" "foo" "1.2.3"] (assuming the latest_version is '1.2.3')
 
 ## Using GitLab Webhooks
 GitLab webhooks can be used to start GitLab CI pipelines through which the applications are updated.
@@ -59,7 +62,7 @@ For this, a `Pipeline trigger` must be created in GitLab in the project settings
 
 [Offical Docs](https://docs.gitlab.com/ee/ci/triggers/#use-a-webhook)
 
-The `token` must be stored as secret and doesn't have to be added to the URL. 
+The `token` must be stored as secret and doesn't have to be added to the URL.
 
 Example URL: `https://gitlab.com/api/v4/projects/<project_id>/ref/<ref_name>/trigger/pipeline`
 
@@ -83,7 +86,7 @@ webhook:
 ### Custom variables
 To use a GitLab CI for multiple services or functions, you can specify custom variables (like when triggering a pipeline via the Web UI).
 
-Example:  
+Example:
 To set var `PATCH` to `true` and set `SERVICE` to `argus` you must append the following to the URL.
 
 `?variables[PATCH]=true&variables[SERVICE]=argus`

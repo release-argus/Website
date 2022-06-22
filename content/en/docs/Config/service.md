@@ -18,25 +18,48 @@ service:
   ...
   # As many of these (below) as you like, just ensure they have unique ID's
   EXAMPLE_GITHUB_SERVICE:
+    active: false                                 # If you want to disable a service
+    comment: 'something about the service maybe?' # Optional comment you want about the service
     type: github                                  # The type of service to monitor, github/web
     url: OWNER/REPO                               # monitor `https://github.com/OWNER/REPO`
+    allow_invalid_certs: false                    # Whether invalid HTTPS certificates on the query site are
+    access_token: GITHUB_ACCESS_TOKEN             # GitHub access token. Used when type is github. Useful when you
+    semantic_versioning: true                     # Whether to enforce semantic versioning on versions queried
+    interval: 1h5m                                # Query for a version change every 65 minutes
     url_commands:                                 # see the `url_commands` secion below for more info on this var
       - type: regex_submatch
         regex: ^v?([0-9.]+)$                      # Since the `type` is 'github', this searches the tag_names, so
                                                   # the '$' is used to ensure the tag name ends in this RegEx
                                                   # and doesn't just omit a '-beta' or similar details
-    web_url: 'https://example.com/{{ version }}'  # Overrides URL in the Web UI and can be used in the notifiers
-    interval: 1h5m                                # Query for a version change every 65 minutes
-                                                  # y=years, w=weeks, d=days, h=hours, m=minutes, s=seconds
-    semantic_versioning: true                     # Whether to enforce semantic versioning on versions queried
-                                                  # (`url_commands` can potentially be used to format it semantically
-                                                  # - https://semver.org)
-    regex_content: 'example-{{ version }}-amd64   # URL queried must contain this RegEx for the new version to be
+    regex_content: 'example-{{ version }}-amd64'  # URL queried must contain this RegEx for the new version to be
                                                   # considered valid (meaning alerts wil fire)
                                                   # for services of type 'github', this RegEx runs against the
                                                   # version assets 'name' and 'browser_download_url'
     regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
     use_prerelease: false                         # Whether a 'prerelease' tag (on GitHub) can be used
+    web_url: 'https://example.com/{{ version }}'  # Overrides URL in the Web UI and can be used in the notifiers
+                                                  # y=years, w=weeks, d=days, h=hours, m=minutes, s=seconds
+                                                  # (`url_commands` can potentially be used to format it semantically
+                                                  # - https://semver.org)
+    auto_approve: false                           # Whether approval is required for new versions in the Web UI,
+    ignore_misses: false                          # Whether to log url_command failures, e.g. RegEx returned no
+                                                  # matches
+                                                  # want to exceed the public rate-limit, or want to query a private
+                                                  # repo
+                                                  # accepted or not
+    icon: https://example.com/icon.png            # Icon to use on the Web UI as well as all Slacks for this
+                                                  # Service that have neither an icon_emoji, nor a icon_url
+    icon_link_to: https://service.com             # Make the Web UI icon s clickable link to this
+    command:                                      # Commands for this Service
+      - ["COMMAND", "ARG1", "ARG2"]
+    webhook:                                      # WebHooks for this Service
+      EXAMPLE_WEBHOOK_ID:
+        secret: 'service-specific secret'
+    notify:                                       # Notifiers for this Service
+      EXAMPLE_GOTIFY_ID:
+        message: 'overriding template'
+      EXAMPLE_SLACK_ID:
+        message: 'overriding template'
     deployed_version:                             # Get the `current_version` from a deployed service
       url: https://example.com/version            # URL to use
       allow_invalid_certs: false                  # Accept invalid HTTPS certs/not
@@ -50,28 +73,8 @@ service:
                                                   # (Full path to the key, e.g. `data.version`, not `version`)
       regex: 'v?([0-9.]+)'                        # Regex to apply to the data retrieved
                                                   # Will run after the JSON value fetch, or alone (if no JSON)
-    auto_approve: false                           # Whether approval is required for new versions in the Web UI,
                                                   # or whether WebHooks are automatically sent (required for their
                                                   # delay var to be used)
-    ignore_misses: false                          # Whether to log url_command failures, e.g. RegEx returned no
-                                                  # matches
-    access_token: GITHUB_ACCESS_TOKEN             # GitHub access token. Used when type is github. Useful when you
-                                                  # want to exceed the public rate-limit, or want to query a private
-                                                  # repo
-    allow_invalid_certs: false                    # Whether invalid HTTPS certificates on the query site are
-                                                  # accepted or not
-    icon: https://example.com/icon.png            # Icon to use on the Web UI as well as all Slacks for this
-                                                  # Service that have neither an icon_emoji, nor a icon_url
-    notify:                                       # Notifiers for this Service
-      EXAMPLE_GOTIFY_ID:
-        message: 'overriding template'
-      EXAMPLE_SLACK_ID:
-        message: 'overriding template'
-    command:                                      # Commands for this Service
-      - ["COMMAND", "ARG1", "ARG2"]
-    webhook:                                      # WebHooks for this Service
-      EXAMPLE_WEBHOOK_ID:
-        secret: 'service-specific secret'
 ```
 {{< alert title="Note" >}}
 the number of `notify/`webhook`'s you give the Service can be any number (you can even omit the var altogether).
