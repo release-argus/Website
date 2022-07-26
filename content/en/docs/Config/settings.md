@@ -12,8 +12,10 @@ config.yml:
 ```yaml
 settings:
   log:
-    level: INFO           # Log level, DEBUG/VERBOSE/INFO/WARNING/ERROR
-    timestamps: false     # Log with timestamps
+    level: INFO       # Log level, DEBUG/VERBOSE/INFO/WARNING/ERROR
+    timestamps: false # Log with timestamps
+  data:
+    database_file: data/argus.db # SQLite DB file used to track the state of services
   web:
     listen_host: 0.0.0.0  # IP address to listen on
     listen_port: 8080     # Port to listen on

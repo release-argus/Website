@@ -71,15 +71,23 @@ services:
   argus:
     image: releaseargus/argus:latest
     volumes:
-      - /path/to/local/config.yml:/etc/argus/config.yml
+      - /path/to/local/config.yml:/app/config.yml
+      - /path/to/storage/argus.db:/app/data/argus.db
+    environment:
+      ARGUS_UID: 911 # Optional UID override
+      ARGUS_GID: 911 # Optional GID override
     ports:
-      - 8080:8080
+      - 8080:8080 # <Host_Port:Container_Port>
     restart: always
 ```
 deploy with:
 ```bash
 docker-compose up -d
 ```
+
+{{< alert title="Note" >}}
+If you override the `-config.file` and/or the `-data.database-file` locations, ensure that they are read/writable by the `ARGUS_UID` (default=`911`)
+{{< /alert >}}
 
 ---
 ## Config
