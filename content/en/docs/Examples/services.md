@@ -101,7 +101,7 @@ service:
     icon: https://raw.githubusercontent.com/go-gitea/gitea/main/public/img/logo.png
     deployed_version:
       url: https://git.example.io
-      regex: 'Powered by Gitea Version: ([0-9.]+) '
+      regex: 'Powered by Gitea\s+Version:\s+([0-9.]+) '
 ```
 
 ## go-vikunja/api
