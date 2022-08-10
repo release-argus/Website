@@ -14,16 +14,18 @@ You can define defaults for [service](/docs/config/service), [notify](/docs/conf
 defaults:
   ...
   service:
-    access_token: ''              # GitHub access token to increase your rate-limit and/or access private repos
+    options:
+      interval: 10m              # How often to query for new releases
+      semantic_versioning: true  # Whether to enforce semantic versioning (required to only alert on newew versions)
+    latest_version:
+      access_token: ''            # GitHub access token to increase your rate-limit and/or access private repos
                                   # https://github.com/settings/tokens - w/ repo.public_repo/repo for public/private
-    auto_approve: false           # Whether approval is required on the web UI for sending the new release WebHooks
-    allow_invalid_certs: false    # Whether invalid HTTPS certs are allowed in queries
-    ignore_misses: true           # Whether url_command misses will be reported in the logs
-    interval: 10m                 # How often to query for new releases
-    use_prerelease: false         # Whether 'prerelease' GitHub tags can be used
-    semantic_versioning: true     # Whether to enforce semantic versioning (required to only alert on newew versions)
+      allow_invalid_certs: false  # Whether invalid HTTPS certs are allowed in queries
+      use_prerelease: false       # Whether 'prerelease' GitHub tags can be used
     deployed_version:             # Get the `current_version` from a deployed service
       allow_invalid_certs: false  # Accept invalid HTTPS certs/not
+    dashboard:
+      auto_approve: false  # Whether approval is required on the web UI for sending the new release WebHooks
 ```
 
 #### **notify** portion
