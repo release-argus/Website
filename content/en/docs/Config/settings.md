@@ -22,4 +22,7 @@ settings:
     route_prefix: /       # Web route prefix, e.g. /demo means http://IP:PORT/demo to access
     cert_file: ''         # HTTPS Cert path, e.g. `cert.pem`
     pkey_file: ''         # HTTPS PrivKey path, e.g. `privkey.pem`
+    basic_auth:
+      username: ''        # Basic auth username, e.g. `admin`
+      password: ''        # Basic auth password, e.g. `test123`
 ```
