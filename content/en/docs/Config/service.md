@@ -30,6 +30,12 @@ service:
         regex_content: 'argus-{{ version }}.linux-amd64'  # Ensure the linux binary has been released before we
                                                           # are alerted about the new version
         regex_version: ^[0-9.]+[0-9]$                     # Version found must match this RegEx to be considered valid
+        docker:                  # only consider the release available when the docker tag can be found
+          type: hub              # type of docker registry (ghcr/hub/quay)
+          image: release-argus   # docker image
+          tag: '{{ version }}'   # tag to look for
+          username: USERNAME     # docker hub username
+          token: dckr_pat_TOKEN  # docker hub token
     deployed_version:                   # Get the `current_version` from a deployed service
       url: https://example.com/version  # URL to use
       allow_invalid_certs: false        # Accept invalid HTTPS certs/not
@@ -103,7 +109,7 @@ service:
                                 # the tag name ends in this RegEx and doesn't just omit a '-beta' or similar details
       require:
         regex_content: 'example-{{ version }}-amd64'  # Release assets of a tag much match this RegEx for the new version to be
-                                                      # considered valid (meaning alerts wil fire). This RegEx runs against the
+                                                      # considered valid (meaning alerts will fire). This RegEx runs against the
                                                       # version assets `name` and `browser_download_url`
         regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
 ```
@@ -125,7 +131,7 @@ service:
         regex: go([0-9.]+[0-9]+)\.src\.tar\.gz  # RegEx to find the version. The most recent version download  is linked first
       require:
         regex_content: 'example-{{ version }}-amd64'  # URL queried must contain content with this RegEx for any new version
-                                                      # to be considered valid (meaning alerts wil fire)
+                                                      # to be considered valid (meaning alerts will fire)
         regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
 ```
 
@@ -165,7 +171,7 @@ latest_version:
 ```
 This command replaces `old` with `new`. e.g. the above would remove `v`
 
-#### split
+##### split
 ```yaml
 latest_version:
   ...
@@ -178,6 +184,73 @@ latest_version:
 This command will split on `text` and return `index` of that split. e.g. running this command
 on '1.2.3test' with the above vars would return `1.2.3`
 
+#### Require
+
+##### regex_content
+
+URL queried must contain content with this RegEx for any new version to be considered valid (meaning alerts will fire)
+```yaml
+latest_version:
+  ...
+  require:
+    regex_content: 'example-{{ version }}-amd64'
+```
+
+##### regex_version
+
+Version found must match this RegEx to be considered valid
+
+```yaml
+latest_version:
+  ...
+  require:
+    regex_version: ^[0-9.]+[0-9]$
+```
+
+##### docker
+
+To require a docker tag to exist before a version is considered valid, provide a `require.docker`. Tags of images on Docker Hub, GHCR and Quay can be checked.
+
+###### Docker Hub:
+The Docker Hub API allows access to public repos without auth up to a [rate-limit](https://docs.docker.com/docker-hub/download-rate-limit/). If you want to query more frequently, or need access to private repo's, you'll need to provide a username and token. A token can be optioned by going to settings->[security](https://hub.docker.com/settings/security) and creating a new access token.
+
+```yaml
+latest_version:
+  ...
+  require:
+    docker:
+      type: hub
+      image: OWNER/REPO
+      tag: '{{ version }}'
+      username: USERNAME
+      token: dckr_pat_TOKEN
+```
+
+###### GHCR:
+For Github's container registry simply create a personal access token ([here](https://github.com/settings/tokens)) with `read:packages`.
+```yaml
+latest_version:
+  ...
+  require:
+    docker:
+      type: ghcr
+      image: OWNER/REPO
+      tag: '{{ version }}'
+      token: ghp_TOKEN
+```
+
+###### Quay:
+The Quay API allows access to public repos without auth up to a rate-limit. If you want access to private repo's, you'll need to provide a token. A token can be optioned by [creating an Organization](https://quay.io/organizations/new/), going to its Applications and creating a new application. Go into that app and 'Generate Token'.
+```yaml
+latest_version:
+  ...
+  require:
+    docker:
+      type: quay
+      image: OWNER/REPO
+      tag: '{{ version }}'
+      token: v5ACkd33ynxq52dEFd9t3m943w59c2phzz37mrFx
+```
 
 ## Deployed Version
 
