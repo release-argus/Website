@@ -207,6 +207,18 @@ latest_version:
     regex_version: ^[0-9.]+[0-9]$
 ```
 
+##### command
+
+To run a command before considering a version valid, provide a require.command. This is in the same style as a command you can give to a Service ([here](#command-1)). (`{{ version }}` will be converted to the latest known version)
+
+e.g.
+```yaml
+latest_version:
+  ...
+  require:
+    command: ["check_version.sh", "{{ version }}"]
+```
+
 ##### docker
 
 To require a docker tag to exist before a version is considered valid, provide a `require.docker`. Tags of images on Docker Hub, GHCR and Quay can be checked.
