@@ -30,12 +30,12 @@ service:
         regex_content: 'argus-{{ version }}.linux-amd64'  # Ensure the linux binary has been released before we
                                                           # are alerted about the new version
         regex_version: ^[0-9.]+[0-9]$                     # Version found must match this RegEx to be considered valid
-        docker:                  # only consider the release available when the docker tag can be found
-          type: hub              # type of docker registry (ghcr/hub/quay)
-          image: release-argus   # docker image
-          tag: '{{ version }}'   # tag to look for
-          username: USERNAME     # docker hub username
-          token: dckr_pat_TOKEN  # docker hub token
+        docker:                       # only consider the release available when the docker tag can be found
+          type: hub                   # type of docker registry (ghcr/hub/quay)
+          image: releaseargus/argus   # docker image
+          tag: '{{ version }}'        # tag to look for
+          username: USERNAME          # docker hub username
+          token: dckr_pat_TOKEN       # docker hub token
     deployed_version:                   # Get the `current_version` from a deployed service
       url: https://example.com/version  # URL to use
       allow_invalid_certs: false        # Accept invalid HTTPS certs/not
