@@ -88,7 +88,7 @@ service:
 
 ### GitHub
 
-`lastest_version`'s of type `github` will monitor the most recent `tag_name` that matches both your `regex_content` and `regex_version` at
+`latest_version`'s of type `github` will monitor the most recent `tag_name` that matches both your `regex_content` and `regex_version` at
 https://api.github.com/repos/OWNER/REPO/releases.
 
 It will go through each item in that list and try using `tag_name` as the version. It will run the `url_commands` on this version, check it with `regex_version` and then check the assets against `regex_content`. If all of these pass, that version will be used.
