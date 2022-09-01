@@ -6,7 +6,7 @@ description: >
   Configure global WebHook(s) that can be used by any Service.
 ---
 
-## Using GitHub style Webhooks
+## Using GitHub-style Webhooks
 With AWX for example, to get a WebHook URL and a WebHook Key, edit a template and go to
 'Options' at the bottom. There, tick the 'Enable Webhook' box. In the 'Webhook details'
 that appears, set the 'Webhook Service' to 'GitHub' and save the changes to get both
