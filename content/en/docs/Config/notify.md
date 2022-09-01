@@ -6,31 +6,13 @@ description: >
   Configure global notifiers that can be used by any Service.
 ---
 
-We are running [Shoutrrr 0.5](https://containrrr.dev/shoutrrr/v0.5/services/overview/), which supports sending notifications to the following services below.
+We are running [Shoutrrr 0.6](https://containrrr.dev/shoutrrr/v0.6/services/overview/), which supports sending notifications to the following services below.
 
 The 'URL Fields' go under `url_fields` and 'Query/Param Props' go under `params`.
 
 Below I have used capitals in some key naming for better readability (ignore that Argus will convert that to lower-case as it shouldn't break anything).
 
-The lines that I've prefixed with a # are optional vars that aren't required.
-
-  - [Discord](#discord)
-  - [Email](#email)
-  - [Google Chat](#google-chat)
-  - [Gotify](#gotify)
-  - [IFTTT](#ifttt)
-  - [Join](#join)
-  - [Mattermost](#mattermost)
-  - [Matrix](#matrix)
-  - [OpsGenie](#opsgenie)
-  - [Pushbullet](#pushbullet)
-  - [Pushover](#pushover)
-  - [Rocket.Chat](#rocketchat)
-  - [Slack](#stack)
-  - [Teams](#teams)
-  - [Telegram](#telegram)
-  - [Zulip Chat](#zulip-chat)
-  - [Shoutrrr](#shoutrrr-any-of-the-above) (any of the above)
+The lines prefixed with a # are optional vars that aren't required.
 
 The config for each of these is layed out in the format of
 ```yaml
@@ -73,11 +55,12 @@ you should get a clickable 'changelog' button that takes you to that `web_url`.
 For further guidance and other helpful examples on the templating used, start by looking [here](/docs/help/templating).
 
 
-#### Discord
+{{< tabpane text=true right=true >}}
+  {{% tab header="**types**:" disabled=true /%}}
+  {{% tab header="discord" %}}
+- As of writing, Discord Webhooks are in the format of `https://discord.com/api/webhooks/WEBHOOK_ID/TOKEN` (`<Server Settings> - <Integrations> - <Webhooks>`)
 
-- As of writing, Discord Webhooks are in the format of `https://discord.com/api/webhooks/WEBHOOK_ID/TOKEN` (\<Server Settings\>->\<Integrations\>->\<Webhooks\>)
-
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/discord/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/discord/)
 
 ```yaml
 notify:
@@ -93,10 +76,11 @@ notify:
 #     Title: Release
 #     Username: Argus
 ```
+  {{% /tab %}}
+  {{% tab header="smtp" %}}
+- email notifications
 
-#### Email
-
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/email/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/email/)
 
 ```yaml
 notify:
@@ -118,12 +102,11 @@ notify:
 #     UseHTML: no
 #     UseStartTLS: yes
 ```
-
-#### Google Chat
-
+  {{% /tab %}}
+  {{% tab header="googlechat" %}}
 - Example Google Chat incoming Webhook URL `https://chat.googleapis.com/v1/spaces/ FOO /messages?key= bar &token= baz`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/googlechat/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/googlechat/)
 
 ```yaml
 notify:
@@ -134,12 +117,11 @@ notify:
     url_fields:
       Raw: chat.googleapis.com/v1/spaces/FOO/messages?key=bar&token=baz
 ```
-
-#### Gotify
-
+  {{% /tab %}}
+  {{% tab header="gotify" %}}
 - Create an application on the Gotify Web UI, and use that URL with the token for the application you make.
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/email/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/email/)
 
 ```yaml
 notify:
@@ -157,10 +139,9 @@ notify:
 #     Priority: 0
 #     Title: Argus
 ```
-
-#### IFTTT
-
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/ifttt/)
+  {{% /tab %}}
+  {{% tab header="ifttt" %}}
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/ifttt/)
 
 ```yaml
 notify:
@@ -179,16 +160,15 @@ notify:
 #     Value2:
 #     Value3:
 ```
-
-#### Join
-
+  {{% /tab %}}
+  {{% tab header="join" %}}
 - Go to the [Join Webapp](https://joinjoaomgcd.appspot.com/)
 - Select your device
 - Click **Join API**
 - Your `deviceId` is shown in the top
 - Click **Show** next to `API Key` to see your key
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/join/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/join/)
 
 ```yaml
 notify:
@@ -203,14 +183,13 @@ notify:
 #     Icon: https://release-argus.io/favicons/android-chrome-512x512.png
 #     Title: Argus
 ```
-
-#### Mattermost
-
-- Go to menu in the top left and navgate to \<Integrations\><Incoming Webhooks\>.
+  {{% /tab %}}
+  {{% tab header="mattermost" %}}
+- Go to the menu in the top left and navgate to `<Integrations> - <Incoming Webhooks>`.
 
 Example Mattermost Webhook - `https://mattermost.example.io/hooks/TOKEN`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/mattermost/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/mattermost/)
 
 ```yaml
 notify:
@@ -228,10 +207,9 @@ notify:
 #   params:
 #     Icon: https://release-argus.io/favicons/android-chrome-512x512.png # url/emoji
 ```
-
-#### Matrix
-
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/matrix/)
+  {{% /tab %}}
+  {{% tab header="matrix" %}}
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/matrix/)
 
 ```yaml
 notify:
@@ -249,12 +227,11 @@ notify:
 #     Rooms: !ROOM_ID,ALIAS
 #     Title: Argus
 ```
+  {{% /tab %}}
+  {{% tab header="opsgenie" %}}
+Go to `<Settings> - <Integrastion List> - <API>`
 
-#### OpsGenie
-
-Go to \<Settings\>->\<Integrastion List\>->\<API\>
-
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/opsgenie/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/opsgenie/)
 
 ```yaml
 notify:
@@ -286,13 +263,12 @@ notify:
 #                                                 # Teams and users that the alert will become visible to without
 #                                                 # sending any notification
 ```
-
-#### Pushbullet
-
+  {{% /tab %}}
+  {{% tab header="pushbullet" %}}
 - Get your `token` by creating an **Access Token** at https://www.pushbullet.com/#settings/account
 - Get your `targets` by going to https://www.pushbullet.com/#devices. Click on the device on the left pane and the URL should change to https://www.pushbullet.com/#devices/\<TARGET\>
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/pushbullet/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/pushbullet/)
 
 ```yaml
 notify:
@@ -306,16 +282,15 @@ notify:
 #   params:
 #     Title: Argus
 ```
-
-#### Pushover
-
+  {{% /tab %}}
+  {{% tab header="pushover" %}}
 To get your \<User Key\>, go to your [Pushover dashboard](https://pushover.net/), and view it at the top right.
 
 You can also make an Application specific for Argus by clicking 'Create an Application/API Token' at the bottom of that dashboard
 
 In the device list, the Name column is the field used to refer to your devices
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/pushover/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/pushover/)
 
 ```yaml
 notify:
@@ -331,12 +306,11 @@ notify:
 #     Priority: 0
 #     Title: Argus
 ```
-
-#### Rocket.Chat
-
+  {{% /tab %}}
+  {{% tab header="rocketchat" %}}
 Example URL `username@host:port/TOKEN_A/TOKEN_B/CHANNEL`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/rocketchat/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/rocketchat/)
 
 ```yaml
 notify:
@@ -353,9 +327,8 @@ notify:
       TokenB: TOKEN_B
       Channel: CHANNEL
 ```
-
-#### Slack
-
+  {{% /tab %}}
+  {{% tab header="slack" %}}
 Either a Webhook, or the Slack Bot API can be used.
 
 To get a token for a Bot:
@@ -372,7 +345,7 @@ To use Webhooks:
 - e.g. https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
 - becomes 'hook:T00000000-B00000000-XXXXXXXXXXXXXXXXXXXXXXXX
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/slack/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/slack/)
 
 ```yaml
 notify:
@@ -389,14 +362,13 @@ notify:
 #     Icon: https://release-argus.io/favicons/android-chrome-512x512.png # URL or Emoji to use
 #     Title: Release                                                     # Prepended text above the message
 ```
-
-#### Teams
-
+  {{% /tab %}}
+  {{% tab header="teams" %}}
 - Create an 'Incoming Webhook' following '[Microsoft's docs](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook#create-an-incoming-webhook-1)'.
 
 Example URL `https://<organization>.webhook.office.com/webhookb2/<Group>@<Tenant>/IncomingWebhook/<AltId>/<GroupOwner>`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/teams/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/teams/)
 
 ```yaml
 notify:
@@ -414,16 +386,15 @@ notify:
       Host: example.webhook.office.com
 #     Title: ''
 ```
-
-#### Telegram
-
+  {{% /tab %}}
+  {{% tab header="telegram" %}}
 - To get a token, [talk to the botfather](https://core.telegram.org/bots#6-botfather).
 - Chats
     - `@channel-name` can only be used for public channels. The name can be found by going to `Channel info`, just replace the `t.me/` prefix with an `@`.
     - `chat_id` is required for private channels/group chats/private chats. To get the ID, you can forward a message (from the target chat) to [@UserInfoBot](https://t.me/userinfobot) or [@JsonDumpBot](https://t.me/jsondumpbot) and view it at `Id` and `message.forward_from_chat.id` from those bots respectively.
     - (The above bots are created and hosted by [@nadam](https://github.com/nadam) and their sources are available to view at [nadam/userinfobot](https://github.com/nadam/userinfobot) and [nadam/jsondumpbot](https://github.com/nadam/jsondumpbot))
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/telegram/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/telegram/)
 
 ```yaml
 notify:
@@ -440,8 +411,11 @@ notify:
 #     Preview: yes                          # Whether to display web page previews for URLs in the message
 #     Title: Argus
 ```
+  {{% /tab %}}
+  {{% tab header="zulip" %}}
+Zulip Chat
 
-#### Zulip Chat
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/zulip/)
 
 ```yaml
 notify:
@@ -457,12 +431,11 @@ notify:
 #     Stream: 'mystream'
 #     Topic: 'Argus'
 ```
+  {{% /tab %}}
+  {{% tab header="shoutrrr" %}}
+`Shoutrrr` will expect the full Shoutrrr URL and so could be used for any of the services in the Shoutrrr v0.6 docs. Any params specified in `params` will also be passed.
 
-#### Shoutrrr (any of the above)
-
-`Shoutrrr` will expect the full Shoutrrr URL and so could be used for any of the services in the Shoutrrr v0.5 docs. Any params specified in `params` will also be passed.
-
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.5/services/overview/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/overview/)
 
 ```yaml
 notify:
@@ -473,3 +446,5 @@ notify:
     url_fields:
       raw: matrix://user:password@host:port/?rooms=!roomID1,roomAlias2&disableTLS=yes
 ```
+  {{% /tab %}}
+{{% /tabpane %}}

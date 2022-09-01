@@ -23,14 +23,14 @@ service:
       access_token: GITHUB_ACCESS_TOKEN  # Useful when you want to exceed the public rate-limit, or want to query a private repo
       use_prerelease: false              # Whether a 'prerelease' tag can be used
       url_commands:
-        - type: regex_submatch
-          regex: ^v?([0-9.]+)$           # This searches the tag_names. The '$' is used to ensure the tag name
-                                         # ends in this RegEx and doesn't just omit a '-beta' or similar details
+        - type: regex_submatch  # This searches the tag_names. The '$' is used to ensure the tag name
+          regex: ^v?([0-9.]+)$  # ends in this RegEx and doesn't just omit a '-beta' or similar details
       require:
-        regex_content: 'argus-{{ version }}.linux-amd64'  # Ensure the linux binary has been released before we
-                                                          # are alerted about the new version
-        regex_version: ^[0-9.]+[0-9]$                     # Version found must match this RegEx to be considered valid
-        docker:                       # only consider the release available when the docker tag can be found
+        regex_content: 'argus-{{ version }}.linux-amd64'        # Ensure the linux binary has been released before we
+                                                                # are alerted about the new version
+        regex_version: ^[0-9.]+[0-9]$                           # Version must match this RegEx
+        command: ["bash", "check_version.sh", "{{ version }}"]  # Require this command to exit successfully
+        docker:                                                 # Require this docker image:tag
           type: hub                   # type of docker registry (ghcr/hub/quay)
           image: releaseargus/argus   # docker image
           tag: '{{ version }}'        # tag to look for
@@ -79,19 +79,23 @@ service:
     options:
       active: false              # Disable a service without removing it from the config
       interval: 1h5m             # Query for a version change every 65 minutes
-                                # y=years, w=weeks, d=days, h=hours, m=minutes, s=seconds
+                                 # y=years, w=weeks, d=days, h=hours, m=minutes, s=seconds
       semantic_versioning: true  # Whether to enforce semantic versioning on versions queried
-                                # (`url_commands` can potentially be used to format versions semantically - https://semver.org)
+                                 # (`url_commands` can potentially be used to format versions semantically - https://semver.org)
 ```
 
 ## Latest Version
 
-### GitHub
+Source to query for the latest version, `github` or `url`.
 
-`latest_version`'s of type `github` will monitor the most recent `tag_name` that matches both your `regex_content` and `regex_version` at
+{{< tabpane text=true right=true >}}
+  {{% tab header="**types**:" disabled=true /%}}
+  {{% tab header="github" %}}
+
+This will monitor the most recent 'tag_name' that matches both your `regex_content` and `regex_version` at
 https://api.github.com/repos/OWNER/REPO/releases.
 
-It will go through each item in that list and try using `tag_name` as the version. It will run the `url_commands` on this version, check it with `regex_version` and then check the assets against `regex_content`. If all of these pass, that version will be used.
+It will go through each item in that list and try using 'tag_name' as the version. It will run the `url_commands` on this version, check it with `regex_version` and then check the assets against `regex_content`. If all of these pass, that version will be used.
 
 ```yaml
 service:
@@ -114,8 +118,8 @@ service:
         regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
 ```
 
-### URL (Monitor outside GitHub API)
-
+  {{% /tab %}}
+  {{% tab header="url" %}}
 The following is how you'd define a service to be monitored without using the GitHub API. (The key difference is that `type` is 'web' and `url` is a full HTTP(S) address with `url_commands` to scrape the version).
 
 config.yml
@@ -134,21 +138,22 @@ service:
                                                       # to be considered valid (meaning alerts will fire)
         regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
 ```
+  {{% /tab %}}
+{{% /tabpane %}}
 
 ### Filters
 
 #### url_commands
 `url_commands` are defined in a YAML list, with them being executed in order starting from the top.
-There are (currently) four different types of url_command that can be performed:
-- [regex](#regex)
-- [replace](#replace)
-- [split](#split)
+There are (currently) three different types of url_command that can be performed:
 
 {{< alert title="Note" >}}
-For a service of type 'github', 'url_commands' will run against every release 'tag_name' until a version is found that matches no 'url_command' fails on and both 'regex_version' and 'regex_content' pass. ('regex_content' acts on every assets 'name' and 'browser_download_url')
+For a service of `type` 'github', `url_commands` will run against every release 'tag_name' until a version is found that matches no `url_command` fails on and both `regex_version` and `regex_content` pass. (`regex_content` acts on every assets 'name' and 'browser_download_url')
 {{< /alert >}}
 
-##### regex
+{{< tabpane text=true right=true >}}
+  {{% tab header="**types**:" disabled=true /%}}
+  {{% tab header="regex" %}}
 ```yaml
 latest_version:
   ...
@@ -156,11 +161,10 @@ latest_version:
     - type: regex
       regex: v([0-9.]+)$
 ```
-{{< alert title="Note" >}}
-This RegEx will return the submatch (the match in the bracket), so `regex` of 'v([0-9])' and text of `v1 v2 v3...` would return 1. To get the 2, you could either use an `index` of 1, or of -2 (second last match). The above RegEx is useful in places where they use the `v` prefix in their versions. Removing that helps in the majority of cases to make it follow semantic versioning.
-{{< /alert >}}
 
-##### replace
+This RegEx will return the submatch (the match in the bracket), so `regex` of 'v([0-9])' and text of 'v1 v2 v3...' would return 1 (`index` defaults to 0). To get the 2, you could either use an `index` of 1, or of -2 (second last match). The above RegEx is useful in places where they use the `v` prefix in their versions. Removing that helps in the majority of cases to make it follow semantic versioning.
+  {{% /tab %}}
+  {{% tab header="replace" %}}
 ```yaml
 latest_version:
   ...
@@ -170,8 +174,8 @@ latest_version:
       new: ''
 ```
 This command replaces `old` with `new`. e.g. the above would remove `v`
-
-##### split
+  {{% /tab %}}
+  {{% tab header="split" %}}
 ```yaml
 latest_version:
   ...
@@ -183,6 +187,8 @@ latest_version:
 ```
 This command will split on `text` and return `index` of that split. e.g. running this command
 on '1.2.3test' with the above vars would return `1.2.3`
+  {{% /tab %}}
+{{% /tabpane %}}
 
 #### Require
 
@@ -216,14 +222,16 @@ e.g.
 latest_version:
   ...
   require:
-    command: ["check_version.sh", "{{ version }}"]
+    command: ["bash", "check_version.sh", "{{ version }}"]
 ```
 
 ##### docker
 
 To require a docker tag to exist before a version is considered valid, provide a `require.docker`. Tags of images on Docker Hub, GHCR and Quay can be checked.
 
-###### Docker Hub:
+{{< tabpane text=true right=true >}}
+  {{% tab header="**types**:" disabled=true /%}}
+  {{% tab header="hub" %}}
 The Docker Hub API allows access to public repos without auth up to a [rate-limit](https://docs.docker.com/docker-hub/download-rate-limit/). If you want to query more frequently, or need access to private repo's, you'll need to provide a username and token. A token can be optioned by going to settings->[security](https://hub.docker.com/settings/security) and creating a new access token.
 
 ```yaml
@@ -237,8 +245,8 @@ latest_version:
       username: USERNAME
       token: dckr_pat_TOKEN
 ```
-
-###### GHCR:
+  {{% /tab %}}
+  {{% tab header="ghcr" %}}
 For Github's container registry simply create a personal access token ([here](https://github.com/settings/tokens)) with `read:packages`.
 ```yaml
 latest_version:
@@ -250,8 +258,8 @@ latest_version:
       tag: '{{ version }}'
       token: ghp_TOKEN
 ```
-
-###### Quay:
+  {{% /tab %}}
+  {{% tab header="quay" %}}
 The Quay API allows access to public repos without auth up to a rate-limit. If you want access to private repo's, you'll need to provide a token. A token can be optioned by [creating an Organization](https://quay.io/organizations/new/), going to its Applications and creating a new application. Go into that app and 'Generate Token'.
 ```yaml
 latest_version:
@@ -263,6 +271,8 @@ latest_version:
       tag: '{{ version }}'
       token: v5ACkd33ynxq52dEFd9t3m943w59c2phzz37mrFx
 ```
+  {{% /tab %}}
+{{% /tabpane %}}
 
 ## Deployed Version
 
