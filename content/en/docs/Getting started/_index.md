@@ -78,6 +78,12 @@ services:
       ARGUS_GID: 911 # Optional GID override
     ports:
       - 8080:8080 # <Host_Port:Container_Port>
+    healthcheck: # Optional healthcheck
+      test: ["CMD", "/healthcheck", "http://localhost:8080/api/v1/healthcheck"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     restart: always
 ```
 deploy with:
