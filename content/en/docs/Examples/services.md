@@ -37,6 +37,19 @@ service:
       icon: https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg
 ```
 
+## ansible/awx-operator
+Source: https://github.com/ansible/awx-operator
+```yaml
+service:
+  ansible/awx-operator:
+    latest_version:
+      type: github
+      url: ansible/awx-operator
+    dashboard:
+      web_url: https://github.com/ansible/awx-operator/releases/{{ version }}
+      icon: https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg
+```
+
 ## argoproj/argo-cd
 Source: https://github.com/argoproj/argo-cd
 ```yaml
@@ -55,19 +68,6 @@ service:
     dashboard:
       web_url: https://github.com/argoproj/argo-cd/releases/v{{ version }}
       icon: https://avatars.githubusercontent.com/u/30269780?s=200&v=4
-```
-
-## ansible/awx-operator
-Source: https://github.com/ansible/awx-operator
-```yaml
-service:
-  ansible/awx-operator:
-    latest_version:
-      type: github
-      url: ansible/awx-operator
-    dashboard:
-      web_url: https://github.com/ansible/awx-operator/releases/{{ version }}
-      icon: https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg
 ```
 
 ## dani-garcia/vaultwarden
