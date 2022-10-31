@@ -50,6 +50,26 @@ service:
       icon: https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg
 ```
 
+## argoproj/argo-cd
+Source: https://github.com/argoproj/argo-cd
+```yaml
+service:
+  argoproj/argo-cd:
+    latest_version:
+      type: github
+      url: argoproj/argo-cd
+      url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    deployed_version:
+      url: https://argocd.example.io/api/version
+      json: Version
+      regex: v([0-9.]+)
+    dashboard:
+      web_url: https://github.com/argoproj/argo-cd/releases/v{{ version }}
+      icon: https://avatars.githubusercontent.com/u/30269780?s=200&v=4
+```
+
 ## dani-garcia/vaultwarden
 Source: https://github.com/dani-garcia/vaultwarden
 
@@ -373,6 +393,25 @@ service:
     dashboard:
       web_url: https://github.com/influxdata/influxdb/releases/tag/v{{ version }}
       icon: https://github.com/influxdata/ui/raw/master/src/writeData/graphics/influxdb.svg
+```
+
+## jellyfin/jellyfin
+Source: https://github.com/jellyfin/jellyfin
+```yaml
+service:
+  jellyfin/jellyfin:
+    latest_version:
+      type: github
+      url: jellyfin/jellyfin
+      url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    deployed_version:
+      url: https://jellyfin.example.io/System/Info/Public
+      json: Version
+    dashboard:
+      web_url: https://github.com/jellyfin/jellyfin/releases/v{{ version }}
+      icon: https://avatars.githubusercontent.com/u/45698031?s=200&v=4
 ```
 
 ## jgraph/drawio
@@ -770,6 +809,32 @@ service:
     dashboard:
       web_url: https://github.com/smallstep/certificates/releases/tag/v{{ version }}
       icon: https://github.com/smallstep/docs/raw/main/static/graphics/logo-icon-white.svg
+```
+
+## Sonarr/Sonarr
+Source: https://github.com/Sonarr/Sonarr
+
+- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+```yaml
+service:
+  Sonarr/Sonarr:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: url
+      url: https://github.com/Sonarr/Sonarr/tags
+      url_commands:
+      - type: regex
+        regex: \/releases\/tag\/v?([0-9.]+)\"
+    deployed_version:
+      url: https://sonarr.example.io/api/v3/system/status
+      headers:
+      - key: X-Api-Key
+        value: <API_KEY>
+      json: version
+    dashboard:
+      web_url: https://sonarr.example.io/system/updates
+      icon: https://raw.githubusercontent.com/Sonarr/Sonarr/develop/Logo/256.png
 ```
 
 ## thanos-io/thanos
