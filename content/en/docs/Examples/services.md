@@ -766,6 +766,32 @@ service:
       icon: https://github.com/smallstep/docs/raw/main/static/graphics/logo-icon-white.svg
 ```
 
+## Sonarr/Sonarr
+Source: https://github.com/Sonarr/Sonarr
+
+- deployed_version - Requires an `API_KEY` which can be retrieved at `General/Security/API Key`
+```yaml
+service:
+  Sonarr/Sonarr:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: url
+      url: https://github.com/Sonarr/Sonarr/tags
+      url_commands:
+      - type: regex
+        regex: \/releases\/tag\/v?([0-9.]+)\"
+    deployed_version:
+      url: https://sonarr.example.io/api/v3/system/status
+      headers:
+      - key: X-Api-Key
+        value: <API_KEY>
+      json: version
+    dashboard:
+      web_url: https://sonarr.example.io/system/updates
+      icon: https://raw.githubusercontent.com/Sonarr/Sonarr/develop/Logo/256.png
+```
+
 ## thanos-io/thanos
 Source: https://github.com/thanos-io/thanos
 ```yaml
