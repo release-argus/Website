@@ -668,7 +668,7 @@ Source: https://github.com/Radarr/Radarr
 - deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
 ```yaml
 service:
-    Radarr/Radarr:
+  Radarr/Radarr:
     options:
       semantic_versioning: false
     latest_version:
