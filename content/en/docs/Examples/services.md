@@ -37,6 +37,19 @@ service:
       icon: https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg
 ```
 
+## ansible/awx-operator
+Source: https://github.com/ansible/awx-operator
+```yaml
+service:
+  ansible/awx-operator:
+    latest_version:
+      type: github
+      url: ansible/awx-operator
+    dashboard:
+      web_url: https://github.com/ansible/awx-operator/releases/{{ version }}
+      icon: https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg
+```
+
 ## argoproj/argo-cd
 Source: https://github.com/argoproj/argo-cd
 ```yaml
@@ -55,19 +68,6 @@ service:
     dashboard:
       web_url: https://github.com/argoproj/argo-cd/releases/v{{ version }}
       icon: https://avatars.githubusercontent.com/u/30269780?s=200&v=4
-```
-
-## ansible/awx-operator
-Source: https://github.com/ansible/awx-operator
-```yaml
-service:
-  ansible/awx-operator:
-    latest_version:
-      type: github
-      url: ansible/awx-operator
-    dashboard:
-      web_url: https://github.com/ansible/awx-operator/releases/{{ version }}
-      icon: https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg
 ```
 
 ## dani-garcia/vaultwarden
@@ -764,6 +764,32 @@ service:
     dashboard:
       web_url: https://github.com/smallstep/certificates/releases/tag/v{{ version }}
       icon: https://github.com/smallstep/docs/raw/main/static/graphics/logo-icon-white.svg
+```
+
+## Sonarr/Sonarr
+Source: https://github.com/Sonarr/Sonarr
+
+- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+```yaml
+service:
+  Sonarr/Sonarr:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: url
+      url: https://github.com/Sonarr/Sonarr/tags
+      url_commands:
+      - type: regex
+        regex: \/releases\/tag\/v?([0-9.]+)\"
+    deployed_version:
+      url: https://sonarr.example.io/api/v3/system/status
+      headers:
+      - key: X-Api-Key
+        value: <API_KEY>
+      json: version
+    dashboard:
+      web_url: https://sonarr.example.io/system/updates
+      icon: https://raw.githubusercontent.com/Sonarr/Sonarr/develop/Logo/256.png
 ```
 
 ## thanos-io/thanos
