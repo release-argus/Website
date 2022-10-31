@@ -661,6 +661,33 @@ service:
       regex_content: prometheus-{{ version }}\.linux-amd64
 ```
 
+## Prowlarr/Prowlarr
+Source: https://github.com/Prowlarr/Prowlarr
+
+- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+```yaml
+service:
+  Prowlarr/Prowlarr:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: Prowlarr/Prowlarr
+      url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+      use_prerelease: true
+    deployed_version:
+      url: https://prowlarr.example.io/api/v1/system/status
+      headers:
+      - key: X-Api-Key
+        value: <API_KEY>
+      json: version
+    dashboard:
+      web_url: https://github.com/Prowlarr/Prowlarr/releases/v{{ version }}
+      icon: https://avatars.githubusercontent.com/u/73049443?s=200&v=4
+```
+
 ## pterodactyl/panel
 Source: https://github.com/pterodactyl/panel
 ```yaml
