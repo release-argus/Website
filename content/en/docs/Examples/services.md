@@ -395,6 +395,25 @@ service:
       icon: https://github.com/influxdata/ui/raw/master/src/writeData/graphics/influxdb.svg
 ```
 
+## jellyfin/jellyfin
+Source: https://github.com/jellyfin/jellyfin
+```yaml
+service:
+  jellyfin/jellyfin:
+    latest_version:
+      type: github
+      url: jellyfin/jellyfin
+      url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    deployed_version:
+      url: https://jellyfin.example.io/System/Info/Public
+      json: Version
+    dashboard:
+      web_url: https://github.com/jellyfin/jellyfin/releases/v{{ version }}
+      icon: https://avatars.githubusercontent.com/u/45698031?s=200&v=4
+```
+
 ## jgraph/drawio
 Source: https://github.com/jgraph/drawio
 ```yaml
