@@ -404,8 +404,8 @@ service:
       type: github
       url: jellyfin/jellyfin
       url_commands:
-      - type: regex
-        regex: v([0-9.]+)$
+        - type: regex
+          regex: v([0-9.]+)$
     deployed_version:
       url: https://jellyfin.example.io/System/Info/Public
       json: Version
@@ -524,6 +524,30 @@ service:
           regex: releases\.mattermost\.com\/([^\/]+)\/mattermost-[0-9.]+-linux\-amd64\.tar\.gz
     dashboard:
       web_url: https://docs.mattermost.com/install/self-managed-changelog.html
+```
+
+## morpheus65535/bazarr
+Source: https://github.com/morpheus65535/bazarr
+
+- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+```yaml
+service:
+  morpheus65535/bazarr:
+    latest_version:
+      type: github
+      url: morpheus65535/bazarr
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      url: https://bazarr.example.io/api/system/status
+      headers:
+        - key: X-API-KEY
+          value: <API_KEY>
+      json: data.bazarr_version
+    dashboard:
+      web_url: https://github.com/morpheus65535/bazarr/releases/v{{ version }}
+      icon: https://raw.githubusercontent.com/morpheus65535/bazarr/master/frontend/public/images/logo128.png
 ```
 
 ## n8n-io/n8n
@@ -674,14 +698,14 @@ service:
       type: github
       url: Prowlarr/Prowlarr
       url_commands:
-      - type: regex
-        regex: v([0-9.]+)$
+        - type: regex
+          regex: v([0-9.]+)$
       use_prerelease: true
     deployed_version:
       url: https://prowlarr.example.io/api/v1/system/status
       headers:
-      - key: X-Api-Key
-        value: <API_KEY>
+        - key: X-Api-Key
+          value: <API_KEY>
       json: version
     dashboard:
       web_url: https://github.com/Prowlarr/Prowlarr/releases/v{{ version }}
@@ -741,13 +765,13 @@ service:
       type: github
       url: Radarr/Radarr
       url_commands:
-      - type: regex
-        regex: v([0-9.]+)$
+        - type: regex
+          regex: v([0-9.]+)$
     deployed_version:
       url: https://radarr.example.io/api/v3/system/status
       headers:
-      - key: X-Api-Key
-        value: <API_KEY>
+        - key: X-Api-Key
+          value: <API_KEY>
       json: version
     dashboard:
       web_url: https://github.com/Radarr/Radarr/releases/v{{ version }}
@@ -851,13 +875,13 @@ service:
       type: url
       url: https://github.com/Sonarr/Sonarr/tags
       url_commands:
-      - type: regex
-        regex: \/releases\/tag\/v?([0-9.]+)\"
+        - type: regex
+          regex: \/releases\/tag\/v?([0-9.]+)\"
     deployed_version:
       url: https://sonarr.example.io/api/v3/system/status
       headers:
-      - key: X-Api-Key
-        value: <API_KEY>
+        - key: X-Api-Key
+          value: <API_KEY>
       json: version
     dashboard:
       web_url: https://sonarr.example.io/system/updates
