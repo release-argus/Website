@@ -526,6 +526,30 @@ service:
       web_url: https://docs.mattermost.com/install/self-managed-changelog.html
 ```
 
+## morpheus65535/bazarr
+Source: https://github.com/morpheus65535/bazarr
+
+- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+```yaml
+service:
+  morpheus65535/bazarr:
+    latest_version:
+      type: github
+      url: morpheus65535/bazarr
+      url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    deployed_version:
+      url: https://bazarr.example.io/api/system/status
+      headers:
+      - key: X-API-KEY
+        value: <API_KEY>
+      json: data.bazarr_version
+    dashboard:
+      web_url: https://github.com/morpheus65535/bazarr/releases/v{{ version }}
+      icon: https://raw.githubusercontent.com/morpheus65535/bazarr/master/frontend/public/images/logo128.png
+```
+
 ## n8n-io/n8n
 Source: https://github.com/n8n-io/n8n
 ```yaml
