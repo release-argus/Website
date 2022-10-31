@@ -769,7 +769,7 @@ service:
 ## Sonarr/Sonarr
 Source: https://github.com/Sonarr/Sonarr
 
-- deployed_version - Requires an `API_KEY` which can be retrieved at `General/Security/API Key`
+- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
 ```yaml
 service:
   Sonarr/Sonarr:
