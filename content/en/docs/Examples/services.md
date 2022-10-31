@@ -37,6 +37,26 @@ service:
       icon: https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg
 ```
 
+## argoproj/argo-cd
+Source: https://github.com/argoproj/argo-cd
+```yaml
+service:
+  argoproj/argo-cd:
+    latest_version:
+      type: github
+      url: argoproj/argo-cd
+      url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    deployed_version:
+      url: https://argocd.example.io/api/version
+      json: Version
+      regex: v([0-9.]+)
+    dashboard:
+      web_url: https://github.com/argoproj/argo-cd/releases/v{{ version }}
+      icon: https://avatars.githubusercontent.com/u/30269780?s=200&v=4
+```
+
 ## ansible/awx-operator
 Source: https://github.com/ansible/awx-operator
 ```yaml
