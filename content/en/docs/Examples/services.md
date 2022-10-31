@@ -662,6 +662,32 @@ service:
       icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
 ```
 
+## Radarr/Radarr
+Source: https://github.com/Radarr/Radarr
+
+- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+```yaml
+service:
+    Radarr/Radarr:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: Radarr/Radarr
+      url_commands:
+      - type: regex
+        regex: v([0-9.]+)$
+    deployed_version:
+      url: https://radarr.example.io/api/v3/system/status
+      headers:
+      - key: X-Api-Key
+        value: <API_KEY>
+      json: version
+    dashboard:
+      web_url: https://github.com/Radarr/Radarr/releases/{{ version }}
+      icon: https://avatars.githubusercontent.com/u/25025331?s=200&v=4
+```
+
 ## rancher/rancher
 Source: https://github.com/rancher/rancher
 
