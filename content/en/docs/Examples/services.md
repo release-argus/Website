@@ -723,7 +723,7 @@ service:
         value: <API_KEY>
       json: version
     dashboard:
-      web_url: https://github.com/Radarr/Radarr/releases/{{ version }}
+      web_url: https://github.com/Radarr/Radarr/releases/v{{ version }}
       icon: https://avatars.githubusercontent.com/u/25025331?s=200&v=4
 ```
 
