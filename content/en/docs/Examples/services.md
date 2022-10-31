@@ -6,6 +6,31 @@ description: >
   Example configurations for different services.
 ---
 
+## AdguardTeam/AdGuardHome
+Source: https://github.com/AdguardTeam/AdGuardHome
+
+- deployed_version - Requires `USERNAME` and `PASSWORD` Basic Auth credentials created during the setup wizard on first launch unless you explicitly disabled it.
+```yaml
+service:
+  AdguardTeam/AdGuardHome:
+    latest_version:
+      type: github
+      url: AdguardTeam/AdGuardHome
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      url: https://adguard.example.io/control/status
+      basic_auth:
+        username: <USERNAME>
+        password: <PASSWORD>
+      json: version
+      regex: v([0-9.]+)
+    dashboard:
+      web_url: https://github.com/AdguardTeam/AdGuardHome/releases/v{{ version }}
+      icon: https://avatars.githubusercontent.com/u/8361145?s=200&v=4
+```
+
 ## adnanh/webhook
 Source: https://github.com/adnanh/webhook
 ```yaml
