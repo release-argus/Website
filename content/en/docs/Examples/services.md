@@ -114,6 +114,25 @@ service:
       icon: https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/src/static/images/vaultwarden-icon.png
 ```
 
+## Fallenbagel/jellyseerr
+Source: https://github.com/Fallenbagel/jellyseerr
+```yaml
+service:
+  Fallenbagel/jellyseerr:
+    latest_version:
+      type: github
+      url: Fallenbagel/jellyseerr
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      url: http://jellyseerr.example.io/api/v1/status
+      json: version
+    dashboard:
+      web_url: https://github.com/Fallenbagel/jellyseerr/releases/v{{ version }}
+      icon: https://raw.githubusercontent.com/Fallenbagel/jellyseerr/develop/public/os_icon.svg
+```
+
 ## gitlab-org/gitlab
 Source: https://gitlab.com/gitlab-org/gitlab
 
