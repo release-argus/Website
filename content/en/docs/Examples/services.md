@@ -122,8 +122,8 @@ Fallenbagel/jellyseerr:
     type: github
     url: Fallenbagel/jellyseerr
     url_commands:
-    - type: regex
-      regex: v([0-9.]+)$
+      - type: regex
+        regex: v([0-9.]+)$
   deployed_version:
     url: http://jellyseerr.example.io/api/v1/status
     json: version
