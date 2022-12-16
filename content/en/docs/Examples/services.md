@@ -417,7 +417,7 @@ service:
           value: Bearer <API_Token>
     dashboard:
       web_url: https://www.home-assistant.io/latest-release-notes
-      icon: https://github.com/home-assistant/core/raw/dev/tests/components/image/logo.png
+      icon: https://github.com/home-assistant/core/raw/dev/tests/components/image_upload/logo.png
 ```
 
 ## influxdata/influxdb
