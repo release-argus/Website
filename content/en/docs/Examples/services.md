@@ -964,6 +964,8 @@ service:
       url_commands:
         - type: regex
           regex: v([0-9.]+)$
+    deployed_version:
+      url: https://element.example.io/version
     dashboard:
       web_url: https://github.com/vector-im/element-web/releases/tag/v{{ version }}
       icon: https://github.com/vector-im/element-web/raw/develop/res/vector-icons/150.png
