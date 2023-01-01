@@ -31,6 +31,16 @@ taxonomyCloudTitle = ["Tag Cloud", "Categories"]
 # set taxonomyPageHeader = [] to hide taxonomies on the page headers
 taxonomyPageHeader = ["tags", "categories"]
 
+############################
+## PLAUSIBLE
+############################
+[params.plausible]
+enable = true
+proxy_netlify = true
+outbound_link = true
+file_downloads = true
+debug = false
+gitstar = false
 
 # Highlighting config
 pygmentsCodeFences = true
@@ -196,8 +206,7 @@ enable = false
     min = "0.73.0"
   [[module.imports]]
     path = "github.com/google/docsy"
-    disable = false
   [[module.imports]]
     path = "github.com/google/docsy/dependencies"
-    disable = false
-
+  [[module.imports]]
+    path = "github.com/divinerites/plausible-hugo"
