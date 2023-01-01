@@ -336,7 +336,7 @@ To get a token for a Bot:
 - Install the App into your workspace ([Slack docs](https://api.slack.com/authentication/basics#installing)).
 - From [Apps](https://api.slack.com/apps), select your App and go to 'OAuth & Permissions'
 - Copy the 'Bot User OAuth Token'
-- e.g. `xoxb-012345678901-0123456789012-phq24qfrhqnm2mtmz54dwkop
+- e.g. `xoxb:012345678901-0123456789012-phq24qfrhqnm2mtmz54dwkop
 
 To use Webhooks:
 - Create an App for your bot with Slacks '[Creating an app](https://api.slack.com/authentication/basics#creating)' guide.
@@ -354,8 +354,8 @@ notify:
   EXAMPLE_NOTIFY:
     type: slack
     url_fields:
-      Token: 'xoxb-012345678901-0123456789012-phq24qfrhqnm2mtmz54dwkop'
-      Channe: argus
+      Token: 'xoxb:012345678901-0123456789012-phq24qfrhqnm2mtmz54dwkop'
+      Channel: argus
 #   params:
 #     BotName: Argus
 #     Color: ''                                                          # Message left-hand border color
