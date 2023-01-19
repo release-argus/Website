@@ -224,7 +224,7 @@ notify:
 #     Port: 443
 #   params:
 #     DisableTLS: no
-#     Rooms: !ROOM_ID,ALIAS
+#     Rooms: '!ROOM_ID,ALIAS' # Needs the quotes as `!` is a YAML special character
 #     Title: Argus
 ```
   {{% /tab %}}
