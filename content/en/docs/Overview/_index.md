@@ -16,6 +16,7 @@ aliases:
 - To keep track of new releases of one or more pieces of (most likely open-source) software.
 
 - To be notified of these new releases via:
+  - Bark
   - Discord
   - Email
   - Gotify
@@ -24,6 +25,7 @@ aliases:
   - Join
   - Mattermost
   - Matrix
+  - Ntfy
   - OpsGenie
   - Pushbullet
   - Pushover

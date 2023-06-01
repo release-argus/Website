@@ -35,6 +35,7 @@ Defaults can be defined for each `notify` type. Details about the vars for each 
 defaults:
   ...
   notify:
+    bark:
     discord:
     email:
     gotify:
@@ -43,6 +44,7 @@ defaults:
     join:
     mattermost:
     matrix:
+    ntfy:
     opsgenie:
     pushbullet:
     pushover:
