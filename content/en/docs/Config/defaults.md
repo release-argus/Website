@@ -6,7 +6,7 @@ description: >
   Defaults to give each service/notify/slack/webhook.
 ---
 
-You can define defaults for [service](/docs/config/service), [notify](/docs/config/notify), [slack](/docs/config/slack) and [webhook](/docs/config/webhook) in `config.yml` like so:
+You can define defaults for [service](/docs/config/service), [notify](/docs/config/notify), [slack](/docs/config/slack) and [webhook](/docs/config/webhook) in the `config.yml`. These defaults can also be set with environment variables in the format of `ARGUS_<YAML_PATH_UNDER_DEFAULTS>`. For example, `ARGUS_SERVICE_OPTIONS_INTERVAL=10m` would set the default interval to 10 minutes (`defaults.service.options.interval`). The YAML config format is as follows:
 
 
 #### **service** portion
