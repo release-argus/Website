@@ -6,7 +6,7 @@ description: >
   Configure global notifiers that can be used by any Service.
 ---
 
-We are running [Shoutrrr 0.6](https://containrrr.dev/shoutrrr/v0.6/services/overview/), which supports sending notifications to the following services below.
+We are running [Shoutrrr 0.7](https://containrrr.dev/shoutrrr/v0.7/services/overview/), which supports sending notifications to the services listed below.
 
 The 'URL Fields' go under `url_fields` and 'Query/Param Props' go under `params`.
 
@@ -57,10 +57,34 @@ For further guidance and other helpful examples on the templating used, start by
 
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
+  {{% tab header="bark" %}}
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/bark/)
+
+```yaml
+notify:
+  ...
+  # as many of these (below) as you like, just ensure they have unique ID's.
+  EXAMPLE_NOTIFY:
+    type: bark
+    url_fields:
+      DeviceKey: DEVICE_KEY
+      Host: your_host
+#     Path: /foo
+#   params:
+#     Badge: 0                           # Number displayed next to App icon
+#     Copy: foo                          # Value to be copied
+#     Group: admins                      # Group of the notification
+#     Icon: https://example.com/icon.png # URL to an image
+#     Scheme: http/https                 # Server protocol
+#     Sound: ''                          # Fromm https://github.com/Finb/Bark/tree/master/Sounds
+#     Title: Release                     # Notification title
+#     URL: https://example.com           # URL to open when notification is tapped
+```
+  {{% /tab %}}
   {{% tab header="discord" %}}
 - As of writing, Discord Webhooks are in the format of `https://discord.com/api/webhooks/WEBHOOK_ID/TOKEN` (`<Server Settings> - <Integrations> - <Webhooks>`)
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/discord/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/discord/)
 
 ```yaml
 notify:
@@ -80,7 +104,7 @@ notify:
   {{% tab header="smtp" %}}
 - email notifications
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/email/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/email/)
 
 ```yaml
 notify:
@@ -106,7 +130,7 @@ notify:
   {{% tab header="googlechat" %}}
 - Example Google Chat incoming Webhook URL `https://chat.googleapis.com/v1/spaces/ FOO /messages?key= bar &token= baz`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/googlechat/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/googlechat/)
 
 ```yaml
 notify:
@@ -121,7 +145,7 @@ notify:
   {{% tab header="gotify" %}}
 - Create an application on the Gotify Web UI, and use that URL with the token for the application you make.
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/email/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/email/)
 
 ```yaml
 notify:
@@ -141,7 +165,7 @@ notify:
 ```
   {{% /tab %}}
   {{% tab header="ifttt" %}}
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/ifttt/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/ifttt/)
 
 ```yaml
 notify:
@@ -168,7 +192,7 @@ notify:
 - Your `deviceId` is shown in the top
 - Click **Show** next to `API Key` to see your key
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/join/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/join/)
 
 ```yaml
 notify:
@@ -189,7 +213,7 @@ notify:
 
 Example Mattermost Webhook - `https://mattermost.example.io/hooks/TOKEN`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/mattermost/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/mattermost/)
 
 ```yaml
 notify:
@@ -208,8 +232,38 @@ notify:
 #     Icon: https://release-argus.io/favicons/android-chrome-512x512.png # url/emoji
 ```
   {{% /tab %}}
+  {{% tab header="ntfy" %}}
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/ntfy/)
+
+```yaml
+notify:
+  ...
+  # as many of these (below) as you like, just ensure they have unique ID's.
+  EXAMPLE_NOTIFY:
+    type: mattermost
+    url_fields:
+#     Username: Argus
+#     Password: PASS123
+      Host: mattermost.example.io
+#     Port: 443
+      Topic: Release123
+#   params:
+#     Actions: ''                        # see https://docs.ntfy.sh/publish/#action-buttons
+#     Attach: https://example.com        # URL of an attachment
+#     Cache: yes                         # Cache messages
+#     Click: https://example.com         # URL to open when notification is clicked
+#     Email: name@example                # Email address for email notifications
+#     Filename: ''                       # Filename for attachment
+#     Firebase: yes                      # Send to Firebase
+#     Icon: https://example.com/icon.png # URL to an icon
+#     Priority: default                  # Priority of the notification
+#     Scheme: https                      # Server protocol
+#     Tags: ''                           # Comma separated list of tags that may/may not map to eemojis
+#     Title: Argus                       # Title of the notification
+```
+  {{% /tab %}}
   {{% tab header="matrix" %}}
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/matrix/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/matrix/)
 
 ```yaml
 notify:
@@ -231,7 +285,7 @@ notify:
   {{% tab header="opsgenie" %}}
 Go to `<Settings> - <Integrastion List> - <API>`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/opsgenie/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/opsgenie/)
 
 ```yaml
 notify:
@@ -268,7 +322,7 @@ notify:
 - Get your `token` by creating an **Access Token** at https://www.pushbullet.com/#settings/account
 - Get your `targets` by going to https://www.pushbullet.com/#devices. Click on the device on the left pane and the URL should change to https://www.pushbullet.com/#devices/\<TARGET\>
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/pushbullet/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/pushbullet/)
 
 ```yaml
 notify:
@@ -290,7 +344,7 @@ You can also make an Application specific for Argus by clicking 'Create an Appli
 
 In the device list, the Name column is the field used to refer to your devices
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/pushover/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/pushover/)
 
 ```yaml
 notify:
@@ -310,7 +364,7 @@ notify:
   {{% tab header="rocketchat" %}}
 Example URL `username@host:port/TOKEN_A/TOKEN_B/CHANNEL`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/rocketchat/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/rocketchat/)
 
 ```yaml
 notify:
@@ -345,7 +399,7 @@ To use Webhooks:
 - e.g. https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
 - becomes 'hook:T00000000-B00000000-XXXXXXXXXXXXXXXXXXXXXXXX
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/slack/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/slack/)
 
 ```yaml
 notify:
@@ -368,7 +422,7 @@ notify:
 
 Example URL `https://<organization>.webhook.office.com/webhookb2/<Group>@<Tenant>/IncomingWebhook/<AltId>/<GroupOwner>`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/teams/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/teams/)
 
 ```yaml
 notify:
@@ -394,7 +448,7 @@ notify:
     - `chat_id` is required for private channels/group chats/private chats. To get the ID, you can forward a message (from the target chat) to [@UserInfoBot](https://t.me/userinfobot) or [@JsonDumpBot](https://t.me/jsondumpbot) and view it at `Id` and `message.forward_from_chat.id` from those bots respectively.
     - (The above bots are created and hosted by [@nadam](https://github.com/nadam) and their sources are available to view at [nadam/userinfobot](https://github.com/nadam/userinfobot) and [nadam/jsondumpbot](https://github.com/nadam/jsondumpbot))
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/telegram/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/telegram/)
 
 ```yaml
 notify:
@@ -415,7 +469,7 @@ notify:
   {{% tab header="zulip" %}}
 Zulip Chat
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/zulip/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/zulip/)
 
 ```yaml
 notify:
@@ -435,7 +489,7 @@ notify:
   {{% tab header="shoutrrr" %}}
 `Shoutrrr` will expect the full Shoutrrr URL and so could be used for any of the services in the Shoutrrr v0.6 docs. Any params specified in `params` will also be passed.
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.6/services/overview/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/overview/)
 
 ```yaml
 notify:
