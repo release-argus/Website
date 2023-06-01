@@ -22,8 +22,9 @@ webhook:
     url: https://WEBHOOK_URL    # WebHook URL to send to
     allow_invalid_certs: false  # Accept invalid HTTPS certs/not
     secret: SECRET              # WebHook Key/Secret
-    custom_headers:             # Custom headers to give the WebHook (could be a param for the WebHook that's unique
-      fizz: bang                # to the Service)
+    custom_headers:             # Custom headers to give the WebHook (could be a param for the WebHook that's unique to the Service)
+      - key: fizz
+        value: bang
     desired_status_code: 201    # Status code to use indicating a success. Using 0 will accept any 2XX status code
     delay: 0s                   # Delay before sending the webhooks when a new release is found
                                 # (only used when `auto_approve` is true for the service)
@@ -39,10 +40,10 @@ If using something like [adnanh/webhook](https://github.com/adnanh/webhook), you
 - id: something
   execute-command: something.sh
   pass-arguments-to-command:
-  - source: header
-    name: SOMETHING
-  - source: header
-    name: VERSION
+    - source: header
+      name: SOMETHING
+    - source: header
+      name: VERSION
 ```
 
 Then, in Argus' `config.yml`
@@ -50,8 +51,10 @@ Then, in Argus' `config.yml`
     webhook:
       some_name:
         custom_headers:
-          SOMETHING: 'foo'
-          VERSION: '{{ version }}'
+          - key: SOMETHING
+            value: 'foo'
+          - key: VERSION
+            value: '{{ version }}'
 ```
 
 would execute ["something.sh" "foo" "1.2.3"] (assuming the latest_version is '1.2.3')
