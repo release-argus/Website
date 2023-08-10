@@ -316,7 +316,7 @@ service:
       url: https://grafana.example.io/login
       regex: v([0-9.]+)\s\([0-9a-z]+\)
     dashboard:
-      web_url: https://grafana.com/docs/grafana/latest/release-notes/release-notes-{{ version | split:"." | join:"-"  }}
+      web_url: https://github.com/grafana/grafana/releases/tag/v{{ version }}
       icon: https://cdn.worldvectorlogo.com/logos/grafana.svg
 ```
 
