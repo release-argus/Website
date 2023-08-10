@@ -240,7 +240,7 @@ notify:
   ...
   # as many of these (below) as you like, just ensure they have unique ID's.
   EXAMPLE_NOTIFY:
-    type: mattermost
+    type: ntfy
     url_fields:
 #     Username: Argus
 #     Password: PASS123
