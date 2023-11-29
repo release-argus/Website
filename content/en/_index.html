@@ -4,7 +4,7 @@ linkTitle = "Argus"
 
 +++
 
-{{< blocks/cover title="Welcome to Argus!" image_anchor="top" height="half" color="secondary" >}}
+{{< blocks/cover title="Welcome to Argus!" image_anchor="top" height="full" >}}
 <div class="mx-auto">
 	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
 		Learn More <i class="fas fa-arrow-alt-circle-right ml-2"></i>
@@ -31,7 +31,8 @@ example, send a GitHub-style WebHook to an AWX server to trigger a Playbook that
 Alerts could also be in many other forms, e.g. gotify/slack/telegram.
 {{% /blocks/lead %}}
 
-{{< blocks/section color="dark" >}}
+
+{{% blocks/section color="dark" type="row" %}}
 {{% blocks/feature icon="fab fa-github" title="Open Source" %}}
 100% open source on [GitHub](https://github.com/release-argus/Argus). Contributions are always appreciated.
 {{% /blocks/feature %}}
@@ -67,4 +68,4 @@ as well as for approving the WebHooks for these new releases.
 {{% /blocks/feature %}}
 
 
-{{< /blocks/section >}}
+{{% /blocks/section %}}
