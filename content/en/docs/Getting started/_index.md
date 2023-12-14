@@ -72,7 +72,7 @@ services:
     image: releaseargus/argus:latest
     volumes:
       - /path/to/local/config.yml:/app/config.yml
-      - /path/to/storage/argus.db:/app/data/argus.db
+      - /path/to/storage/:/app/data/ # argus.db
     environment:
       ARGUS_UID: 911 # Optional UID override
       ARGUS_GID: 911 # Optional GID override
