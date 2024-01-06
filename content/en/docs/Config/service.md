@@ -163,6 +163,18 @@ latest_version:
 ```
 
 This RegEx will return the submatch (the match in the bracket), so `regex` of 'v([0-9])' and text of 'v1 v2 v3...' would return 1 (`index` defaults to 0). To get the 2, you could either use an `index` of 1, or of -2 (second last match). The above RegEx is useful in places where they use the `v` prefix in their versions. Removing that helps in the majority of cases to make it follow semantic versioning.
+
+---
+Templating with RegEx
+```yaml
+latest_version:
+  ...
+  url_commands:
+    - type: regex
+      regex: ([\d-]+)T(\d+)-(\d+)-(\d+)
+      template: $1T$2:$3:$4Z
+```
+This RegEx will template the submatches (the matches within the brackets) into the `template` string. For example, if the input text is '2024-01-02T03-04-05Z', the above expression would convert it to '2024-01-02T03:04:05Z'. This functionality is useful in cases where the format of the deployed version differs from the format of the latest version. This ensures that Argus doesn't treat them as distinct versions.
   {{% /tab %}}
   {{% tab header="replace" %}}
 ```yaml
