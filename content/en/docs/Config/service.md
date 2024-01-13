@@ -23,7 +23,7 @@ service:
       access_token: GITHUB_ACCESS_TOKEN  # Useful when you want to exceed the public rate-limit, or want to query a private repo
       use_prerelease: false              # Whether a 'prerelease' tag can be used
       url_commands:
-        - type: regex_submatch  # This searches the tag_names. The '$' is used to ensure the tag name
+        - type: regex           # This searches the tag_names. The '$' is used to ensure the tag name
           regex: ^v?([0-9.]+)$  # ends in this RegEx and doesn't just omit a '-beta' or similar details
       require:
         regex_content: 'argus-{{ version }}.linux-amd64'        # Ensure the linux binary has been released before we
@@ -108,9 +108,8 @@ service:
       access_token: GITHUB_ACCESS_TOKEN  # Useful when you want to exceed the public rate-limit, or want to query a private repo
       use_prerelease: false              # Whether a 'prerelease' tag can be used
       url_commands:
-        - type: regex_submatch
-          regex: ^v?([0-9.]+)$  # Since the `type` is 'github', this searches the tag_names, so the '$' is used to ensure
-                                # the tag name ends in this RegEx and doesn't just omit a '-beta' or similar details
+        - type: regex           # Since the above `type` is 'github', this searches the tag_names, so the '$' is used to ensure
+          regex: ^v?([0-9.]+)$  # the tag name ends in this RegEx and doesn't just omit a '-beta' or similar details
       require:
         regex_content: 'example-{{ version }}-amd64'  # Release assets of a tag much match this RegEx for the new version to be
                                                       # considered valid (meaning alerts will fire). This RegEx runs against the
@@ -128,11 +127,11 @@ service:
   example:
     ...
     latest_version:
-      type: web                                 # Regular URL, not GitHub API
-      url: https://golang.org/dl/               # URL to monitor
-      url_commands:                             # Commands to grab the latest version number
-        type: regex                    # RegEx type
-        regex: go([0-9.]+[0-9]+)\.src\.tar\.gz  # RegEx to find the version. The most recent version download  is linked first
+      type: web                    # Regular URL, not GitHub API
+      url: https://golang.org/dl/  # URL to monitor
+      url_commands:                # Commands to grab the latest version number
+        - type: regex                             # RegEx type
+          regex: go([0-9.]+[0-9]+)\.src\.tar\.gz  # RegEx to find the version. The most recent version download  is linked first
       require:
         regex_content: 'example-{{ version }}-amd64'  # URL queried must contain content with this RegEx for any new version
                                                       # to be considered valid (meaning alerts will fire)
@@ -294,19 +293,21 @@ Track the version you have deployed and compare it to the latest_version.
 service:
   example:
     ...
-    deployed_version:                   # Get the `current_version` from a deployed service
-      url: https://example.com/version  # URL to use
-      allow_invalid_certs: false        # Accept invalid HTTPS certs/not
-      basic_auth:                       # Credentials for BasicAuth
+    deployed_version:                        # Get the `current_version` from a deployed service
+      url: https://example.com/version       # URL to use
+      allow_invalid_certs: false             # Accept invalid HTTPS certs/not
+      basic_auth:                            # Credentials for BasicAuth
         username: user
         password: 123
-      headers:                          # Headers to send to the URL (Usually an API Key)
+      headers:                               # Headers to send to the URL (Usually an API Key)
         - key: Authorization
           value: 'Bearer <API_KEY>'
-      json: data.version                # Use the value of this JSON key as the `current_version`
-                                        # (Full path to the key, e.g. `data.version`, not `version`)
-      regex: 'v?([0-9.]+)'              # Regex to apply to the data retrieved. Will run after the
-                                        # JSON value fetch, or alone (if no JSON)
+      json: data.version                     # Use the value of this JSON key as the `current_version`
+                                             # (Full path to the key, e.g. `data.version`, not `version`)
+      regex: 'v?([0-9]+)-([0-9]+)-([0-9]+)'  # Regex to apply to the data retrieved. Will run after the
+                                             # JSON value fetch, or alone (if no JSON)
+      regex_template: '$1.$2.$3'             # Template with the RegEx above to change the format of the
+                                             # version tracked ($1 = first submatch, $2 = second, etc...)
 ```
 
 ## command
