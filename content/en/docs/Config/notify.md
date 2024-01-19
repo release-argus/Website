@@ -6,7 +6,7 @@ description: >
   Configure global notifiers that can be used by any Service.
 ---
 
-We are running [Shoutrrr 0.7](https://containrrr.dev/shoutrrr/v0.7/services/overview/), which supports sending notifications to the services listed below.
+We are running [Shoutrrr 0.8](https://containrrr.dev/shoutrrr/v0.8/services/overview/), which supports sending notifications to the services listed below.
 
 The 'URL Fields' go under `url_fields` and 'Query/Param Props' go under `params`.
 
