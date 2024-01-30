@@ -25,4 +25,7 @@ settings:
     basic_auth:
       username: ''        # Basic auth username, e.g. `admin`
       password: ''        # Basic auth password, e.g. `test123`
+    favicon:
+      png: ''  # Override /apple-touch-icon.png (e.g. https://example.com/apple-touch-icon.png)
+      svg: ''  # Override /favicon.svg (e.g. https://example.com/favicon.svg)
 ```
