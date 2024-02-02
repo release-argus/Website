@@ -40,8 +40,8 @@ After=network-online.target
 [Service]
 User=argus
 Restart=on-failure
-ExecStart=/home/argus/argus \
-  -config.file=/home/argus/argus/config.yml
+ExecStart=/opt/argus/argus \
+  -config.file=/opt/argus/config.yml
 
 [Install]
 WantedBy=multi-user.target
