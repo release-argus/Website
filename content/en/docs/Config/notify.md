@@ -14,6 +14,8 @@ Below I have used capitals in some key naming for better readability (ignore tha
 
 The lines prefixed with a # are optional vars that aren't required.
 
+Environment variables in the format '${ENV_VAR}' can be used in the `options.*`, `params.*` and `url_fields.*` fields.
+
 The config for each of these is layed out in the format of
 ```yaml
 notify:
