@@ -88,6 +88,10 @@ service:
 
 Source to query for the latest version, `github` or `url`.
 
+{{< alert title="Note" >}}
+Environment variables in the format '${ENV_VAR}' can be used in the `url`, `access_token`, `require.docker.token` and `require.docker.username` fields.
+{{< /alert >}}
+
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
   {{% tab header="github" %}}
@@ -96,8 +100,6 @@ This will monitor the most recent 'tag_name' that matches both your `regex_conte
 https://api.github.com/repos/OWNER/REPO/releases.
 
 It will go through each item in that list and try using 'tag_name' as the version. It will run the `url_commands` on this version, check it with `regex_version` and then check the assets against `regex_content`. If all of these pass, that version will be used.
-
-Environment variables in the format '${ENV_VAR}' can be used in the `url`, `access_token`, `require.docker.token` and `require.docker.username` fields.
 
 ```yaml
 service:
