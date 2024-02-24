@@ -31,11 +31,11 @@ service:
         regex_version: ^[0-9.]+[0-9]$                           # Version must match this RegEx
         command: ["bash", "check_version.sh", "{{ version }}"]  # Require this command to exit successfully
         docker:                                                 # Require this docker image:tag
-          type: hub                   # type of docker registry (ghcr/hub/quay)
-          image: releaseargus/argus   # docker image
-          tag: '{{ version }}'        # tag to look for
-          username: USERNAME          # docker hub username
-          token: dckr_pat_TOKEN       # docker hub token
+          type: hub                   # Docker registry (ghcr/hub/quay)
+          image: releaseargus/argus   # Docker image
+          tag: '{{ version }}'        # Tag to look for
+          username: USERNAME          # Username
+          token: dckr_pat_TOKEN       # Token
     deployed_version:                   # Get the `current_version` from a deployed service
       url: https://example.com/version  # URL to use
       allow_invalid_certs: false        # Accept invalid HTTPS certs/not
@@ -88,6 +88,10 @@ service:
 
 Source to query for the latest version, `github` or `url`.
 
+{{< alert title="Note" >}}
+Environment variables in the format '${ENV_VAR}' can be used in the `url`, `access_token`, `require.docker.token` and `require.docker.username` fields.
+{{< /alert >}}
+
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
   {{% tab header="github" %}}
@@ -115,6 +119,12 @@ service:
                                                       # considered valid (meaning alerts will fire). This RegEx runs against the
                                                       # version assets `name` and `browser_download_url`
         regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
+        docker:                  # Require a docker image:tag for this version to be considered valid
+          type: hub              # Docker registry (ghcr/hub/quay)
+          image: OWNER/REPO      # Docker image
+          tag: '{{ version }}'   # Tag to look for
+          username: USERNAME     # Username
+          token: dckr_pat_TOKEN  # Token
 ```
 
   {{% /tab %}}
@@ -288,6 +298,8 @@ latest_version:
 ## Deployed Version
 
 Track the version you have deployed and compare it to the latest_version.
+
+Environment variables in the format ${ENV_VAR} can be used in the `basic_auth.password`, `basic_auth.username`, `headers.*.key`, `headers.*.value` and `url` fields.
 
 ```yaml
 service:

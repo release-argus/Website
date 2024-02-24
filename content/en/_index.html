@@ -1,71 +1,63 @@
-+++
-title = "Argus"
-linkTitle = "Argus"
-
-+++
+---
+title: Argus
+linkTitle: Argus
+---
 
 {{< blocks/cover title="Welcome to Argus!" image_anchor="top" height="full" >}}
 <div class="mx-auto">
-	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
-		Learn More <i class="fas fa-arrow-alt-circle-right ml-2"></i>
-	</a>
-	<a class="btn btn-lg btn-info mr-3 mb-4" href="/demo/approvals">
-		Demo <i class="fas fa-laptop-code ml-2 "></i>
-	</a>
-	<a class="btn btn-lg btn-danger mr-3 mb-4" href="https://github.com/release-argus/Argus/">
-		Download <i class="fab fa-github ml-2 "></i>
-	</a>
-	<p class="lead mt-5">Monitor all the releases</p>
-	{{< blocks/link-down color="info" >}}
+  <a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref `/docs` >}}">
+    Learn More <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+  </a>
+  <a class="btn btn-lg btn-info mr-3 mb-4" href="/demo/approvals">
+    Demo <i class="fas fa-laptop-code ml-2"></i>
+  </a>
+  <a
+    class="btn btn-lg btn-danger mr-3 mb-4"
+    href="https://github.com/release-argus/Argus/"
+  >
+    Download <i class="fab fa-github ml-2"></i>
+  </a>
+  <p
+    class="lead mt-5"
+    style="
+      text-shadow: 1px 1px 2px black, 1px -1px 2px black, -1px 1px 2px black,
+        -1px -1px 2px black;"
+  >
+    Keeping an eye on releases
+  </p>
+  {{< blocks/link-down color="info" >}}
 </div>
 {{< /blocks/cover >}}
 
-
 {{% blocks/lead color="primary" %}}
-Argus provides a way for you to monitor the versions of software and trigger alerts when a
-new release is been found.
+Argus provides a way for you to monitor the versions of software and trigger alerts when a new
+release is been found.
 
-It provides a Web UI for your viewing pleasure, and this UI allows you to approve new releases which could, for
-example, send a GitHub-style WebHook to an AWX server to trigger a Playbook that updates to that new version.
-
-Alerts could also be in many other forms, e.g. gotify/slack/telegram.
+It provides a Web UI for your viewing pleasure, and this UI allows you to approve new releases which could, for example, send a GitHub-style WebHook to an AWX server to trigger a Playbook that updates to that new version. Alerts could also be in many other forms, e.g. gotify/slack/telegram.
 {{% /blocks/lead %}}
 
-
 {{% blocks/section color="dark" type="row" %}}
-{{% blocks/feature icon="fab fa-github" title="Open Source" %}}
-100% open source on [GitHub](https://github.com/release-argus/Argus). Contributions are always appreciated.
-{{% /blocks/feature %}}
+  {{% blocks/feature icon="fab fa-github" title="Open Source" %}}
+  100% open source on [GitHub](https://github.com/release-argus/Argus). Contributions are always appreciated.
+  {{% /blocks/feature %}}
 
+  {{% blocks/feature icon="fab fa-github-alt" title="Monitor GitHub releases" %}}
+  Monitor releases of software to GitHub by simply providing the `owner/repo`. Private repositories can also be monitored by providing an Access Token with access.
+  {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fab fa-github-alt" title="Monitor GitHub releases" %}}
-Monitor releases of software to GitHub by simply providing the `owner/repo`. Private repositories can also be
-monitored by providing an Access Token with access.
-{{% /blocks/feature %}}
+  {{% blocks/feature icon="fa-window-maximize" title="Monitor web releases" %}}
+  Monitor releases of software by providing the website URL and regex for the latest version.
+  {{% /blocks/feature %}}
 
+  {{% blocks/feature icon="fa-bell" title="Alerting" %}}
+  Alerting when a new release has been found. This can be done in many ways, e.g. discord, gotify, mattermost, pushbullet, pushover, slack, teams, telegram, with no (realistic) limit to the amount of messages that can be sent when a new release is found.
+  {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa-window-maximize" title="Monitor web releases" %}}
-Monitor releases of software by providing the website URL and regex for the latest version.
-{{% /blocks/feature %}}
+  {{% blocks/feature icon="fa-anchor" title="WebHooks" %}}
+  WebHooks can be approved (or auto-approved) and sent when a new release has been found.
+  {{% /blocks/feature %}}
 
-
-{{% blocks/feature icon="fa-bell" title="Alerting" %}}
-Alerting when a new release has been found.
-This can be done in many ways, e.g.
-discord, gotify, mattermost, pushbullet, pushover, slack, teams, telegram,
-with no (realistic) limit to the amount of messages that can be sent when a new release is found.
-{{% /blocks/feature %}}
-
-
-{{% blocks/feature icon="fa-anchor" title="WebHooks" %}}
-WebHooks can be approved (or auto-approved) and sent when a new release has been found.
-{{% /blocks/feature %}}
-
-
-{{% blocks/feature icon="fa-window-maximize" title="Web UI" %}}
-Web UI to visually see the latest versions for the software you're tracking,
-as well as for approving the WebHooks for these new releases.
-{{% /blocks/feature %}}
-
-
+  {{% blocks/feature icon="fa-window-maximize" title="Web UI" %}}
+  Web UI to visually see the latest versions for the software you're tracking, as well as for approving the WebHooks for these new releases.
+  {{% /blocks/feature %}}
 {{% /blocks/section %}}

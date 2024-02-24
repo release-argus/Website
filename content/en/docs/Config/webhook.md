@@ -12,6 +12,10 @@ With AWX for example, to get a WebHook URL and a WebHook Key, edit a template an
 that appears, set the 'Webhook Service' to 'GitHub' and save the changes to get both
 the URL and Key for this WebHook.
 
+{{< alert title="Note" >}}
+Environment variables in the format ${ENV_VAR} can be used in the `custom_headers.*.key`, `custom_headers.*.value`, `secret` and `url` fields.
+{{< /alert >}}
+
 config.yml:
 ```yaml
 webhook:
