@@ -114,6 +114,25 @@ service:
       icon: https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/src/static/images/vaultwarden-icon.png
 ```
 
+## element-hq/synapse
+Source: https://github.com/element-hq/synapse
+```yaml
+service:
+  element-hq/synapse:
+    latest_version:
+      type: github
+      url: element-hq/synapse
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      url: https://matrix.example.io/_synapse/admin/v1/server_version
+      json: server_version
+    dashboard:
+      web_url: https://github.com/element-hq/synapse/releases/tag/v{{ version }}
+      icon: https://github.com/element-hq/synapse/raw/develop/docs/favicon.svg
+```
+
 ## Fallenbagel/jellyseerr
 Source: https://github.com/Fallenbagel/jellyseerr
 ```yaml
@@ -534,25 +553,6 @@ service:
     dashboard:
       web_url: https://github.com/matomo-org/matomo/releases/tag/{{ version }}
       icon: https://raw.githubusercontent.com/matomo-org/matomo/4.x-dev/plugins/CoreHome/images/applogo_732.png
-```
-
-## matrix-org/synapse
-Source: https://github.com/matrix-org/synapse
-```yaml
-service:
-  matrix-org/synapse:
-    latest_version:
-      type: github
-      url: matrix-org/synapse
-      url_commands:
-        - type: regex
-          regex: v([0-9.]+)$
-    deployed_version:
-      url: https://matrix.example.io/_synapse/admin/v1/server_version
-      json: server_version
-    dashboard:
-      web_url: https://github.com/matrix-org/synapse/releases/tag/v{{ version }}
-      icon: https://github.com/matrix-org/synapse/raw/develop/docs/favicon.svg
 ```
 
 ## mattermost/mattermost-server
