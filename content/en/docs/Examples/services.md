@@ -703,8 +703,8 @@ service:
         - type: regex
           regex: v([0-9.]+)$
     deployed_version:
-      url: https://alertmanager.example.io/api/v1/status
-      json: data.versionInfo.version
+      url: https://alertmanager.example.io/api/v2/status
+      json: versionInfo.version
     dashboard:
       web_url: https://github.com/prometheus/alertmanager/blob/main/CHANGELOG.md
       regex_content: alertmanager-{{ version }}\.linux-amd64.tar.gz
