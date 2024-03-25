@@ -49,5 +49,4 @@ An alternative would be to make the version number RegEx a bit stricter. Here, w
 You can test your regex on the sites below and see what it's matching as well as why
 
 - https://regex101.com/
-- https://extendsclass.com/regex-tester.html
 - https://pythonium.net/regex
