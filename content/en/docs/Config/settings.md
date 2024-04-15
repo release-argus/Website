@@ -38,7 +38,7 @@ settings:
 
 ## web
 
-#### disabled_routes
+### disabled_routes
 Specific API routes can be disabled through the `config.yml` file located at `settings.web.disabled_routes`. These routes are associated with particular functionalities, and below is a summary of what each one does:
 ```yaml
 settings:
