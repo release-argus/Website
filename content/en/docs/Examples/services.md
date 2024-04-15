@@ -860,7 +860,7 @@ service:
       json: version
     dashboard:
       web_url: https://github.com/release-argus/Argus/blob/master/CHANGELOG.md
-      icon: https://raw.githubusercontent.com/release-argus/Argus/master/web/ui/react-app/public/favicon.svg
+      icon: https://github.com/release-argus/Argus/raw/master/web/ui/react-app/public/favicon.svg
 ```
 
 ## requarks/wiki
