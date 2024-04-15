@@ -29,7 +29,28 @@ settings:
     basic_auth:
       username: ''        # Basic auth username, e.g. `admin`
       password: ''        # Basic auth password, e.g. `test123`
+    disabled_routes: []   # API Routes to disable (see below)
     favicon:
       png: ''  # Override /apple-touch-icon.png (e.g. https://example.com/apple-touch-icon.png)
       svg: ''  # Override /favicon.svg (e.g. https://example.com/favicon.svg)
+```
+
+
+## web
+
+#### disabled_routes
+Specific API routes can be disabled through the `config.yml` file located at `settings.web.disabled_routes`. These routes are associated with particular functionalities, and below is a summary of what each one does:
+```yaml
+settings:
+  web:
+    disabled_routes:
+      - service_create  # Creation of new services
+      - service_update  # Updating of existing services
+      - service_delete  # Deletion of services
+      - notify_test     # Testing of Notify's (via the 'Send Test Message' button)
+      - lv_refresh      # Manually refreshing the latest version
+      - dv_refresh      # Manually refreshing the deployed version
+      - lv_refresh_new  # Manually refreshing the latest version of uncreated services
+      - dv_refresh_new  # Manually refreshing the deployed version of uncreated services
+      - service_actions # Approving/skipping releases
 ```
