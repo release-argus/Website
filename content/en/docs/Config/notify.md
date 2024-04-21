@@ -35,7 +35,7 @@ notify:
     url_fields: {}
     params: {}
 ```
-where the vars available in `options` stay the same every time (so they'll be ommitted below).
+where the vars available in `options` stay the same every time (so they'll be omitted below).
 
 #### message templating
 
@@ -44,7 +44,7 @@ The `message` used in the Notify messages can be customised with Django-style te
 The default message template is
 `<{{ service_url }}|{{ service_id }}> - {{ version }} released{% if web_url %} (<{{ web_url }}|changelog>){% endif %}`
 , which with a `service_id` of 'example_service', a `service_url` of 'example.com', no `web_url` and the `version` that triggered
-this message being '1.2.3', woud trigger a message of `example_service - 1.2.3 released` (example_service would be a clickable link to the service_url). If the Service had a `web_url` defined, then ' (changelog)' would appear at the end, where the 'changelog' text would be a clickable link to that `web_url`.
+this message being '1.2.3', would trigger a message of `example_service - 1.2.3 released` (example_service would be a clickable link to the service_url). If the Service had a `web_url` defined, then ' (changelog)' would appear at the end, where the 'changelog' text would be a clickable link to that `web_url`.
 
 The vars that can be used in both the title and message templates are:
 - service_id
@@ -213,7 +213,7 @@ notify:
 ```
   {{% /tab %}}
   {{% tab header="mattermost" %}}
-- Go to the menu in the top left and navgate to `<Integrations> - <Incoming Webhooks>`.
+- Go to the menu in the top left and navigate to `<Integrations> - <Incoming Webhooks>`.
 
 Example Mattermost Webhook - `https://mattermost.example.io/hooks/TOKEN`
 
@@ -262,7 +262,7 @@ notify:
 #     Icon: https://example.com/icon.png # URL to an icon
 #     Priority: default                  # Priority of the notification
 #     Scheme: https                      # Server protocol
-#     Tags: ''                           # Comma separated list of tags that may/may not map to eemojis
+#     Tags: ''                           # Comma separated list of tags that may/may not map to emojis
 #     Title: Argus                       # Title of the notification
 ```
   {{% /tab %}}
@@ -287,7 +287,7 @@ notify:
 ```
   {{% /tab %}}
   {{% tab header="opsgenie" %}}
-Go to `<Settings> - <Integrastion List> - <API>`
+Go to `<Settings> - <Integration List> - <API>`
 
 [Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/opsgenie/)
 

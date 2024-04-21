@@ -318,7 +318,7 @@ arbitrate any Dispute falling within that portion of this provision found to be 
 decided by a court of competent jurisdiction within the courts listed for jurisdiction above, and the Parties agree to submit to the
 personal jurisdiction of that court.
 
-#### 16. CORERCTIONS
+#### 16. CORRECTIONS
 There may be information on the Site that contains typographical errors, inaccuracies, or omissions, including descriptions,
 pricing, availability, and various other information. We reserve the right to correct any errors, inaccuracies, or omissions and to
 change or update the information on the Site at any time, without prior notice.
