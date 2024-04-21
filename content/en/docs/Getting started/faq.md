@@ -12,8 +12,8 @@ description: >
 
 When a Command/WebHook is triggered, no resends are attempted for at least an hour, or until
   a) the Command has finished,
-  b) the WebHook was receieved, or
-  c) the WebHook wasn't receieved after `max_tries` sends.
+  b) the WebHook was received, or
+  c) the WebHook wasn't received after `max_tries` sends.
 
 This has been done to prevent multiple attempts of the same version upgrade from being tried at once.
 

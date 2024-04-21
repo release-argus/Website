@@ -67,7 +67,7 @@ would execute ["something.sh" "foo" "1.2.3"] (assuming the latest_version is '1.
 GitLab webhooks can be used to start GitLab CI pipelines through which the applications are updated.
 For this, a `Pipeline trigger` must be created in GitLab in the project settings under `CI/CD`.
 
-[Offical Docs](https://docs.gitlab.com/ee/ci/triggers/#use-a-webhook)
+[Official Docs](https://docs.gitlab.com/ee/ci/triggers/#use-a-webhook)
 
 The `token` must be stored as secret and doesn't have to be added to the URL.
 

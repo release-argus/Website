@@ -348,4 +348,4 @@ service:
 
 ### web_url
 Without defining this var, the Web UI will link to `url`, but when this var has a value, the Web UI will link to that value.
-You could, for example use [message templating](/docs/help/templating), to use all/some variation of the version in this URL and make it link to the sevices changelog (which you could also link to in your update notifiers).
+You could, for example use [message templating](/docs/help/templating), to use all/some variation of the version in this URL and make it link to the service's changelog (which you could also link to in your update notifiers).
