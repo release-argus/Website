@@ -37,6 +37,7 @@ service:
           username: USERNAME          # Username
           token: dckr_pat_TOKEN       # Token
     deployed_version:                   # Get the `current_version` from a deployed service
+      method: GET                       # HTTP Method (GET/POST)
       url: https://example.com/version  # URL to use
       allow_invalid_certs: false        # Accept invalid HTTPS certs/not
       basic_auth:                       # Credentials for BasicAuth
@@ -45,6 +46,7 @@ service:
       headers:                          # Headers to send to the URL (Usually an API Key)
         - key: Authorization
           value: 'Bearer <API_KEY>'
+#     body: ""                          # Only available with POST deployed_version's
       json: data.version                # Use the value of this JSON key as the `current_version`
                                         # (Full path to the key, e.g. `data.version`, not `version`)
       regex: 'v?([0-9.]+)'              # Regex to apply to the data retrieved. Will run after the
@@ -306,6 +308,7 @@ service:
   example:
     ...
     deployed_version:                        # Get the `current_version` from a deployed service
+      method: GET                            # HTTP Method (GET/POST)
       url: https://example.com/version       # URL to use
       allow_invalid_certs: false             # Accept invalid HTTPS certs/not
       basic_auth:                            # Credentials for BasicAuth
@@ -314,6 +317,7 @@ service:
       headers:                               # Headers to send to the URL (Usually an API Key)
         - key: Authorization
           value: 'Bearer <API_KEY>'
+#     body: ""                               # Only available with POST deployed_version's
       json: data.version                     # Use the value of this JSON key as the `current_version`
                                              # (Full path to the key, e.g. `data.version`, not `version`)
       regex: 'v?([0-9]+)-([0-9]+)-([0-9]+)'  # Regex to apply to the data retrieved. Will run after the
@@ -322,7 +326,13 @@ service:
                                              # version tracked ($1 = first submatch, $2 = second, etc...)
 ```
 
-## command
+### Methods
+
+Deployed version queries support both GET (default) and POST methods.
+With `method: POST`, you may give a `body: str` to be sent with the request.
+
+
+## Command
 Under `command`, you can give a list of commands (with or without arguments) to approve and run when a new release is found.
 The formatting of `command` is as a list of lists, for example:
 ```yaml
