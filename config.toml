@@ -81,6 +81,7 @@ prism_syntax_highlighting = false
 
   # User interface configuration
   [params.ui]
+  showLightDarkModeMenu = true
   # Set to true to disable breadcrumb navigation.
   breadcrumb_disable = false
   # Set to false to disable the About link in the site footer
@@ -188,7 +189,7 @@ pre = "<i class='fas fa-laptop-code'></i>"
 # Hugo module configuration
 [module.hugoVersion]
 extended = true
-min = "0.121.1"
+min = "0.125.6"
 
 [[module.imports]]
 path = "github.com/google/docsy"
