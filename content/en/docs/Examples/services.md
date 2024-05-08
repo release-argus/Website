@@ -133,6 +133,27 @@ service:
       icon: https://github.com/element-hq/synapse/raw/develop/docs/favicon.svg
 ```
 
+## emqx/emqx
+Source: https://github.com/emqx/emqx
+```yaml
+service:
+  emqx/emqx:
+    latest_version:
+      type: github
+      url: emqx/emqx
+    deployed_version:
+      method: POST
+      url: http://emqx.example.io:18083/api/v5/status?format=json
+      basic_auth:
+        username: api_key
+        password: secret_key
+      regex: "[0-9].+"
+      json: rel_vsn
+    dashboard:
+      icon: https://static-00.iconduck.com/assets.00/emqx-icon-1775x2048-z0dsscdr.png
+      web_url: https://www.emqx.io/docs/en/latest/changes/changes-ce-v5.html#_{{ rel_vsn | split:"." | slice:":2" | join:"-"  }}
+```
+
 ## Fallenbagel/jellyseerr
 Source: https://github.com/Fallenbagel/jellyseerr
 ```yaml
