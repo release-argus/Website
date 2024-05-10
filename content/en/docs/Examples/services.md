@@ -142,7 +142,7 @@ service:
       type: github
       url: emqx/emqx
     deployed_version:
-      method: POST
+      method: GET
       url: http://emqx.example.io:18083/api/v5/status?format=json
       basic_auth:
         username: api_key
