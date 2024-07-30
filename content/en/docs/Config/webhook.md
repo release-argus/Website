@@ -12,6 +12,10 @@ With AWX for example, to get a WebHook URL and a WebHook Key, edit a template an
 that appears, set the 'Webhook Service' to 'GitHub' and save the changes to get both
 the URL and Key for this WebHook.
 
+{{< alert title="Note" >}}
+Environment variables in the format ${ENV_VAR} can be used in the `custom_headers.*.key`, `custom_headers.*.value`, `secret` and `url` fields.
+{{< /alert >}}
+
 config.yml:
 ```yaml
 webhook:
@@ -63,7 +67,7 @@ would execute ["something.sh" "foo" "1.2.3"] (assuming the latest_version is '1.
 GitLab webhooks can be used to start GitLab CI pipelines through which the applications are updated.
 For this, a `Pipeline trigger` must be created in GitLab in the project settings under `CI/CD`.
 
-[Offical Docs](https://docs.gitlab.com/ee/ci/triggers/#use-a-webhook)
+[Official Docs](https://docs.gitlab.com/ee/ci/triggers/#use-a-webhook)
 
 The `token` must be stored as secret and doesn't have to be added to the URL.
 

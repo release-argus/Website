@@ -40,8 +40,8 @@ After=network-online.target
 [Service]
 User=argus
 Restart=on-failure
-ExecStart=/home/argus/argus \
-  -config.file=/home/argus/argus/config.yml
+ExecStart=/opt/argus/argus \
+  -config.file=/opt/argus/config.yml
 
 [Install]
 WantedBy=multi-user.target
@@ -72,7 +72,7 @@ services:
     image: releaseargus/argus:latest
     volumes:
       - /path/to/local/config.yml:/app/config.yml
-      - /path/to/storage/argus.db:/app/data/argus.db
+      - /path/to/storage/:/app/data/ # argus.db
     environment:
       ARGUS_UID: 911 # Optional UID override
       ARGUS_GID: 911 # Optional GID override

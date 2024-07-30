@@ -11,7 +11,7 @@ description: >
 ❯ ./argus -test.notify EXAMPLE_NOTIFY
 Loading config from "config.yml"
 INFO: Testing (EXAMPLE_NOTIFY)
-INFO: Message sent succesfully with "EXAMPLE_NOTIFY" config
+INFO: Message sent successfully with "EXAMPLE_NOTIFY" config
 ```
 
 ## Test a Service query
@@ -19,7 +19,7 @@ INFO: Message sent succesfully with "EXAMPLE_NOTIFY" config
 ❯ ./argus -config.file public.yml -test.service EXAMPLE/SERVICE
 Loading config from "public.yml"
 INFO: Testing (EXAMPLE/SERVICE)
-INFO: EXAMPLE/SRVICE, Latest Release - "3.2.1"
+INFO: EXAMPLE/SERVICE, Latest Release - "3.2.1"
 ```
 
 ## Help finding ID

@@ -114,6 +114,46 @@ service:
       icon: https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/src/static/images/vaultwarden-icon.png
 ```
 
+## element-hq/synapse
+Source: https://github.com/element-hq/synapse
+```yaml
+service:
+  element-hq/synapse:
+    latest_version:
+      type: github
+      url: element-hq/synapse
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      url: https://matrix.example.io/_synapse/admin/v1/server_version
+      json: server_version
+    dashboard:
+      web_url: https://github.com/element-hq/synapse/releases/tag/v{{ version }}
+      icon: https://github.com/element-hq/synapse/raw/develop/docs/favicon.svg
+```
+
+## emqx/emqx
+Source: https://github.com/emqx/emqx
+```yaml
+service:
+  emqx/emqx:
+    latest_version:
+      type: github
+      url: emqx/emqx
+    deployed_version:
+      method: GET
+      url: http://emqx.example.io:18083/api/v5/status?format=json
+      basic_auth:
+        username: api_key
+        password: secret_key
+      regex: "[0-9].+"
+      json: rel_vsn
+    dashboard:
+      icon: https://static-00.iconduck.com/assets.00/emqx-icon-1775x2048-z0dsscdr.png
+      web_url: https://www.emqx.io/docs/en/latest/changes/changes-ce-v5.html#_{{ rel_vsn | split:"." | slice:":2" | join:"-"  }}
+```
+
 ## Fallenbagel/jellyseerr
 Source: https://github.com/Fallenbagel/jellyseerr
 ```yaml
@@ -556,25 +596,6 @@ service:
       icon: https://raw.githubusercontent.com/matomo-org/matomo/4.x-dev/plugins/CoreHome/images/applogo_732.png
 ```
 
-## matrix-org/synapse
-Source: https://github.com/matrix-org/synapse
-```yaml
-service:
-  matrix-org/synapse:
-    latest_version:
-      type: github
-      url: matrix-org/synapse
-      url_commands:
-        - type: regex
-          regex: v([0-9.]+)$
-    deployed_version:
-      url: https://matrix.example.io/_synapse/admin/v1/server_version
-      json: server_version
-    dashboard:
-      web_url: https://github.com/matrix-org/synapse/releases/tag/v{{ version }}
-      icon: https://github.com/matrix-org/synapse/raw/develop/docs/favicon.svg
-```
-
 ## mattermost/mattermost-server
 Source: https://github.com/mattermost/mattermost-server
 ```yaml
@@ -723,8 +744,8 @@ service:
         - type: regex
           regex: v([0-9.]+)$
     deployed_version:
-      url: https://alertmanager.example.io/api/v1/status
-      json: data.versionInfo.version
+      url: https://alertmanager.example.io/api/v2/status
+      json: versionInfo.version
     dashboard:
       web_url: https://github.com/prometheus/alertmanager/blob/main/CHANGELOG.md
       regex_content: alertmanager-{{ version }}\.linux-amd64.tar.gz
@@ -880,7 +901,7 @@ service:
       json: version
     dashboard:
       web_url: https://github.com/release-argus/Argus/blob/master/CHANGELOG.md
-      icon: https://github.com/release-argus/Argus/raw/master/web/ui/static/favicon.svg
+      icon: https://github.com/release-argus/Argus/raw/master/web/ui/react-app/public/favicon.svg
 ```
 
 ## requarks/wiki

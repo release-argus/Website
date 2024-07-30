@@ -18,4 +18,4 @@ Changelogs sometimes include some variation of the version, or the full version 
 We'll use [Authentik](https://goauthentik.io) (awesome app!) as an example for this changelog. Authentik, versions are (as of writing), in the style of `YEAR.MONTH.PATCH` with the changelogs found at `https://goauthentik.io/docs/releases/YEAR.MONTH`. To get our web_url to strip the `.PATCH` out, we need to run filters on the `version` var.
 `https://goauthentik.io/docs/releases/{{ version | split:"." | slice:":-1" | join:"."  }}` as the web_url would produce a link to the correct changelog.
 
-Other places may use all, or some of the version, but change the delimeter from a `.` to a `-` for example. To handle those cases, Use `{{ version | split:"." | join:"-"  }}` as the var.
+Other places may use all, or some of the version, but change the delimiter from a `.` to a `-` for example. To handle those cases, Use `{{ version | split:"." | join:"-"  }}` as the var.

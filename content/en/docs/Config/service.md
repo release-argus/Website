@@ -23,7 +23,7 @@ service:
       access_token: GITHUB_ACCESS_TOKEN  # Useful when you want to exceed the public rate-limit, or want to query a private repo
       use_prerelease: false              # Whether a 'prerelease' tag can be used
       url_commands:
-        - type: regex_submatch  # This searches the tag_names. The '$' is used to ensure the tag name
+        - type: regex           # This searches the tag_names. The '$' is used to ensure the tag name
           regex: ^v?([0-9.]+)$  # ends in this RegEx and doesn't just omit a '-beta' or similar details
       require:
         regex_content: 'argus-{{ version }}.linux-amd64'        # Ensure the linux binary has been released before we
@@ -31,12 +31,13 @@ service:
         regex_version: ^[0-9.]+[0-9]$                           # Version must match this RegEx
         command: ["bash", "check_version.sh", "{{ version }}"]  # Require this command to exit successfully
         docker:                                                 # Require this docker image:tag
-          type: hub                   # type of docker registry (ghcr/hub/quay)
-          image: releaseargus/argus   # docker image
-          tag: '{{ version }}'        # tag to look for
-          username: USERNAME          # docker hub username
-          token: dckr_pat_TOKEN       # docker hub token
+          type: hub                   # Docker registry (ghcr/hub/quay)
+          image: releaseargus/argus   # Docker image
+          tag: '{{ version }}'        # Tag to look for
+          username: USERNAME          # Username
+          token: dckr_pat_TOKEN       # Token
     deployed_version:                   # Get the `current_version` from a deployed service
+      method: GET                       # HTTP Method (GET/POST)
       url: https://example.com/version  # URL to use
       allow_invalid_certs: false        # Accept invalid HTTPS certs/not
       basic_auth:                       # Credentials for BasicAuth
@@ -45,6 +46,7 @@ service:
       headers:                          # Headers to send to the URL (Usually an API Key)
         - key: Authorization
           value: 'Bearer <API_KEY>'
+#     body: ""                          # Only available with POST deployed_version's
       json: data.version                # Use the value of this JSON key as the `current_version`
                                         # (Full path to the key, e.g. `data.version`, not `version`)
       regex: 'v?([0-9.]+)'              # Regex to apply to the data retrieved. Will run after the
@@ -88,6 +90,10 @@ service:
 
 Source to query for the latest version, `github` or `url`.
 
+{{< alert title="Note" >}}
+Environment variables in the format '${ENV_VAR}' can be used in the `url`, `access_token`, `require.docker.token` and `require.docker.username` fields.
+{{< /alert >}}
+
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
   {{% tab header="github" %}}
@@ -108,14 +114,19 @@ service:
       access_token: GITHUB_ACCESS_TOKEN  # Useful when you want to exceed the public rate-limit, or want to query a private repo
       use_prerelease: false              # Whether a 'prerelease' tag can be used
       url_commands:
-        - type: regex_submatch
-          regex: ^v?([0-9.]+)$  # Since the `type` is 'github', this searches the tag_names, so the '$' is used to ensure
-                                # the tag name ends in this RegEx and doesn't just omit a '-beta' or similar details
+        - type: regex           # Since the above `type` is 'github', this searches the tag_names, so the '$' is used to ensure
+          regex: ^v?([0-9.]+)$  # the tag name ends in this RegEx and doesn't just omit a '-beta' or similar details
       require:
         regex_content: 'example-{{ version }}-amd64'  # Release assets of a tag much match this RegEx for the new version to be
                                                       # considered valid (meaning alerts will fire). This RegEx runs against the
                                                       # version assets `name` and `browser_download_url`
         regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
+        docker:                  # Require a docker image:tag for this version to be considered valid
+          type: hub              # Docker registry (ghcr/hub/quay)
+          image: OWNER/REPO      # Docker image
+          tag: '{{ version }}'   # Tag to look for
+          username: USERNAME     # Username
+          token: dckr_pat_TOKEN  # Token
 ```
 
   {{% /tab %}}
@@ -128,11 +139,11 @@ service:
   example:
     ...
     latest_version:
-      type: web                                 # Regular URL, not GitHub API
-      url: https://golang.org/dl/               # URL to monitor
-      url_commands:                             # Commands to grab the latest version number
-        type: regex                    # RegEx type
-        regex: go([0-9.]+[0-9]+)\.src\.tar\.gz  # RegEx to find the version. The most recent version download  is linked first
+      type: web                    # Regular URL, not GitHub API
+      url: https://golang.org/dl/  # URL to monitor
+      url_commands:                # Commands to grab the latest version number
+        - type: regex                             # RegEx type
+          regex: go([0-9.]+[0-9]+)\.src\.tar\.gz  # RegEx to find the version. The most recent version download  is linked first
       require:
         regex_content: 'example-{{ version }}-amd64'  # URL queried must contain content with this RegEx for any new version
                                                       # to be considered valid (meaning alerts will fire)
@@ -163,6 +174,18 @@ latest_version:
 ```
 
 This RegEx will return the submatch (the match in the bracket), so `regex` of 'v([0-9])' and text of 'v1 v2 v3...' would return 1 (`index` defaults to 0). To get the 2, you could either use an `index` of 1, or of -2 (second last match). The above RegEx is useful in places where they use the `v` prefix in their versions. Removing that helps in the majority of cases to make it follow semantic versioning.
+
+---
+Templating with RegEx
+```yaml
+latest_version:
+  ...
+  url_commands:
+    - type: regex
+      regex: ([\d-]+)T(\d+)-(\d+)-(\d+)
+      template: $1T$2:$3:$4Z
+```
+This RegEx will template the submatches (the matches within the brackets) into the `template` string. For example, if the input text is '2024-01-02T03-04-05Z', the above expression would convert it to '2024-01-02T03:04:05Z'. This functionality is useful in cases where the format of the deployed version differs from the format of the latest version. This ensures that Argus doesn't treat them as distinct versions.
   {{% /tab %}}
   {{% tab header="replace" %}}
 ```yaml
@@ -278,26 +301,38 @@ latest_version:
 
 Track the version you have deployed and compare it to the latest_version.
 
+Environment variables in the format ${ENV_VAR} can be used in the `basic_auth.password`, `basic_auth.username`, `headers.*.key`, `headers.*.value` and `url` fields.
+
 ```yaml
 service:
   example:
     ...
-    deployed_version:                   # Get the `current_version` from a deployed service
-      url: https://example.com/version  # URL to use
-      allow_invalid_certs: false        # Accept invalid HTTPS certs/not
-      basic_auth:                       # Credentials for BasicAuth
+    deployed_version:                        # Get the `current_version` from a deployed service
+      method: GET                            # HTTP Method (GET/POST)
+      url: https://example.com/version       # URL to use
+      allow_invalid_certs: false             # Accept invalid HTTPS certs/not
+      basic_auth:                            # Credentials for BasicAuth
         username: user
         password: 123
-      headers:                          # Headers to send to the URL (Usually an API Key)
+      headers:                               # Headers to send to the URL (Usually an API Key)
         - key: Authorization
           value: 'Bearer <API_KEY>'
-      json: data.version                # Use the value of this JSON key as the `current_version`
-                                        # (Full path to the key, e.g. `data.version`, not `version`)
-      regex: 'v?([0-9.]+)'              # Regex to apply to the data retrieved. Will run after the
-                                        # JSON value fetch, or alone (if no JSON)
+#     body: ""                               # Only available with POST deployed_version's
+      json: data.version                     # Use the value of this JSON key as the `current_version`
+                                             # (Full path to the key, e.g. `data.version`, not `version`)
+      regex: 'v?([0-9]+)-([0-9]+)-([0-9]+)'  # Regex to apply to the data retrieved. Will run after the
+                                             # JSON value fetch, or alone (if no JSON)
+      regex_template: '$1.$2.$3'             # Template with the RegEx above to change the format of the
+                                             # version tracked ($1 = first submatch, $2 = second, etc...)
 ```
 
-## command
+### Methods
+
+Deployed version queries support both GET (default) and POST methods.
+With `method: POST`, you may give a `body: str` to be sent with the request.
+
+
+## Command
 Under `command`, you can give a list of commands (with or without arguments) to approve and run when a new release is found.
 The formatting of `command` is as a list of lists, for example:
 ```yaml
@@ -323,4 +358,4 @@ service:
 
 ### web_url
 Without defining this var, the Web UI will link to `url`, but when this var has a value, the Web UI will link to that value.
-You could, for example use [message templating](/docs/help/templating), to use all/some variation of the version in this URL and make it link to the sevices changelog (which you could also link to in your update notifiers).
+You could, for example use [message templating](/docs/help/templating), to use all/some variation of the version in this URL and make it link to the service's changelog (which you could also link to in your update notifiers).

@@ -16,7 +16,7 @@ defaults:
   service:
     options:
       interval: 10m              # How often to query for new releases
-      semantic_versioning: true  # Whether to enforce semantic versioning (required to only alert on newew versions)
+      semantic_versioning: true  # Whether to enforce semantic versioning (required to not alert on new patches for old versions)
     latest_version:
       access_token: ''            # GitHub access token to increase your rate-limit and/or access private repos
                                   # https://github.com/settings/tokens - w/ repo.public_repo/repo for public/private
