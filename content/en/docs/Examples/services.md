@@ -460,6 +460,26 @@ service:
       icon: https://github.com/home-assistant/core/raw/dev/tests/components/image_upload/logo.png
 ```
 
+## immich-app/immich
+Source: https://github.com/immich-app/immich
+```yaml
+service:
+  immich-app/immich:
+    latest_version:
+      type: github
+      url: immich-app/immich
+    deployed_version:
+      url: https://immich.example.io/api/server-info/about
+      json: version
+      regex: ^v([0-9.]+)$
+      headers:
+        - key: x-api-key
+          value: <API_Token>
+    dashboard:
+      icon: https://raw.githubusercontent.com/immich-app/immich/main/web/static/immich-logo.svg
+      web_url: https://github.com/immich-app/immich/releases/tag/v{{ version }}
+```
+
 ## influxdata/influxdb
 Source: https://github.com/influxdata/influxdb
 ```yaml
