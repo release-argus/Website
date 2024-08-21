@@ -994,6 +994,27 @@ service:
       icon: https://github.com/thanos-io/thanos/blob/main/docs/img/Thanos-logo_fullmedium.png?raw=true
 ```
 
+## traccar/traccar
+Source: https://github.com/traccar/traccar
+```yaml
+service:
+  traccar/traccar:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: traccar/traccar
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      url: https://traccar.example.io/api/server
+      json: version
+    dashboard:
+      icon: https://raw.githubusercontent.com/traccar/traccar-web/master/public/logo.svg
+      web_url: https://www.traccar.org/blog/traccar-{{ version | split:"." | join:"-" }}/
+```
+
 ## vector-im/element-web
 Source: https://github.com/vector-im/element-web
 ```yaml
