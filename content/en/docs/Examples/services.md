@@ -173,6 +173,31 @@ service:
       icon: https://raw.githubusercontent.com/Fallenbagel/jellyseerr/develop/public/os_icon.svg
 ```
 
+## firefly-iii/firefly-iii
+Source: https://github.com/firefly-iii/firefly-iii
+
+To get the deployed_version you need a `Personal-Access-Token` from your Firefly III instance. ([instructions](https://docs.firefly-iii.org/how-to/firefly-iii/features/api/#personal-access-tokens))
+
+```yaml
+service:
+  firefly-iii/firefly-iii:
+    latest_version:
+      type: github
+      url: firefly-iii/firefly-iii
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      url: https://firefly.example.io/api/v1/about
+      json: data.version
+      headers:
+        - key: Authorization
+          value: Bearer <Personal-Access-Token>
+    dashboard:
+      icon: https://raw.githubusercontent.com/firefly-iii/firefly-iii/main/public/images/logo.png
+      web_url: https://github.com/firefly-iii/firefly-iii/releases/tag/v{{ version }}
+```
+
 ## gitlab-org/gitlab
 Source: https://gitlab.com/gitlab-org/gitlab
 
@@ -992,6 +1017,27 @@ service:
     dashboard:
       web_url: https://github.com/thanos-io/thanos/blob/main/CHANGELOG.md
       icon: https://github.com/thanos-io/thanos/blob/main/docs/img/Thanos-logo_fullmedium.png?raw=true
+```
+
+## traccar/traccar
+Source: https://github.com/traccar/traccar
+```yaml
+service:
+  traccar/traccar:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: traccar/traccar
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      url: https://traccar.example.io/api/server
+      json: version
+    dashboard:
+      icon: https://raw.githubusercontent.com/traccar/traccar-web/master/public/logo.svg
+      web_url: https://www.traccar.org/blog/traccar-{{ version | split:"." | join:"-" }}/
 ```
 
 ## vector-im/element-web
