@@ -176,7 +176,7 @@ service:
 ## firefly-iii/firefly-iii
 Source: https://github.com/firefly-iii/firefly-iii
 
-To get the deployed_version you need an `Personal-Access-Token` from your Firefly III instance. ([instructions](https://docs.firefly-iii.org/how-to/firefly-iii/features/api/#personal-access-tokens))
+To get the deployed_version you need a `Personal-Access-Token` from your Firefly III instance. ([instructions](https://docs.firefly-iii.org/how-to/firefly-iii/features/api/#personal-access-tokens))
 
 ```yaml
 service:
