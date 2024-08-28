@@ -1119,7 +1119,7 @@ service:
           value: <API_KEY>
       json: version
     dashboard:
-      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/readarr.png
+      icon: https://raw.githubusercontent.com/Readarr/Readarr/develop/Logo/1024.png
       web_url: https://github.com/Readarr/Readarr/releases/v{{ version }}
 ```
 
