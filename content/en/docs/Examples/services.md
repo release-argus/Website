@@ -692,7 +692,7 @@ service:
           value: <API_KEY>
       json: version
     dashboard:
-      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/lidarr.png
+      icon: https://raw.githubusercontent.com/Lidarr/Lidarr/develop/Logo/1024.png
       web_url: https://github.com/Lidarr/Lidarr/releases/v{{ version }}
 ```
 
