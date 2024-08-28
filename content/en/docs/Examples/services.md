@@ -46,6 +46,28 @@ service:
       icon: https://raw.githubusercontent.com/adnanh/webhook/development/docs/logo/logo-128x128.png
 ```
 
+## advplyr/audiobookshelf
+Source: https://github.com/advplyr/audiobookshelf
+```yaml
+service:  
+  Audiobookshelf:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: advplyr/audiobookshelf
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      method: GET
+      url: https://audiobookshelf.example.io/status
+      json: serverVersion
+    dashboard:
+      icon: https://raw.githubusercontent.com/advplyr/audiobookshelf/master/client/static/icon.svg
+      web_url: https://github.com/advplyr/audiobookshelf/releases/tag/v{{ version }}
+```
+
 ## ansible/awx
 Source: https://github.com/ansible/awx
 ```yaml
@@ -198,6 +220,47 @@ service:
       web_url: https://github.com/firefly-iii/firefly-iii/releases/tag/v{{ version }}
 ```
 
+## FlareSolverr/FlareSolverr
+Source: https://github.com/FlareSolverr/FlareSolverr
+```yaml
+service:
+  Flaresolverr:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: FlareSolverr/FlareSolverr
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      method: GET
+      url: https://flaresolverr.example.io
+      json: version
+    dashboard:
+      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/flaresolverr.png
+      web_url: https://github.com/FlareSolverr/FlareSolverr/releases/tag/v{{ version }}
+```
+
+## FreshRSS/FreshRSS
+Source: https://github.com/FreshRSS/FreshRSS
+```yaml
+service:
+  FreshRSS:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: FreshRSS/FreshRSS
+    deployed_version:
+      method: GET
+      url: https://freshrss.example.io
+      regex: '"version":"([0-9.]+)"'
+    dashboard:
+      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/freshrss.png
+      web_url: https://github.com/FreshRSS/FreshRSS/releases/tag/{{ version }}
+```
+
 ## gitlab-org/gitlab
 Source: https://gitlab.com/gitlab-org/gitlab
 
@@ -223,6 +286,28 @@ service:
     dashboard:
       web_url: https://gitlab.com/gitlab-org/gitlab/-/blob/master/CHANGELOG.md
       icon: https://gitlab.com/gitlab-org/gitlab/-/raw/master/public/slash-command-logo.png
+```
+
+## glanceapp/glance
+Source: https://github.com/glanceapp/glance
+```yaml
+service:
+  Glance:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: glanceapp/glance
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      method: GET
+      url: https://glance.example.io
+      regex: v([0-9.]+)
+    dashboard:
+      icon: https://raw.githubusercontent.com/glanceapp/glance/main/internal/assets/static/app-icon.png
+      web_url: https://github.com/glanceapp/glance/releases/tag/v{{ version }}
 ```
 
 ## go-gitea/gitea
@@ -462,6 +547,28 @@ service:
       icon: https://raw.githubusercontent.com/hedgedoc/hedgedoc/master/public/icons/android-chrome-512x512.png
 ```
 
+## hoarder-app/hoarder/
+Source: https://github.com/hoarder-app/hoarder/
+```yaml
+service:
+  Hoarder:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: hoarder-app/hoarder
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      method: GET
+      url: https://hoarder.example.io/
+      regex: \\"serverVersion\\":\\"([0-9.]+)\\"
+    dashboard:
+      icon: https://raw.githubusercontent.com/hoarder-app/hoarder/main/apps/web/public/icons/logo-128.png
+      web_url: https://github.com/hoarder-app/hoarder/releases/v{{ version }}
+```
+
 ## home-assistant/core
 Source: https://github.com/home-assistant/core
 
@@ -560,6 +667,33 @@ service:
     dashboard:
       web_url: https://github.com/jgraph/drawio/releases/v{{ version }}
       icon: https://github.com/jgraph/drawio/raw/dev/src/main/webapp/images/drawlogo-color.svg
+```
+
+## Lidarr/Lidarr
+Source: https://github.com/Lidarr/Lidarr
+
+- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+```yaml
+service:
+  Lidarr:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: Lidarr/Lidarr
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      method: GET
+      url: https://lidarr.example.io/api/v1/system/status
+      headers:
+        - key: X-Api-Key
+          value: <API_KEY>
+      json: version
+    dashboard:
+      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/lidarr.png
+      web_url: https://github.com/Lidarr/Lidarr/releases/v{{ version }}
 ```
 
 ## louislam/uptime-kuma
@@ -716,6 +850,25 @@ service:
       icon: https://github.com/nextcloud/server/raw/master/core/img/favicon.png
 ```
 
+## OliveTin/OliveTin
+Source: https://github.com/OliveTin/OliveTin
+```yaml
+service:
+  OliveTin:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: OliveTin/OliveTin
+    deployed_version:
+      method: GET
+      url: https://olivetin.example.io/webUiSettings.json
+      json: CurrentVersion
+    dashboard:
+      icon: https://github.com/OliveTin/OliveTin/raw/main/webui.dev/OliveTinLogo.png
+      web_url: https://github.com/OliveTin/OliveTin/releases/tag/{{ version }}
+```
+
 ## opencve/opencve
 Source: https://github.com/opencve/opencve
 ```yaml
@@ -755,6 +908,35 @@ service:
     dashboard:
       web_url: https://docs.opnsense.org/CE_releases.html
       icon: https://github.com/opnsense/core/raw/master/src/opnsense/www/themes/opnsense/build/images/icon-logo.svg
+```
+
+## Plex Media Server
+Source: https://plex.tv
+
+- deployed_version - Requires a `TOKEN`. Instructions to get one [here](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/).
+```yaml
+service:
+  Plex:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: url
+      url: https://plex.tv/api/downloads/5.json
+      url_commands:
+        - type: regex
+          regex: '"version":"([0-9.a-z\-]+)"'
+    deployed_version:
+      method: GET
+      url: https://plex.example.io/identity
+      headers:
+        - key: X-Plex-Token
+          value: <TOKEN>
+        - key: Accept
+          value: application/json
+      json: MediaContainer.version
+    dashboard:
+      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/plex.png
+      web_url: https://forums.plex.tv/t/plex-media-server/30447
 ```
 
 ## prometheus/alertmanager
@@ -913,6 +1095,34 @@ service:
       icon: https://raw.githubusercontent.com/rancher/docs/master/static/imgs/rancher-logo-cow-blue.svg
 ```
 
+## Readarr/Readarr
+Source: https://github.com/Readarr/Readarr
+
+- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+```yaml
+service:
+  Readarr:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: Readarr/Readarr
+      use_prerelease: true
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      method: GET
+      url: https://readarr.example.io/api/v1/system/status
+      headers:
+        - key: X-Api-Key
+          value: <API_KEY>
+      json: version
+    dashboard:
+      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/readarr.png
+      web_url: https://github.com/Readarr/Readarr/releases/v{{ version }}
+```
+
 ## release-argus/argus
 Source: https://github.com/release-argus/Argus
 ```yaml
@@ -951,6 +1161,28 @@ service:
     dashboard:
       web_url: https://github.com/requarks/wiki/releases/tag/v{{ version }}
       icon: https://static.requarks.io/logo/wikijs-butterfly.svg
+```
+
+## sct/overseerr
+Source: https://github.com/sct/overseerr
+```yaml
+service:
+  Overseerr:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: sct/overseerr
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      method: GET
+      url: https://overseerr.example.io/api/v1/status
+      json: version
+    dashboard:
+      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/overseerr.png
+      web_url: https://github.com/sct/overseerr/releases/v{{ version }}
 ```
 
 ## smallstep/certificates
@@ -998,6 +1230,31 @@ service:
       icon: https://raw.githubusercontent.com/Sonarr/Sonarr/develop/Logo/256.png
 ```
 
+## Tautulli/Tautulli
+Source: https://github.com/Tautulli/Tautulli
+
+- deployed_version - Requires `API_KEY` on the url, you can get it at `Settings/Web Interface/API.
+```yaml
+service:
+  Tautulli:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: Tautulli/Tautulli
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      method: GET
+      url: https://tautulli.example.io/api/v2?apikey=<API_KEY>&cmd=get_tautulli_info
+      json: response.data.tautulli_version
+      regex: v([0-9.]+)$
+    dashboard:
+      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/tautulli.png
+      web_url: https://github.com/Tautulli/Tautulli/releases/tag/v{{ version}}
+```
+
 ## thanos-io/thanos
 Source: https://github.com/thanos-io/thanos
 ```yaml
@@ -1038,6 +1295,28 @@ service:
     dashboard:
       icon: https://raw.githubusercontent.com/traccar/traccar-web/master/public/logo.svg
       web_url: https://www.traccar.org/blog/traccar-{{ version | split:"." | join:"-" }}/
+```
+
+## usememos/memos
+Source: https://github.com/usememos/memos
+```yaml
+service:
+  Memos:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: github
+      url: usememos/memos
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      method: GET
+      url: https://memos.example.io/api/v1/workspace/profile
+      json: version
+    dashboard:
+      icon: https://raw.githubusercontent.com/usememos/memos/main/web/public/logo.webp
+      web_url: https://github.com/usememos/memos/releases/tag/v{{ version }}
 ```
 
 ## vector-im/element-web
