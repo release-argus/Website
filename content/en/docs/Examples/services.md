@@ -238,7 +238,7 @@ service:
       url: https://flaresolverr.example.io
       json: version
     dashboard:
-      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/flaresolverr.png
+      icon: https://raw.githubusercontent.com/FlareSolverr/FlareSolverr/master/resources/flaresolverr_logo.png
       web_url: https://github.com/FlareSolverr/FlareSolverr/releases/tag/v{{ version }}
 ```
 
