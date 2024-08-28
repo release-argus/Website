@@ -257,7 +257,7 @@ service:
       url: https://freshrss.example.io
       regex: '"version":"([0-9.]+)"'
     dashboard:
-      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/freshrss.png
+      icon: https://raw.githubusercontent.com/FreshRSS/FreshRSS/edge/p/themes/icons/favicon-256.png
       web_url: https://github.com/FreshRSS/FreshRSS/releases/tag/{{ version }}
 ```
 
