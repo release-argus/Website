@@ -935,7 +935,7 @@ service:
           value: application/json
       json: MediaContainer.version
     dashboard:
-      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/plex.png
+      icon: https://www.plex.tv/wp-content/uploads/2023/03/plex-chevron.png
       web_url: https://forums.plex.tv/t/plex-media-server/30447
 ```
 
