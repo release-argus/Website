@@ -547,7 +547,7 @@ service:
       icon: https://raw.githubusercontent.com/hedgedoc/hedgedoc/master/public/icons/android-chrome-512x512.png
 ```
 
-## hoarder-app/hoarder/
+## hoarder-app/hoarder
 Source: https://github.com/hoarder-app/hoarder/
 ```yaml
 service:
