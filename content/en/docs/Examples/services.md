@@ -548,7 +548,7 @@ service:
 ```
 
 ## hoarder-app/hoarder
-Source: https://github.com/hoarder-app/hoarder/
+Source: https://github.com/hoarder-app/hoarder
 ```yaml
 service:
   Hoarder:
@@ -1233,7 +1233,7 @@ service:
 ## Tautulli/Tautulli
 Source: https://github.com/Tautulli/Tautulli
 
-- deployed_version - Requires `API_KEY` on the url, you can get it at `Settings/Web Interface/API.
+- deployed_version - Requires `API_KEY` on the url, you can get it at `Settings/Web Interface/API`.
 ```yaml
 service:
   Tautulli:
