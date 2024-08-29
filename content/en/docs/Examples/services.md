@@ -907,6 +907,8 @@ Source: https://plex.tv
 ```yaml
 service:
   Plex:
+    options:
+      semantic_versioning: false
     latest_version:
       type: url
       url: https://plex.tv/api/downloads/5.json
