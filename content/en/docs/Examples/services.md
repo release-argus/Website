@@ -51,8 +51,6 @@ Source: https://github.com/advplyr/audiobookshelf
 ```yaml
 service:  
   Audiobookshelf:
-    options:
-      semantic_versioning: false
     latest_version:
       type: github
       url: advplyr/audiobookshelf
@@ -225,8 +223,6 @@ Source: https://github.com/FlareSolverr/FlareSolverr
 ```yaml
 service:
   Flaresolverr:
-    options:
-      semantic_versioning: false
     latest_version:
       type: github
       url: FlareSolverr/FlareSolverr
@@ -247,8 +243,6 @@ Source: https://github.com/FreshRSS/FreshRSS
 ```yaml
 service:
   FreshRSS:
-    options:
-      semantic_versioning: false
     latest_version:
       type: github
       url: FreshRSS/FreshRSS
@@ -293,8 +287,6 @@ Source: https://github.com/glanceapp/glance
 ```yaml
 service:
   Glance:
-    options:
-      semantic_versioning: false
     latest_version:
       type: github
       url: glanceapp/glance
@@ -420,7 +412,7 @@ Source: https://github.com/golang/go
 service:
   golang/go:
     options:
-      semantic_versioning: false
+      _versioning: false
     latest_version:
       type: url
       url: https://golang.org/dl/
@@ -552,8 +544,6 @@ Source: https://github.com/hoarder-app/hoarder
 ```yaml
 service:
   Hoarder:
-    options:
-      semantic_versioning: false
     latest_version:
       type: github
       url: hoarder-app/hoarder
@@ -917,8 +907,6 @@ Source: https://plex.tv
 ```yaml
 service:
   Plex:
-    options:
-      semantic_versioning: false
     latest_version:
       type: url
       url: https://plex.tv/api/downloads/5.json
@@ -1052,7 +1040,7 @@ Source: https://github.com/Radarr/Radarr
 service:
   Radarr/Radarr:
     options:
-      semantic_versioning: false
+      _versioning: false
     latest_version:
       type: github
       url: Radarr/Radarr
@@ -1168,8 +1156,6 @@ Source: https://github.com/sct/overseerr
 ```yaml
 service:
   Overseerr:
-    options:
-      semantic_versioning: false
     latest_version:
       type: github
       url: sct/overseerr
@@ -1181,7 +1167,7 @@ service:
       url: https://overseerr.example.io/api/v1/status
       json: version
     dashboard:
-      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/overseerr.png
+      icon: https://raw.githubusercontent.com/sct/overseerr/develop/public/android-chrome-512x512.png
       web_url: https://github.com/sct/overseerr/releases/v{{ version }}
 ```
 
@@ -1212,7 +1198,7 @@ Source: https://github.com/Sonarr/Sonarr
 service:
   Sonarr/Sonarr:
     options:
-      semantic_versioning: false
+      _versioning: false
     latest_version:
       type: url
       url: https://github.com/Sonarr/Sonarr/tags
@@ -1237,8 +1223,6 @@ Source: https://github.com/Tautulli/Tautulli
 ```yaml
 service:
   Tautulli:
-    options:
-      semantic_versioning: false
     latest_version:
       type: github
       url: Tautulli/Tautulli
@@ -1251,7 +1235,7 @@ service:
       json: response.data.tautulli_version
       regex: v([0-9.]+)$
     dashboard:
-      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/tautulli.png
+      icon: https://raw.githubusercontent.com/Tautulli/Tautulli/master/data/interfaces/default/images/logo-circle.png
       web_url: https://github.com/Tautulli/Tautulli/releases/tag/v{{ version}}
 ```
 
@@ -1282,7 +1266,7 @@ Source: https://github.com/traccar/traccar
 service:
   traccar/traccar:
     options:
-      semantic_versioning: false
+      _versioning: false
     latest_version:
       type: github
       url: traccar/traccar
@@ -1302,8 +1286,6 @@ Source: https://github.com/usememos/memos
 ```yaml
 service:
   Memos:
-    options:
-      semantic_versioning: false
     latest_version:
       type: github
       url: usememos/memos
@@ -1343,7 +1325,7 @@ Source: https://github.com/wekan/wekan
 service:
   wekan/wekan:
     options:
-      semantic_versioning: false
+      _versioning: false
     latest_version:
       type: github
       url: wekan/wekan
