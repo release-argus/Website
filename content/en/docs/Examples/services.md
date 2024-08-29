@@ -1198,7 +1198,7 @@ Source: https://github.com/Sonarr/Sonarr
 service:
   Sonarr/Sonarr:
     options:
-      _versioning: false
+      semantic_versioning: false
     latest_version:
       type: url
       url: https://github.com/Sonarr/Sonarr/tags
@@ -1266,7 +1266,7 @@ Source: https://github.com/traccar/traccar
 service:
   traccar/traccar:
     options:
-      _versioning: false
+      semantic_versioning: false
     latest_version:
       type: github
       url: traccar/traccar
@@ -1325,7 +1325,7 @@ Source: https://github.com/wekan/wekan
 service:
   wekan/wekan:
     options:
-      _versioning: false
+      semantic_versioning: false
     latest_version:
       type: github
       url: wekan/wekan
