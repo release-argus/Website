@@ -50,7 +50,7 @@ service:
 Source: https://github.com/advplyr/audiobookshelf
 ```yaml
 service:  
-  Audiobookshelf:
+  advplyr/audiobookshelf:
     latest_version:
       type: github
       url: advplyr/audiobookshelf
@@ -222,7 +222,7 @@ service:
 Source: https://github.com/FlareSolverr/FlareSolverr
 ```yaml
 service:
-  Flaresolverr:
+  FlareSolverr/FlareSolverr:
     latest_version:
       type: github
       url: FlareSolverr/FlareSolverr
@@ -242,7 +242,7 @@ service:
 Source: https://github.com/FreshRSS/FreshRSS
 ```yaml
 service:
-  FreshRSS:
+  FreshRSS/FreshRSS:
     latest_version:
       type: github
       url: FreshRSS/FreshRSS
@@ -286,7 +286,7 @@ service:
 Source: https://github.com/glanceapp/glance
 ```yaml
 service:
-  Glance:
+  glanceapp/glance:
     latest_version:
       type: github
       url: glanceapp/glance
@@ -543,7 +543,7 @@ service:
 Source: https://github.com/hoarder-app/hoarder
 ```yaml
 service:
-  Hoarder:
+  hoarder-app/hoarder:
     latest_version:
       type: github
       url: hoarder-app/hoarder
@@ -665,7 +665,7 @@ Source: https://github.com/Lidarr/Lidarr
 - deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
 ```yaml
 service:
-  Lidarr:
+  Lidarr/Lidarr:
     options:
       semantic_versioning: false
     latest_version:
@@ -844,7 +844,7 @@ service:
 Source: https://github.com/OliveTin/OliveTin
 ```yaml
 service:
-  OliveTin:
+  OliveTin/OliveTin:
     options:
       semantic_versioning: false
     latest_version:
@@ -906,7 +906,7 @@ Source: https://plex.tv
 - deployed_version - Requires a `TOKEN`. Instructions to get one [here](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/).
 ```yaml
 service:
-  Plex:
+  Plex Media Server:
     options:
       semantic_versioning: false
     latest_version:
@@ -1091,7 +1091,7 @@ Source: https://github.com/Readarr/Readarr
 - deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
 ```yaml
 service:
-  Readarr:
+  Readarr/Readarr:
     options:
       semantic_versioning: false
     latest_version:
@@ -1157,7 +1157,7 @@ service:
 Source: https://github.com/sct/overseerr
 ```yaml
 service:
-  Overseerr:
+  sct/overseerr:
     latest_version:
       type: github
       url: sct/overseerr
@@ -1224,7 +1224,7 @@ Source: https://github.com/Tautulli/Tautulli
 - deployed_version - Requires `API_KEY` on the url, you can get it at `Settings/Web Interface/API`.
 ```yaml
 service:
-  Tautulli:
+  Tautulli/Tautulli:
     latest_version:
       type: github
       url: Tautulli/Tautulli
@@ -1287,7 +1287,7 @@ service:
 Source: https://github.com/usememos/memos
 ```yaml
 service:
-  Memos:
+  usememos/memos:
     latest_version:
       type: github
       url: usememos/memos
