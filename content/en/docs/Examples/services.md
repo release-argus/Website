@@ -412,7 +412,7 @@ Source: https://github.com/golang/go
 service:
   golang/go:
     options:
-      _versioning: false
+      semantic_versioning: false
     latest_version:
       type: url
       url: https://golang.org/dl/
@@ -1040,7 +1040,7 @@ Source: https://github.com/Radarr/Radarr
 service:
   Radarr/Radarr:
     options:
-      _versioning: false
+      semantic_versioning: false
     latest_version:
       type: github
       url: Radarr/Radarr
