@@ -1,7 +1,7 @@
 ---
 title: "Monitor"
 linkTitle: "Monitor"
-weight: 4
+weight: 5
 description: "Monitor Argus"
 ---
 
