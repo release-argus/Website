@@ -1,7 +1,7 @@
 ---
 title: "Help"
 linkTitle: "Help"
-weight: 4
+weight: 6
 description: ""
 ---
 
