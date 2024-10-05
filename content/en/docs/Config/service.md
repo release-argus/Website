@@ -255,7 +255,7 @@ To require a docker tag to exist before a version is considered valid, provide a
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
   {{% tab header="hub" %}}
-The Docker Hub API allows access to public repos without auth up to a [rate-limit](https://docs.docker.com/docker-hub/download-rate-limit/). If you want to query more frequently, or need access to private repo's, you'll need to provide a username and token. A token can be optioned by going to settings->[security](https://hub.docker.com/settings/security) and creating a new access token.
+The Docker Hub API allows access to public repos without auth up to a [rate-limit](https://docs.docker.com/docker-hub/download-rate-limit/). If you want to query more frequently, or need access to private repos, you'll need to provide a username and token. A token can be optioned by going to settings->[security](https://hub.docker.com/settings/security) and creating a new access token.
 
 ```yaml
 latest_version:
@@ -283,7 +283,7 @@ latest_version:
 ```
   {{% /tab %}}
   {{% tab header="quay" %}}
-The Quay API allows access to public repos without auth up to a rate-limit. If you want access to private repo's, you'll need to provide a token. A token can be optioned by [creating an Organization](https://quay.io/organizations/new/), going to its Applications and creating a new application. Go into that app and 'Generate Token'.
+The Quay API allows access to public repos without auth up to a rate-limit. If you want access to private repos, you'll need to provide a token. A token can be optioned by [creating an Organization](https://quay.io/organizations/new/), going to its Applications and creating a new application. Go into that app and 'Generate Token'.
 ```yaml
 latest_version:
   ...
