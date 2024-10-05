@@ -18,7 +18,7 @@ The lines prefixed with a # are optional vars that aren't required.
 Environment variables in the format '${ENV_VAR}' can be used in the `options.*`, `params.*` and `url_fields.*` fields.
 {{< /alert >}}
 
-The config for each of these is layed out in the format of
+The config for each of these is laid out in the format of
 ```yaml
 notify:
   ...
