@@ -591,7 +591,7 @@ service:
       type: github
       url: immich-app/immich
     deployed_version:
-      url: https://immich.example.io/api/server-info/about
+      url: https://immich.example.io/api/server/about
       json: version
       regex: ^v([0-9.]+)$
       headers:
