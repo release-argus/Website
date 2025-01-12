@@ -153,6 +153,22 @@ service:
       icon: https://github.com/element-hq/synapse/raw/develop/docs/favicon.svg
 ```
 
+## ellite/Wallos
+```yaml
+service:
+  ellite/Wallos:
+    latest_version:
+      type: github
+      url: ellite/Wallos
+    deployed_version:
+      method: GET
+      url: http://wallos.com/api/status/version.php?api_key=xxx
+      json: version_number
+    dashboard:
+      icon: https://github.com/ellite/Wallos/raw/main/images/siteicons/wallos.png
+      web_url: https://github.com/ellite/Wallos/releases
+```
+
 ## emqx/emqx
 Source: https://github.com/emqx/emqx
 ```yaml
