@@ -2,7 +2,7 @@
 title: "Terms & Conditions"
 linkTitle: "Terms & Conditions"
 weight: 3
-date: 2022-3-22
+date: 2022-03-22
 description: >
   Last updated March 22, 2022
 #hide_summary: true
