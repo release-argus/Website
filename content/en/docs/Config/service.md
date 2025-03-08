@@ -304,10 +304,7 @@ Track the version you have deployed and compare it to the latest_version. `url` 
   {{% tab header="url" %}}
 The following is how you'd define a deployment to automatically track the version of.
 
-{{< alert title="Note" >}}
 Environment variables in the format ${ENV_VAR} can be used in the `basic_auth.password`, `basic_auth.username`, `headers.*.key`, `headers.*.value` and `url` fields.
-{{< /alert >}}
-
 ```yaml
 service:
   example:
