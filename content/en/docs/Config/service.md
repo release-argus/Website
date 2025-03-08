@@ -133,7 +133,6 @@ service:
   {{% tab header="url" %}}
 The following is how you'd define a service to be monitored without using the GitHub API. (The key difference is that `type` is 'web' and `url` is a full HTTP(S) address with `url_commands` to scrape the version).
 
-config.yml
 ```yaml
 service:
   example:
@@ -299,7 +298,12 @@ latest_version:
 
 ## Deployed Version
 
-Track the version you have deployed and compare it to the latest_version.
+Track the version you have deployed and compare it to the latest_version. `url` or `manual`.
+{{< tabpane text=true right=true >}}
+  {{% tab header="**types**:" disabled=true /%}}
+  {{% tab header="url" %}}
+
+The following is how you'd define a deployment to automatically track the version of.
 
 Environment variables in the format ${ENV_VAR} can be used in the `basic_auth.password`, `basic_auth.username`, `headers.*.key`, `headers.*.value` and `url` fields.
 
@@ -307,7 +311,8 @@ Environment variables in the format ${ENV_VAR} can be used in the `basic_auth.pa
 service:
   example:
     ...
-    deployed_version:                        # Get the `current_version` from a deployed service
+    deployed_version:
+      type: url
       method: GET                            # HTTP Method (GET/POST)
       url: https://example.com/version       # URL to use
       allow_invalid_certs: false             # Accept invalid HTTPS certs/not
@@ -318,6 +323,8 @@ service:
         - key: Authorization
           value: 'Bearer <API_KEY>'
 #     body: ""                               # Only available with POST deployed_version's
+#     target_header: ""                      # Only available with GET. Retrieve the version from this header
+                                             # rather than the response body
       json: data.version                     # Use the value of this JSON key as the `current_version`
                                              # (Full path to the key, e.g. `data.version`, not `version`)
       regex: 'v?([0-9]+)-([0-9]+)-([0-9]+)'  # Regex to apply to the data retrieved. Will run after the
@@ -325,11 +332,27 @@ service:
       regex_template: '$1.$2.$3'             # Template with the RegEx above to change the format of the
                                              # version tracked ($1 = first submatch, $2 = second, etc...)
 ```
-
 ### Methods
 
 Deployed version queries support both GET (default) and POST methods.
+
 With `method: POST`, you may give a `body: str` to be sent with the request.
+
+With `method: GET`, you may give a `target_header: str` to target a header rather than the response body.
+  {{% /tab %}}
+  {{% tab header="manual" %}}
+The following is how you'd define a deployment to manually track the version of.
+
+```yaml
+service:
+  example:
+    ...
+    latest_version:
+      type: manual
+      version: "1.2.3"  # Optional version to apply on startup (removed from the YAML on next save)
+```
+  {{% /tab %}}
+{{% /tabpane %}}
 
 
 ## Command
