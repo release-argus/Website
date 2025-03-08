@@ -302,10 +302,11 @@ Track the version you have deployed and compare it to the latest_version. `url` 
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
   {{% tab header="url" %}}
-
 The following is how you'd define a deployment to automatically track the version of.
 
+{{< alert title="Note" >}}
 Environment variables in the format ${ENV_VAR} can be used in the `basic_auth.password`, `basic_auth.username`, `headers.*.key`, `headers.*.value` and `url` fields.
+{{< /alert >}}
 
 ```yaml
 service:
@@ -332,6 +333,8 @@ service:
       regex_template: '$1.$2.$3'             # Template with the RegEx above to change the format of the
                                              # version tracked ($1 = first submatch, $2 = second, etc...)
 ```
+
+
 ### Methods
 
 Deployed version queries support both GET (default) and POST methods.
