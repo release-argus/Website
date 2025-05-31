@@ -1299,6 +1299,29 @@ service:
       web_url: https://www.traccar.org/blog/traccar-{{ version | split:"." | join:"-" }}/
 ```
 
+## traefik/traefik
+- deployed_version - Requires Traefik API to be configured and exposed. basicAuth is optional if `insecure` is configured ([instructions](https://doc.traefik.io/traefik/operations/api/))
+Source: https://github.com/traefik/traefik
+```yaml
+service:
+  traefik/traefik:
+    latest_version:
+      type: github
+      url: traefik/traefik
+    deployed_version:
+      type: url
+      method: GET
+      url: http://api.example.io/api/version
+      basic_auth:
+        username: username
+        password: password
+      json: Version
+    dashboard:
+      icon: https://github.com/traefik/traefik/raw/master/docs/content/assets/img/traefik.logo-dark.png
+      web_url: https://github.com/traefik/traefik/releases/v{{ version }})
+```
+
+
 ## usememos/memos
 Source: https://github.com/usememos/memos
 ```yaml
