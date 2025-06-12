@@ -237,7 +237,7 @@ notify:
 ```
   {{% /tab %}}
   {{% tab header="ntfy" %}}
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.7/services/ntfy/)
+[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/ntfy/)
 
 ```yaml
 notify:
@@ -247,7 +247,7 @@ notify:
     type: ntfy
     url_fields:
 #     Username: Argus
-#     Password: PASS123
+#     Password: PASS123                # If you need to specify an access token, comment out the Username variable and enter the token as follows: Password: 'tk_xxxxxxxx'
       Host: mattermost.example.io
 #     Port: 443
       Topic: Release123
