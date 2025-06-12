@@ -247,7 +247,7 @@ notify:
     type: ntfy
     url_fields:
 #     Username: Argus
-#     Password: PASS123                # If you need to specify an access token, comment out the Username variable and enter the token as follows: Password: 'tk_xxxxxxxx'
+#     Password: PASS123                # username not required when using an access token (e.g. 'tk_xxxxxxxx')
       Host: mattermost.example.io
 #     Port: 443
       Topic: Release123
