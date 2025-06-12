@@ -125,7 +125,7 @@ notify:
 #     FromName: Argus
       FromAddress: foo@bar.com
       ToAddresses: name@you.com,other@you.com
-#     Auth: Plain                         # None/Plain/CRAMMD5/Unknown/OAuth2
+#     Auth: Plain                             # None/Plain/CRAMMD5/Unknown/OAuth2
 #     Subject: '{{ service_id }} Release'
 #     UseHTML: no
 #     UseStartTLS: yes
