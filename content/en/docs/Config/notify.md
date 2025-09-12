@@ -47,10 +47,15 @@ The default message template is
 this message being '1.2.3', would trigger a message of `example_service - 1.2.3 released` (example_service would be a clickable link to the service_url). If the Service had a `web_url` defined, then ' (changelog)' would appear at the end, where the 'changelog' text would be a clickable link to that `web_url`.
 
 The vars that can be used in both the title and message templates are:
-- service_id
-- service_url
-- web_url
-- version
+- `service_id`
+- `service_name`
+- `service_url`
+- `icon`
+- `icon_link_to`
+- `web_url`
+- `latest_version`
+- `approved_version`
+- `deployed_version`
 
 The default Slack message format assumes that when `web_url` is defined, it is a link to the services changelog. Then, in any notifications by Argus about that service,
 you should get a clickable 'changelog' button that takes you to that `web_url`.
