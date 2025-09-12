@@ -53,7 +53,7 @@ The vars that can be used in both the title and message templates are:
 - `icon`
 - `icon_link_to`
 - `web_url`
-- `version` / `latest_version`
+- `latest_version`
 - `approved_version`
 - `deployed_version`
 
