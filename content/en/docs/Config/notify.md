@@ -24,7 +24,7 @@ notify:
   ...
   # As many of these (below) as you like, just ensure they have unique ID's
   EXAMPLE_NOTIFY_ID:
-    type: shoutrrr
+    type: gotify
     options:
 #     delay: AhBmCs                             # Time to wait when a new release is found before sending this message
 #     max_tries: 3                              # Maximum number of times to try sending this message until a send is successful
@@ -56,6 +56,7 @@ The vars that can be used in both the title and message templates are:
 - `latest_version`
 - `approved_version`
 - `deployed_version`
+- `tags` (e.g. `tags | join','` - use `tags.0` for first element, `tags.1` for seconds, etc.)
 
 The default Slack message format assumes that when `web_url` is defined, it is a link to the services changelog. Then, in any notifications by Argus about that service,
 you should get a clickable 'changelog' button that takes you to that `web_url`.
@@ -67,7 +68,7 @@ For further guidance and other helpful examples on the templating used, start by
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
   {{% tab header="bark" %}}
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/bark/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/bark/)
 
 ```yaml
 notify:
@@ -93,7 +94,7 @@ notify:
   {{% tab header="discord" %}}
 - As of writing, Discord Webhooks are in the format of `https://discord.com/api/webhooks/WEBHOOK_ID/TOKEN` (`<Server Settings> - <Integrations> - <Webhooks>`)
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/discord/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/discord/)
 
 ```yaml
 notify:
@@ -106,14 +107,25 @@ notify:
       WebhookID: WEBHOOK_ID
 #   params:
 #     Avatar: https://release-argus.io/favicons/android-chrome-512x512.png
-#     Title: Release
-#     Username: Argus
+#                          # Override the webhook default avatar with specified URL
+#     Color: 0x50D9ff      # The color of the left border for plain messages
+#     ColorDebug: 0x7b00ab # The color of the left border for debug messages
+#     ColorError: 0xd60510 # The color of the left border for error messages
+#     ColorInfo: 0x2488ff  # The color of the left border for info messages
+#     ColorWarn: 0xffc441  # The color of the left border for warning messages
+#     JSON: no             # Whether to send the whole message as the JSON payload instead of using it as the 'content' field
+#     SplitLines: yes      # Whether to send each line as a separate embedded item
+#     ThreadID: ''         # The thread ID to send the message to
+#     Title: Release       # Notification title
+#     Username: Argus      # Override the webhook default username
+
+
 ```
   {{% /tab %}}
   {{% tab header="smtp" %}}
 - email notifications
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/email/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/email/smtp/)
 
 ```yaml
 notify:
@@ -127,19 +139,23 @@ notify:
       Host: your_host
 #     Port: 25
     params:
-#     FromName: Argus
-      FromAddress: foo@bar.com
-      ToAddresses: name@you.com,other@you.com
-#     Auth: Plain                             # None/Plain/CRAMMD5/Unknown/OAuth2
-#     Subject: '{{ service_id }} Release'
-#     UseHTML: no
-#     UseStartTLS: yes
+      FromAddress: foo@bar.com                # E-mail address that the mail are sent from
+#     FromName: Argus                         # Name of the sender
+      ToAddresses: name@you.com,other@you.com # List of recipient e-mails (comma-separated)
+#     Auth: Plain                             # SMTP authentication method - None/Plain/CRAMMD5/Unknown/OAuth2
+#     ClientHost: ''                          # SMTP client hostname
+#     Encryption: Auto                        # Encryption method - None/ExplicitTLS/ImplicitTLS/Auto
+#     Subject: '{{ service_id }} Release'     # The subject of the sent mail
+#     UseHTML: no                             # Whether the message being sent is in HTML
+#     UseStartTLS: yes                        # Whether to use StartTLS encryption
+#     RequireStartTLS: no                     # Fail if StartTLS is enabled but unsupported
+#     SkipTLSVerify: no                       # Whether to skip TLS certificate verification
 ```
   {{% /tab %}}
   {{% tab header="googlechat" %}}
 - Example Google Chat incoming Webhook URL `https://chat.googleapis.com/v1/spaces/ FOO /messages?key= bar &token= baz`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/googlechat/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/googlechat/)
 
 ```yaml
 notify:
@@ -154,7 +170,7 @@ notify:
   {{% tab header="gotify" %}}
 - Create an application on the Gotify Web UI, and use that URL with the token for the application you make.
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/email/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/gotify/)
 
 ```yaml
 notify:
@@ -168,13 +184,17 @@ notify:
 #     Path: sub/path          # e.g. for gotify.example.io/sub/path
       Token: TOKEN
 #   params:
-#     DisableTLS: no
+#     Extras: ''
+#     Date: ''
+#     DisableTLS: no          # Disable TLS certificate verification
+#     InsecureSkipVerify:: no # Whether to skip TLS certificate verification
 #     Priority: 0
-#     Title: Argus
+#     Title: Argus            # Notification title
+#     UseHeader:: no          # Enable header-based authentication
 ```
   {{% /tab %}}
   {{% tab header="ifttt" %}}
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/ifttt/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/ifttt/)
 
 ```yaml
 notify:
@@ -186,12 +206,12 @@ notify:
       WebhookID: WEBHOOK_ID
     params:
       Events: event1,event2,...
-#     Title: Argus
-#     UseMessageAsValue: 2
-#     UseTitleAsValue: 0
-#     Value1:
-#     Value2:
-#     Value3:
+#     Title: Argus              # Notification title
+#     UseMessageAsValue: 2      # Sets the corresponding value field to the notification message
+#     UseTitleAsValue: 0        # Sets the corresponding value field to the notification title
+#     Value1: ''
+#     Value2: ''
+#     Value3: ''
 ```
   {{% /tab %}}
   {{% tab header="join" %}}
@@ -201,7 +221,7 @@ notify:
 - Your `deviceId` is shown in the top
 - Click **Show** next to `API Key` to see your key
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/join/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/join/)
 
 ```yaml
 notify:
@@ -212,9 +232,10 @@ notify:
     url_fields:
       APIKey: KEY
     params:
-      Devices: ID1,ID2,...
+      Devices: ID1,ID2,... # Comma separated list of device IDs
 #     Icon: https://release-argus.io/favicons/android-chrome-512x512.png
-#     Title: Argus
+#                          # Icon URL
+#     Title: Argus         # Notification title
 ```
   {{% /tab %}}
   {{% tab header="mattermost" %}}
@@ -222,7 +243,7 @@ notify:
 
 Example Mattermost Webhook - `https://mattermost.example.io/hooks/TOKEN`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/mattermost/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/mattermost/)
 
 ```yaml
 notify:
@@ -238,11 +259,13 @@ notify:
       Token: TOKEN
 #     Channel: releases
 #   params:
-#     Icon: https://release-argus.io/favicons/android-chrome-512x512.png # url/emoji
+#     DisableTLS: no # Disable TLS certificate verification
+#     Icon: https://release-argus.io/favicons/android-chrome-512x512.png
+#                    # Use emoji or URL as icon (based on presence of http(s):// prefix)
 ```
   {{% /tab %}}
   {{% tab header="ntfy" %}}
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/ntfy/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/ntfy/)
 
 ```yaml
 notify:
@@ -260,19 +283,20 @@ notify:
 #     Actions: ''                        # see https://docs.ntfy.sh/publish/#action-buttons
 #     Attach: https://example.com        # URL of an attachment
 #     Cache: yes                         # Cache messages
-#     Click: https://example.com         # URL to open when notification is clicked
+#     Click: https://example.com         # Website opened when notification is clicked
+#     DisableTLSVerification: no         # Disable TLS certificate verification
 #     Email: name@example                # Email address for email notifications
 #     Filename: ''                       # Filename for attachment
 #     Firebase: yes                      # Send to Firebase
 #     Icon: https://example.com/icon.png # URL to an icon
-#     Priority: default                  # Priority of the notification
-#     Scheme: https                      # Server protocol
+#     Priority: default                  # Priority of the notification - min/low/default/high/max
+#     Scheme: https                      # Server protocol - http/https
 #     Tags: ''                           # Comma separated list of tags that may/may not map to emojis
-#     Title: Argus                       # Title of the notification
+#     Title: Argus                       # Notification title
 ```
   {{% /tab %}}
   {{% tab header="matrix" %}}
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/matrix/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/matrix/)
 
 ```yaml
 notify:
@@ -286,15 +310,15 @@ notify:
       Host: matrix.example.io
 #     Port: 443
 #   params:
-#     DisableTLS: no
-#     Rooms: '!ROOM_ID,ALIAS' # Needs the quotes as `!` is a YAML special character
-#     Title: Argus
+#     DisableTLS: no          # Disable TLS certificate verification
+#     Rooms: '!ROOM_ID,ALIAS' # Room aliases, or with ! prefix, room IDs (Needs the quotes as `!` is a YAML special character)
+#     Title: Argus            # Notification title
 ```
   {{% /tab %}}
   {{% tab header="opsgenie" %}}
 Go to `<Settings> - <Integration List> - <API>`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/opsgenie/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/incident/opsgenie/)
 
 ```yaml
 notify:
@@ -320,7 +344,7 @@ notify:
 #                                                 # routed to send
 #     Source: 'Argus'                             # Source field of the alert
 #     Tags: 'argus othertag'                      # Tags of the alert
-#     Title: 'Argus'                              # Notification title, optionally set by the sender
+#     Title: 'Argus'                              # Notification title
 #     User: 'Argus'                               # Display name of the request owner
 #     VisibleTo: '[{"id":"4513b7ea-3b91-438f-b7e4-e3e54af9147c","type":"team"},{"name":"rocket_team","type":"team"}]'
 #                                                 # Teams and users that the alert will become visible to without
@@ -331,7 +355,7 @@ notify:
 - Get your `token` by creating an **Access Token** at https://www.pushbullet.com/#settings/account
 - Get your `targets` by going to https://www.pushbullet.com/#devices. Click on the device on the left pane and the URL should change to https://www.pushbullet.com/#devices/\<TARGET\>
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/pushbullet/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/pushbullet/)
 
 ```yaml
 notify:
@@ -343,7 +367,7 @@ notify:
       Token: ACCESS_TOKEN
       Targets: DEVICE1,DEVICE2
 #   params:
-#     Title: Argus
+#     Title: Argus # Notification title
 ```
   {{% /tab %}}
   {{% tab header="pushover" %}}
@@ -353,7 +377,7 @@ You can also make an Application specific for Argus by clicking 'Create an Appli
 
 In the device list, the Name column is the field used to refer to your devices
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/pushover/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/pushover/)
 
 ```yaml
 notify:
@@ -367,13 +391,13 @@ notify:
 #   params:
 #     Devices: 'device1,device2'
 #     Priority: 0
-#     Title: Argus
+#     Title: Argus               # Notification title
 ```
   {{% /tab %}}
   {{% tab header="rocketchat" %}}
 Example URL `username@host:port/TOKEN_A/TOKEN_B/CHANNEL`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/rocketchat/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/rocketchat/)
 
 ```yaml
 notify:
@@ -408,7 +432,7 @@ To use Webhooks:
 - e.g. https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
 - becomes 'hook:T00000000-B00000000-XXXXXXXXXXXXXXXXXXXXXXXX
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/slack/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/slack/)
 
 ```yaml
 notify:
@@ -420,10 +444,11 @@ notify:
       Token: 'xoxb:012345678901-0123456789012-phq24qfrhqnm2mtmz54dwkop'
       Channel: argus
 #   params:
-#     BotName: Argus
+#     BotName: Argus                                                     # Bot name
 #     Color: ''                                                          # Message left-hand border color
 #     Icon: https://release-argus.io/favicons/android-chrome-512x512.png # URL or Emoji to use
 #     Title: Release                                                     # Prepended text above the message
+#     ThreadTS: ''                                                       # TS value of the parent message (to send message as reply in thread)
 ```
   {{% /tab %}}
   {{% tab header="teams" %}}
@@ -431,7 +456,7 @@ notify:
 
 Example URL `https://<organization>.webhook.office.com/webhookb2/<Group>@<Tenant>/IncomingWebhook/<AltId>/<GroupOwner>`
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/teams/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/teams/)
 
 ```yaml
 notify:
@@ -440,10 +465,11 @@ notify:
   EXAMPLE_NOTIFY:
     type: teams
     url_fields:
-      Group: GROUP
-      Tenant: TENANT
-      AltID: ALT_ID
-      GroupOwner: GROUP_OWNER
+      Group: aaaaaaaa-1234-1234-1234-123412341234
+      Tenant: bbbbbbbb-1234-1234-1234-123412341234
+      AltID: 65f57823a6027db4bb71d156899ea2a6
+      GroupOwner: cccccccc-1234-1234-1234-123412341234
+      ExtraID: ''
     params:
 #     Color: ''
       Host: example.webhook.office.com
@@ -457,7 +483,7 @@ notify:
     - `chat_id` is required for private channels/group chats/private chats. To get the ID, you can forward a message (from the target chat) to [@UserInfoBot](https://t.me/userinfobot) or [@JsonDumpBot](https://t.me/jsondumpbot) and view it at `Id` and `message.forward_from_chat.id` from those bots respectively.
     - (The above bots are created and hosted by [@nadam](https://github.com/nadam) and their sources are available to view at [nadam/userinfobot](https://github.com/nadam/userinfobot) and [nadam/jsondumpbot](https://github.com/nadam/jsondumpbot))
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/telegram/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/telegram/)
 
 ```yaml
 notify:
@@ -468,17 +494,17 @@ notify:
     url_fields:
       Token: TOKEN_FROM_BOTFATHER
     params:
-      Chats: '@channel-name,@other-channel,chat_id'
-#     Notification: yes                             # No will send the message silently
-#     ParseMode: None                               # None/Markdown/HTML/MarkdownV2
-#     Preview: yes                                  # Whether to display web page previews for URLs in the message
-#     Title: Argus
+      Chats: '@channel-name,@other-channel,chat_id' # Chat IDs or Channel names (using @channel-name)
+#     Notification: yes                             # If disabled, sends the message silently
+#     ParseMode: None                               # How the text message should be parsed - None/Markdown/HTML/MarkdownV2
+#     Preview: yes                                  # If disabled, no web page preview will be displayed for URLs
+#     Title: Argus                                  # Notification title
 ```
   {{% /tab %}}
   {{% tab header="zulip" %}}
 Zulip Chat
 
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/zulip/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/zulip/)
 
 ```yaml
 notify:
@@ -493,21 +519,6 @@ notify:
 #   params:
 #     Stream: 'mystream'
 #     Topic: 'Argus'
-```
-  {{% /tab %}}
-  {{% tab header="shoutrrr" %}}
-`Shoutrrr` will expect the full Shoutrrr URL and so could be used for any of the services in the Shoutrrr v0.6 docs. Any params specified in `params` will also be passed.
-
-[Shoutrrr docs](https://containrrr.dev/shoutrrr/v0.8/services/overview/)
-
-```yaml
-notify:
-  ...
-  # as many of these (below) as you like, just ensure they have unique ID's.
-  EXAMPLE_NOTIFY:
-    type: shoutrrr
-    url_fields:
-      raw: matrix://user:password@host:port/?rooms=!roomID1,roomAlias2&disableTLS=yes
 ```
   {{% /tab %}}
 {{% /tabpane %}}
