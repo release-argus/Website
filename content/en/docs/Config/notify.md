@@ -264,6 +264,26 @@ notify:
 #                    # Use emoji or URL as icon (based on presence of http(s):// prefix)
 ```
   {{% /tab %}}
+  {{% tab header="matrix" %}}
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/matrix/)
+
+```yaml
+notify:
+  ...
+  # as many of these (below) as you like, just ensure they have unique ID's.
+  EXAMPLE_NOTIFY:
+    type: matrix
+    url_fields:
+#     User: NAME
+      Password: PASS123
+      Host: matrix.example.io
+#     Port: 443
+#   params:
+#     DisableTLS: no          # Disable TLS certificate verification
+#     Rooms: '!ROOM_ID,ALIAS' # Room aliases, or with ! prefix, room IDs (Needs the quotes as `!` is a YAML special character)
+#     Title: Argus            # Notification title
+```
+  {{% /tab %}}
   {{% tab header="ntfy" %}}
 [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/ntfy/)
 
@@ -293,26 +313,6 @@ notify:
 #     Scheme: https                      # Server protocol - http/https
 #     Tags: ''                           # Comma separated list of tags that may/may not map to emojis
 #     Title: Argus                       # Notification title
-```
-  {{% /tab %}}
-  {{% tab header="matrix" %}}
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/matrix/)
-
-```yaml
-notify:
-  ...
-  # as many of these (below) as you like, just ensure they have unique ID's.
-  EXAMPLE_NOTIFY:
-    type: matrix
-    url_fields:
-#     User: NAME
-      Password: PASS123
-      Host: matrix.example.io
-#     Port: 443
-#   params:
-#     DisableTLS: no          # Disable TLS certificate verification
-#     Rooms: '!ROOM_ID,ALIAS' # Room aliases, or with ! prefix, room IDs (Needs the quotes as `!` is a YAML special character)
-#     Title: Argus            # Notification title
 ```
   {{% /tab %}}
   {{% tab header="opsgenie" %}}
