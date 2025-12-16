@@ -7,4 +7,11 @@
   "commitMessageExtra": "from {{currentVersion}} to {{newVersion}}",
   "separateMajorMinor": true,
   "enabledManagers": ["gomod", "npm"],
+  "packageRules": [
+    {
+      "description": "Automerge non-major updates",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ]
 }
