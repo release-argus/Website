@@ -284,7 +284,7 @@ notify:
 #     Attach: https://example.com        # URL of an attachment
 #     Cache: yes                         # Cache messages
 #     Click: https://example.com         # Website opened when notification is clicked
-#     DisableTLSVerification: no         # Disable TLS certificate verification
+#     DisableTLS: no                     # Disable TLS certificate verification
 #     Email: name@example                # Email address for email notifications
 #     Filename: ''                       # Filename for attachment
 #     Firebase: yes                      # Send to Firebase
