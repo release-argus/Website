@@ -202,7 +202,7 @@ pre = "<i class='fas fa-laptop-code'></i>"
 [module]
 [module.hugoVersion]
 extended = true
-min = "0.125.6"
+min = "0.146.0"
 [[module.imports]]
 path = "github.com/google/docsy"
 disable = false
