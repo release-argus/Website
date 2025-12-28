@@ -6,6 +6,7 @@ github.com/divinerites/plausible-hugo v1.20.0 h1:nkoQ/5/ti2nRF8DRiErEemOb1/EAbVi
 github.com/divinerites/plausible-hugo v1.20.0/go.mod h1:cxr+YB3FUwbLon8KCs4pV4Ankbkq6lJxTQUpNb5KqPo=
 github.com/divinerites/plausible-hugo v1.21.1 h1:ZTWwjhZ0PmLMacCVGlcGiYFEZW7VaYE767tchDskOug=
 github.com/divinerites/plausible-hugo v1.21.1/go.mod h1:cxr+YB3FUwbLon8KCs4pV4Ankbkq6lJxTQUpNb5KqPo=
+github.com/divinerites/plausible-hugo v1.22.0/go.mod h1:cxr+YB3FUwbLon8KCs4pV4Ankbkq6lJxTQUpNb5KqPo=
 github.com/google/docsy v0.10.0 h1:6tMDacPwAyRWNCfvsn/9qGOZDQ8b0aRzjRZvnZPY5dg=
 github.com/google/docsy v0.10.0/go.mod h1:c0nIAqmRTOuJ01F85U/wJPQtc3Zj9N58Kea9bOT2AJc=
 github.com/google/docsy v0.11.0 h1:QnV40cc28QwS++kP9qINtrIv4hlASruhC/K3FqkHAmM=
