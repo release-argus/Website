@@ -8,10 +8,10 @@
   "packageRules": [
     {
       "description": "Go module updates",
+      "enabled": true,
       "labels": ["dependencies","go"],
       "matchManagers": ["gomod"],
       "matchDepTypes": ["indirect"],
-      "postUpdateOptions": ["gomodTidy"],
       "semanticCommitType": "build",
       "semanticCommitScope": "deps-go"
     },
