@@ -42,7 +42,7 @@ Environment variables in the format `${ENV_VAR}` (e.g. 'abc ${AUTH_TOKEN}'  or j
 * notify.\*.options.\*
 * notify.\*.params.\*
 * notify.\*.url_fields.\*
-* webhook.\*.custom_headers.\*.key
-* webhook.\*.custom_headers.\*.value
+* webhook.\*.headers.\*.key
+* webhook.\*.headers.\*.value
 * webhook.\*.secret
 * webhook.\*.url
