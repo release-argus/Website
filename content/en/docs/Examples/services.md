@@ -802,6 +802,7 @@ service:
 
 ## n8n-io/n8n
 Source: https://github.com/n8n-io/n8n
+- If you deploy in docker, you must add this environment: `N8N_METRICS=true`
 ```yaml
 service:
   n8n-io/n8n:
@@ -1389,4 +1390,95 @@ service:
           regex: v([0-9.]+)$
     dashboard:
       web_url: https://github.com/wowchemy/wowchemy-hugo-themes/releases/v{{ version }}
+```
+
+## outline/outline
+Source: https://github.com/outline/outline
+- You must create a API Key: `Settings > API & Apps > + New API key...`
+```yaml
+service:
+  outline/outline:
+    name: Outline
+    latest_version:
+      type: github
+      url: outline/outline
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      method: POST
+      url: https://example.com/api/installation.info
+      allow_invalid_certs: false
+      headers:
+        - key: Authorization
+          value: 'Bearer YOUR_API_KEY'
+        - key: Content-Type
+          value: 'application/json'
+      body: "{}"
+      json: data.version
+      regex: '([0-9.]+)'
+    dashboard:
+      web_url: https://github.com/outline/outline/releases/tag/v{{ version }}
+      icon: https://www.getoutline.com/images/logo.svg
+```
+
+## dgtlmoon/changedetection.io
+Source: https://github.com/dgtlmoon/changedetection.io
+- You must use the API Key created: `Settings > API > API Access`
+```yaml
+service:
+  dgtlmoon/changedetection.io:
+    name: Change Detection
+    latest_version:
+      type: github
+      url: dgtlmoon/changedetection.io
+    deployed_version:
+      url: https://example.com/api/v1/systeminfo
+      regex: version":\s*"([^"]+)
+      headers:
+        - key: x-api-key
+          value: YOUR_API_KEY
+    dashboard:
+      web_url: https://github.com/dgtlmoon/changedetection.io/releases/tag/{{ version }}
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/changedetection.png
+```
+
+## mealie-recipes/mealie:
+Source: https://github.com/mealie-recipes/mealie
+```yaml
+service:
+  mealie-recipes/mealie:
+    name: Mealie
+    latest_version:
+      type: github
+      url: mealie-recipes/mealie
+      url_commands:
+        - type: regex
+          regex: ^v?([0-9.]+)$ 
+    deployed_version:
+      url: https://example.com/api/app/about
+      regex: version":\s*"v?(\d+\.\d+\.\d+)
+    dashboard:
+      web_url: https://github.com/mealie-recipes/mealie/releases/tag/v{{ version }}
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/mealie.png
+```
+
+## aizhimou/pigeon-pod:
+Source: https://github.com/aizhimou/pigeon-pod
+```yaml
+service:
+  aizhimou/pigeon-pod:
+    name: Pigeon Pod
+    latest_version:
+      type: github
+      url: aizhimou/pigeon-pod
+    deployed_version:
+      method: GET
+      url: https://example.com/
+      allow_invalid_certs: false
+      regex: 'meta name="version" content="([0-9.]+)"'
+    dashboard:
+      web_url: https://github.com/aizhimou/pigeon-pod/releases/tag/{{ version }}
+      icon: https://pigeonpod.cloud/assets/pigeonpod-YAUI8Oed.svg
+
 ```
