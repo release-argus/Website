@@ -44,6 +44,7 @@ Specific API routes can be disabled through the `config.yml` file located at `se
 settings:
   web:
     disabled_routes:
+      - order_edit      # Editing of service order
       - service_create  # Creation of new services
       - service_update  # Updating of existing services
       - service_delete  # Deletion of services
