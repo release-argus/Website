@@ -1327,10 +1327,10 @@ service:
   qbittorrent/qBittorrent:
     latest_version:
       type: github
-      url: qbittorrent/qBittorrent
+      url: linuxserver/docker-qbittorrent
       url_commands:
         - type: regex
-          regex: release-([0-9.]+)
+          regex: ^([0-9.]+)-
       require:
         docker:
           type: hub
