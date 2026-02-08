@@ -136,6 +136,7 @@ service:
 ```
 
 ## bitmagnet-io/bitmagnet
+Source: https://github.com/bitmagnet-io/bitmagnet
 ```yaml
 service:
   bitmagnet-io/bitmagnet:
@@ -181,6 +182,7 @@ service:
 ```
 
 ## Freika/dawarich
+Source: https://github.com/Freika/dawarich
 ```yaml
 service:
   Freika/dawarich:
@@ -343,6 +345,7 @@ service:
 ```
 
 ## Forgejo
+Source: https://codeberg.org/forgejo
 ```yaml
 service:
   Forgejo:
@@ -827,6 +830,7 @@ service:
 ```
 
 ## linkwarden/linkwarden
+Source: https://github.com/linkwarden/linkwarden
 ```yaml
 service:
   linkwarden/linkwarden:
@@ -948,9 +952,8 @@ service:
 ```
 
 ## moghtech/komodo
-
-- `deployed_version` requires a token pair, `KOMODO_API_KEY` and `KOMODO_API_SECRET`. Add a service user with limited permissions and generate an API key for him.
-
+Source: https://github.com/moghtech/komodo
+>`deployed_version` requires a token pair, `KOMODO_API_KEY` and `KOMODO_API_SECRET`. Add a service user with limited permissions and generate an API key for him.
 ```yaml
 service:
   moghtech/komodo:
@@ -1157,9 +1160,8 @@ service:
 ```
 
 ## paperless-ngx/paperless-ngx
-
-- deployed_version - Requires a `PAPERLESS_NGX_API_KEY`. Create a service user and generate a token in the profile. 
-
+Source: https://github.com/paperless-ngx/paperless-ngx
+> deployed_version - Requires a `PAPERLESS_NGX_API_KEY`. Create a service user and generate a token in the profile. 
 ```yaml
 service:
   paperless-ngx/paperless-ngx:
@@ -1319,7 +1321,7 @@ service:
 ```
 
 ## qbittorrent/qBittorrent
-
+Source: https://github.com/linuxserver/docker-qbittorrent
 ```yaml
 service:
   qbittorrent/qBittorrent:
