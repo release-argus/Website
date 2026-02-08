@@ -134,6 +134,28 @@ service:
       icon: https://avatars.githubusercontent.com/u/30269780?s=200&v=4
 ```
 
+## bitmagnet-io/bitmagnet
+```yaml
+service:
+  bitmagnet-io/bitmagnet:
+    latest_version:
+      type: github
+      url: bitmagnet-io/bitmagnet
+      require:
+        docker:
+          type: ghcr
+          image: bitmagnet-io/bitmagnet
+          tag: 'v{{ version }}'
+    deployed_version:
+      type: url
+      url: https://bitmagnet.example.com/status
+      json: info.version
+      regex: "([0-9.]+)"
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/bitmagnet.png
+      web_url: https://github.com/bitmagnet-io/bitmagnet/releases/tag/v{{ version }}
+```
+
 ## dani-garcia/vaultwarden
 Source: https://github.com/dani-garcia/vaultwarden
 
@@ -145,12 +167,39 @@ service:
     latest_version:
       type: github
       url: dani-garcia/vaultwarden
+      require:
+        docker:
+          type: hub
+          image: vaultwarden/server
+          tag: '{{ version }}'
     deployed_version:
-      url: https://vaultwarden.example.io/api/version
-      regex: ([0-9.]+)
+      type: url
+      url: http://vaultwarden.example.com/api/version
+      regex: "([0-9.]+)"
     dashboard:
       web_url: https://github.com/dani-garcia/vaultwarden/releases/{{ version }}
       icon: https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/src/static/images/vaultwarden-icon.png
+```
+
+## Freika/dawarich
+```yaml
+service:
+  Freika/dawarich:
+    latest_version:
+      type: github
+      url: Freika/dawarich
+      require:
+        docker:
+          type: hub
+          image: freikin/dawarich
+          tag: '{{ version }}'
+    deployed_version:
+      type: url
+      url: http://dawarich.example.com/api/v1/health
+      target_header: x-dawarich-version
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/dawarich.png
+      web_url: https://github.com/Freika/dawarich/releases/tag/{{ version }}
 ```
 
 ## dgtlmoon/changedetection.io
@@ -646,6 +695,11 @@ service:
     latest_version:
       type: github
       url: immich-app/immich
+      require:
+        docker:
+          type: ghcr
+          image: immich-app/immich-server
+          tag: 'v{{ version }}'
     deployed_version:
       url: https://immich.example.io/api/server/about
       json: version
@@ -742,6 +796,28 @@ service:
       web_url: https://github.com/Lidarr/Lidarr/releases/v{{ version }}
 ```
 
+## linkwarden/linkwarden
+```yaml
+service:
+  linkwarden/linkwarden:
+    latest_version:
+      type: github
+      url: linkwarden/linkwarden
+      require:
+        docker:
+          type: ghcr
+          image: linkwarden/linkwarden
+          tag: 'v{{ version }}'
+    deployed_version:
+      type: url
+      url: https://linkwarden.example.com/api/v1/config
+      json: response.INSTANCE_VERSION
+      regex: "([0-9.]+)"
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/linkwarden.png
+      web_url: https://github.com/linkwarden/linkwarden/releases/tag/v{{ version }}
+```
+
 ## louislam/uptime-kuma
 Source: https://github.com/louislam/uptime-kuma
 ```yaml
@@ -834,6 +910,39 @@ service:
     dashboard:
       web_url: https://github.com/mealie-recipes/mealie/releases/tag/v{{ version }}
       icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/mealie.png
+```
+
+## moghtech/komodo
+
+- `deployed_version` requires a token pair, `KOMODO_API_KEY` and `KOMODO_API_SECRET`. Add a service user with limited permissions and generate an API key for him.
+
+```yaml
+service:
+  moghtech/komodo:
+    latest_version:
+      type: github
+      url: moghtech/komodo
+      require:
+        docker:
+          type: ghcr
+          image: moghtech/komodo-core
+          tag: '{{ version }}'
+    deployed_version:
+      type: url
+      method: POST
+      url: http://komodo.example.com/read/GetVersion
+      body: "{}"
+      json: version
+      headers:
+        - key: x-api-key
+          value: ${KOMODO_API_KEY}
+        - key: x-api-secret
+          value: ${KOMODO_API_SECRET}
+        - key: Content-Type
+          value: application/json; charset=utf8
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/komodo.png
+      web_url: https://github.com/moghtech/komodo/releases/tag/v{{ version }}
 ```
 
 ## morpheus65535/bazarr
@@ -1007,6 +1116,34 @@ service:
       icon: https://www.getoutline.com/images/logo.svg
 ```
 
+## paperless-ngx/paperless-ngx
+
+- deployed_version - Requires a `PAPERLESS_NGX_API_KEY`. Create a service user and generate a token in the profile. 
+
+```yaml
+service:
+  paperless-ngx/paperless-ngx:
+    latest_version:
+      type: github
+      url: paperless-ngx/paperless-ngx
+      require:
+        docker:
+          type: ghcr
+          image: paperless-ngx/paperless-ngx
+          tag: '{{ version }}'
+    deployed_version:
+      type: url
+      url: http://paperlessngx.example.com/api/status/
+      json: pngx_version
+      headers:
+        - key: Authorization
+          value: Token ${PAPERLESS_NGX_API_KEY}
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/paperless-ngx.png
+      icon_link_to: https://papers.nanode.su
+      web_url: https://github.com/paperless-ngx/paperless-ngx/releases/tag/v{{ version }}
+```
+
 ## Plex Media Server
 Source: https://plex.tv
 
@@ -1141,6 +1278,31 @@ service:
       icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
 ```
 
+## qbittorrent/qBittorrent
+
+```yaml
+service:
+  qbittorrent/qBittorrent:
+    latest_version:
+      type: github
+      url: qbittorrent/qBittorrent
+      url_commands:
+        - type: regex
+          regex: release-([0-9.]+)
+      require:
+        docker:
+          type: hub
+          image: linuxserver/qbittorrent
+          tag: '{{ version }}-libtorrentv1'
+    deployed_version:
+      type: url
+      url: http://qbittorrent.example.com/api/v2/app/version
+      regex: v?([0-9.]+)
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/qbittorrent.png
+      web_url: https://github.com/qbittorrent/qBittorrent/releases/tag/release-{{ version }}
+```
+
 ## Radarr/Radarr
 Source: https://github.com/Radarr/Radarr
 
@@ -1258,6 +1420,34 @@ service:
     dashboard:
       web_url: https://github.com/requarks/wiki/releases/tag/v{{ version }}
       icon: https://static.requarks.io/logo/wikijs-butterfly.svg
+```
+
+## Mikrotik RouterOS
+
+Needs a service account to check `deployed_version`. Add a new user with readonly permissions, limit their access to the IP of the server, and specify the credentials in the `MIKROTIK_USER`/`MIKROTIK_PASSWORD` environment variables.
+
+```yaml
+service:
+  routeros:
+    options:
+      semantic_versioning: true
+    latest_version:
+      type: url
+      url: https://upgrade.mikrotik.com/routeros/NEWESTa7.stable
+      url_commands:
+        - type: regex
+          regex: ^([0-9]+\.[0-9.]+)
+    deployed_version:
+      type: url
+      url: http://192.168.1.1:8080/rest/system/resource
+      json: version
+      regex: "([0-9.]+)"
+      basic_auth:
+        username: ${MIKROTIK_USER}
+        password: ${MIKROTIK_PASSWORD}
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/mikrotik.png
+      web_url: https://mikrotik.com/download/changelogs?channelFilter=stable
 ```
 
 ## sct/overseerr
