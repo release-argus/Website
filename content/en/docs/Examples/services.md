@@ -718,7 +718,7 @@ service:
 
 ## immich-app/immich
 Source: https://github.com/immich-app/immich
-> deployed_version - Requires an `API_KEY` which can be retrieved at `Account Settings/API Keys`
+> deployed_version - Requires an `IMMICH_API_KEY` which can be retrieved at `Account Settings/API Keys`
 ```yaml
 service:
   immich-app/immich:
