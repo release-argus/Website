@@ -377,7 +377,7 @@ service:
       regex: 'Powered by Gitea\s+Version:\s+([0-9.]+) '
     dashboard:
       web_url: https://github.com/go-gitea/gitea/releases/v{{ version }}
-      icon: https://raw.githubusercontent.com/go-gitea/gitea/main/public/img/logo.png
+      icon: https://raw.githubusercontent.com/go-gitea/gitea/main/public/assets/img/logo.png
 ```
 
 ## go-vikunja/api
