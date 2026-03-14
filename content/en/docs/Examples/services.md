@@ -181,28 +181,6 @@ service:
       icon: https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/src/static/images/vaultwarden-icon.png
 ```
 
-## Freika/dawarich
-Source: https://github.com/Freika/dawarich
-```yaml
-service:
-  Freika/dawarich:
-    latest_version:
-      type: github
-      url: Freika/dawarich
-      require:
-        docker:
-          type: hub
-          image: freikin/dawarich
-          tag: '{{ version }}'
-    deployed_version:
-      type: url
-      url: http://dawarich.example.com/api/v1/health
-      target_header: x-dawarich-version
-    dashboard:
-      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/dawarich.png
-      web_url: https://github.com/Freika/dawarich/releases/tag/{{ version }}
-```
-
 ## dgtlmoon/changedetection.io
 Source: https://github.com/dgtlmoon/changedetection.io
 > You must use the API Key created: `Settings > API > API Access`
@@ -362,6 +340,28 @@ service:
     dashboard:
       icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/forgejo.png
       web_url: https://codeberg.org/forgejo/forgejo/releases/tag/v{{ version }}
+```
+
+## Freika/dawarich
+Source: https://github.com/Freika/dawarich
+```yaml
+service:
+  Freika/dawarich:
+    latest_version:
+      type: github
+      url: Freika/dawarich
+      require:
+        docker:
+          type: hub
+          image: freikin/dawarich
+          tag: '{{ version }}'
+    deployed_version:
+      type: url
+      url: http://dawarich.example.com/api/v1/health
+      target_header: x-dawarich-version
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/dawarich.png
+      web_url: https://github.com/Freika/dawarich/releases/tag/{{ version }}
 ```
 
 ## FreshRSS/FreshRSS
@@ -951,6 +951,34 @@ service:
       icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/mealie.png
 ```
 
+## Mikrotik RouterOS
+
+> Needs a service account to check `deployed_version`. Add a new user with readonly permissions, limit their access to the IP of the server, and specify the credentials in the `MIKROTIK_USER`/`MIKROTIK_PASSWORD` environment variables.
+
+```yaml
+service:
+  routeros:
+    options:
+      semantic_versioning: true
+    latest_version:
+      type: url
+      url: https://upgrade.mikrotik.com/routeros/NEWESTa7.stable
+      url_commands:
+        - type: regex
+          regex: ^([0-9]+\.[0-9.]+)
+    deployed_version:
+      type: url
+      url: http://192.168.1.1:8080/rest/system/resource
+      json: version
+      regex: "([0-9.]+)"
+      basic_auth:
+        username: ${MIKROTIK_USER}
+        password: ${MIKROTIK_PASSWORD}
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/mikrotik.png
+      web_url: https://mikrotik.com/download/changelogs?channelFilter=stable
+```
+
 ## moghtech/komodo
 Source: https://github.com/moghtech/komodo
 >`deployed_version` requires a token pair, `KOMODO_API_KEY` and `KOMODO_API_SECRET`. Add a service user with limited permissions and generate an API key for him.
@@ -1462,34 +1490,6 @@ service:
     dashboard:
       web_url: https://github.com/requarks/wiki/releases/tag/v{{ version }}
       icon: https://static.requarks.io/logo/wikijs-butterfly.svg
-```
-
-## Mikrotik RouterOS
-
-> Needs a service account to check `deployed_version`. Add a new user with readonly permissions, limit their access to the IP of the server, and specify the credentials in the `MIKROTIK_USER`/`MIKROTIK_PASSWORD` environment variables.
-
-```yaml
-service:
-  routeros:
-    options:
-      semantic_versioning: true
-    latest_version:
-      type: url
-      url: https://upgrade.mikrotik.com/routeros/NEWESTa7.stable
-      url_commands:
-        - type: regex
-          regex: ^([0-9]+\.[0-9.]+)
-    deployed_version:
-      type: url
-      url: http://192.168.1.1:8080/rest/system/resource
-      json: version
-      regex: "([0-9.]+)"
-      basic_auth:
-        username: ${MIKROTIK_USER}
-        password: ${MIKROTIK_PASSWORD}
-    dashboard:
-      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/mikrotik.png
-      web_url: https://mikrotik.com/download/changelogs?channelFilter=stable
 ```
 
 ## sct/overseerr
