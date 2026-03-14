@@ -1466,7 +1466,7 @@ service:
 
 ## Mikrotik RouterOS
 
-Needs a service account to check `deployed_version`. Add a new user with readonly permissions, limit their access to the IP of the server, and specify the credentials in the `MIKROTIK_USER`/`MIKROTIK_PASSWORD` environment variables.
+> Needs a service account to check `deployed_version`. Add a new user with readonly permissions, limit their access to the IP of the server, and specify the credentials in the `MIKROTIK_USER`/`MIKROTIK_PASSWORD` environment variables.
 
 ```yaml
 service:
