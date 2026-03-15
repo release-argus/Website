@@ -9,7 +9,8 @@ description: >
 ## AdguardTeam/AdGuardHome
 Source: https://github.com/AdguardTeam/AdGuardHome
 
-- deployed_version - Requires `USERNAME` and `PASSWORD` Basic Auth credentials created during the setup wizard on first launch unless you explicitly disabled it.
+> deployed_version - Requires `USERNAME` and `PASSWORD` Basic Auth credentials created during the setup wizard on first launch unless you explicitly disabled it.
+
 ```yaml
 service:
   AdguardTeam/AdGuardHome:
@@ -66,7 +67,7 @@ service:
       web_url: https://github.com/advplyr/audiobookshelf/releases/tag/v{{ version }}
 ```
 
-## aizhimou/pigeon-pod:
+## aizhimou/pigeon-pod
 Source: https://github.com/aizhimou/pigeon-pod
 ```yaml
 service:
@@ -134,20 +135,47 @@ service:
       icon: https://avatars.githubusercontent.com/u/30269780?s=200&v=4
 ```
 
+## bitmagnet-io/bitmagnet
+Source: https://github.com/bitmagnet-io/bitmagnet
+```yaml
+service:
+  bitmagnet-io/bitmagnet:
+    latest_version:
+      type: github
+      url: bitmagnet-io/bitmagnet
+      require:
+        docker:
+          type: ghcr
+          image: bitmagnet-io/bitmagnet
+          tag: 'v{{ version }}'
+    deployed_version:
+      type: url
+      url: https://bitmagnet.example.com/status
+      json: info.version
+      regex: "([0-9.]+)"
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/bitmagnet.png
+      web_url: https://github.com/bitmagnet-io/bitmagnet/releases/tag/v{{ version }}
+```
+
 ## dani-garcia/vaultwarden
 Source: https://github.com/dani-garcia/vaultwarden
-
-- deployed_version - Requires version `1.25.0` of Vaultwarden
-
+> deployed_version - Requires version `1.25.0` of Vaultwarden
 ```yaml
 service:
   dani-garcia/vaultwarden:
     latest_version:
       type: github
       url: dani-garcia/vaultwarden
+      require:
+        docker:
+          type: hub
+          image: vaultwarden/server
+          tag: '{{ version }}'
     deployed_version:
-      url: https://vaultwarden.example.io/api/version
-      regex: ([0-9.]+)
+      type: url
+      url: http://vaultwarden.example.com/api/version
+      regex: "([0-9.]+)"
     dashboard:
       web_url: https://github.com/dani-garcia/vaultwarden/releases/{{ version }}
       icon: https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/src/static/images/vaultwarden-icon.png
@@ -155,7 +183,7 @@ service:
 
 ## dgtlmoon/changedetection.io
 Source: https://github.com/dgtlmoon/changedetection.io
-- You must use the API Key created: `Settings > API > API Access`
+> You must use the API Key created: `Settings > API > API Access`
 ```yaml
 service:
   dgtlmoon/changedetection.io:
@@ -252,7 +280,7 @@ service:
 ## firefly-iii/firefly-iii
 Source: https://github.com/firefly-iii/firefly-iii
 
-To get the deployed_version you need a `Personal-Access-Token` from your Firefly III instance. ([instructions](https://docs.firefly-iii.org/how-to/firefly-iii/features/api/#personal-access-tokens))
+> To get the `deployed_version` you need a `Personal-Access-Token` from your Firefly III instance. ([instructions](https://docs.firefly-iii.org/how-to/firefly-iii/features/api/#personal-access-tokens))
 
 ```yaml
 service:
@@ -294,6 +322,48 @@ service:
       web_url: https://github.com/FlareSolverr/FlareSolverr/releases/tag/v{{ version }}
 ```
 
+## Forgejo
+Source: https://codeberg.org/forgejo
+```yaml
+service:
+  Forgejo:
+    latest_version:
+      type: url
+      url: https://code.forgejo.org/api/v1/repos/forgejo/forgejo/releases
+      url_commands:
+        - type: regex
+          regex: "['\"]tag_name['\"]: *['\"]v?([0-9.]+)['\"]"
+    deployed_version:
+      type: url
+      url: http://git.example.com
+      regex: Powered by Forgejo.*\s+Version:\s+([0-9.]+)
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/forgejo.png
+      web_url: https://codeberg.org/forgejo/forgejo/releases/tag/v{{ version }}
+```
+
+## Freika/dawarich
+Source: https://github.com/Freika/dawarich
+```yaml
+service:
+  Freika/dawarich:
+    latest_version:
+      type: github
+      url: Freika/dawarich
+      require:
+        docker:
+          type: hub
+          image: freikin/dawarich
+          tag: '{{ version }}'
+    deployed_version:
+      type: url
+      url: http://dawarich.example.com/api/v1/health
+      target_header: x-dawarich-version
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/dawarich.png
+      web_url: https://github.com/Freika/dawarich/releases/tag/{{ version }}
+```
+
 ## FreshRSS/FreshRSS
 Source: https://github.com/FreshRSS/FreshRSS
 ```yaml
@@ -314,9 +384,9 @@ service:
 ## gitlab-org/gitlab
 Source: https://gitlab.com/gitlab-org/gitlab
 
-- To get the latest version of the 'Enterprise Edition', change the `ce` to `ee` in the `url_commands` `regex`.
+ To get the latest version of the 'Enterprise Edition', change the `ce` to `ee` in the `url_commands` `regex`.
 
-- deployed_version - Requires an `Access_Token` from your GitLab instance. ([instructions](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#create-a-personal-access-token))
+> deployed_version - Requires an `Access_Token` from your GitLab instance. ([instructions](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#create-a-personal-access-token))
 
 ```yaml
 service:
@@ -380,30 +450,36 @@ service:
       icon: https://raw.githubusercontent.com/go-gitea/gitea/main/public/assets/img/logo.png
 ```
 
-## go-vikunja/api
-Source: https://github.com/go-vikunja/api
+## go-vikunja/vikunja
+Source: https://github.com/go-vikunja/vikunja
 ```yaml
 service:
-  go-vikunja/api:
+  go-vikunja/vikunja:
     latest_version:
-      type: url
-      url: https://github.com/go-vikunja/api/tags
+      type: github
+      url: go-vikunja/vikunja
       url_commands:
         - type: regex
-          regex: \/releases\/tag\/v?([0-9.]+)\"
+          regex: v([0-9.]+)
+      require:
+        docker:
+          type: hub
+          image: vikunja/vikunja
+          tag: '{{ version }}'
     deployed_version:
-      url: https://vikunja.example.io/api/v1/info
+      type: url
+      url: http://vikunja.example.com/api/v1/info
       json: version
       regex: v?([0-9.]+)
     dashboard:
-      web_url: https://github.com/go-vikunja/api/blob/main/CHANGELOG.md
+      web_url: https://github.com/go-vikunja/vikunja/releases/tag/v{{ version }}
       icon: https://vikunja.io/images/vikunja.png
 ```
 
 ## goauthentik/authentik
 Source: https://github.com/goauthentik/authentik
 
-- deployed_version - Requires an `API_Token` with API Access rights. (can be done at `Directory/Tokens & App password` / `/if/admin/#/core/tokens` as of '2022.4.1')
+> deployed_version - Requires an `API_Token` with API Access rights. (can be done at `Directory/Tokens & App password` / `/if/admin/#/core/tokens` as of '2022.4.1')
 ```yaml
 service:
   goauthentik/authentik:
@@ -413,6 +489,11 @@ service:
       url_commands:
         - type: regex
           regex: version\/([0-9.]+[0-9]+(?:-rc[0-9])?)
+      require:
+        docker:
+          type: ghcr
+          image: goauthentik/server
+          tag: '{{ version }}'
     deployed_version:
       url: https://authentik.example.io/api/v3/admin/version/
       headers:
@@ -618,7 +699,7 @@ service:
 ## home-assistant/core
 Source: https://github.com/home-assistant/core
 
-- deployed_version - `API_Token` obtained by navigating to  '/profile' and creating a 'Long-Lived Access Token'. ([instructions](https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token))
+> deployed_version - `API_Token` obtained by navigating to  '/profile' and creating a 'Long-Lived Access Token'. ([instructions](https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token))
 ```yaml
 service:
   home-assistant/core:
@@ -640,19 +721,25 @@ service:
 
 ## immich-app/immich
 Source: https://github.com/immich-app/immich
+> deployed_version - Requires an `IMMICH_API_KEY` which can be retrieved at `Account Settings/API Keys`
 ```yaml
 service:
   immich-app/immich:
     latest_version:
       type: github
       url: immich-app/immich
+      require:
+        docker:
+          type: ghcr
+          image: immich-app/immich-server
+          tag: 'v{{ version }}'
     deployed_version:
       url: https://immich.example.io/api/server/about
       json: version
       regex: ^v([0-9.]+)$
       headers:
         - key: x-api-key
-          value: <API_Token>
+          value: ${IMMICH_API_KEY}
     dashboard:
       icon: https://raw.githubusercontent.com/immich-app/immich/main/web/static/immich-logo.svg
       web_url: https://github.com/immich-app/immich/releases/tag/v{{ version }}
@@ -718,7 +805,7 @@ service:
 ## Lidarr/Lidarr
 Source: https://github.com/Lidarr/Lidarr
 
-- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+> deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
 ```yaml
 service:
   Lidarr/Lidarr:
@@ -742,6 +829,29 @@ service:
       web_url: https://github.com/Lidarr/Lidarr/releases/v{{ version }}
 ```
 
+## linkwarden/linkwarden
+Source: https://github.com/linkwarden/linkwarden
+```yaml
+service:
+  linkwarden/linkwarden:
+    latest_version:
+      type: github
+      url: linkwarden/linkwarden
+      require:
+        docker:
+          type: ghcr
+          image: linkwarden/linkwarden
+          tag: 'v{{ version }}'
+    deployed_version:
+      type: url
+      url: https://linkwarden.example.com/api/v1/config
+      json: response.INSTANCE_VERSION
+      regex: "([0-9.]+)"
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/linkwarden.png
+      web_url: https://github.com/linkwarden/linkwarden/releases/tag/v{{ version }}
+```
+
 ## louislam/uptime-kuma
 Source: https://github.com/louislam/uptime-kuma
 ```yaml
@@ -750,6 +860,11 @@ service:
     latest_version:
       type: github
       url: louislam/uptime-kuma
+      require:
+        docker:
+          type: hub
+          image: louislam/uptime-kuma
+          tag: '{{ version }}-slim'
     deployed_version:
       url: https://status.example.io/metrics
       regex: app_version{version=\"([0-9.]+)\",major=\"[0-9]+\",minor=\"[0-9]+\",patch=\"[0-9]+\"}
@@ -784,7 +899,7 @@ service:
 ## matomo-org/matomo
 Source: https://github.com/matomo-org/matomo
 
-- deployed_version - `TOKEN` can be generated in the personal settings under security. ([instructions](https://matomo.org/faq/general/faq_114/))
+> deployed_version - `TOKEN` can be generated in the personal settings under security. ([instructions](https://matomo.org/faq/general/faq_114/))
 ```yaml
 service:
   matomo-org/matomo:
@@ -836,10 +951,70 @@ service:
       icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/mealie.png
 ```
 
+## Mikrotik RouterOS
+
+> Needs a service account to check `deployed_version`. Add a new user with readonly permissions, limit their access to the IP of the server, and specify the credentials in the `MIKROTIK_USER`/`MIKROTIK_PASSWORD` environment variables.
+
+```yaml
+service:
+  routeros:
+    options:
+      semantic_versioning: true
+    latest_version:
+      type: url
+      url: https://upgrade.mikrotik.com/routeros/NEWESTa7.stable
+      url_commands:
+        - type: regex
+          regex: ^([0-9]+\.[0-9.]+)
+    deployed_version:
+      type: url
+      url: http://192.168.1.1:8080/rest/system/resource
+      json: version
+      regex: "([0-9.]+)"
+      basic_auth:
+        username: ${MIKROTIK_USER}
+        password: ${MIKROTIK_PASSWORD}
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/mikrotik.png
+      web_url: https://mikrotik.com/download/changelogs?channelFilter=stable
+```
+
+## moghtech/komodo
+Source: https://github.com/moghtech/komodo
+>`deployed_version` requires a token pair, `KOMODO_API_KEY` and `KOMODO_API_SECRET`. Add a service user with limited permissions and generate an API key for him.
+```yaml
+service:
+  moghtech/komodo:
+    latest_version:
+      type: github
+      url: moghtech/komodo
+      require:
+        docker:
+          type: ghcr
+          image: moghtech/komodo-core
+          tag: '{{ version }}'
+    deployed_version:
+      type: url
+      method: POST
+      url: http://komodo.example.com/read/GetVersion
+      body: "{}"
+      json: version
+      headers:
+        - key: x-api-key
+          value: ${KOMODO_API_KEY}
+        - key: x-api-secret
+          value: ${KOMODO_API_SECRET}
+        - key: Content-Type
+          value: application/json; charset=utf8
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/komodo.png
+      web_url: https://github.com/moghtech/komodo/releases/tag/v{{ version }}
+```
+
 ## morpheus65535/bazarr
 Source: https://github.com/morpheus65535/bazarr
 
-- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+> deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
 ```yaml
 service:
   morpheus65535/bazarr:
@@ -862,7 +1037,7 @@ service:
 
 ## n8n-io/n8n
 Source: https://github.com/n8n-io/n8n
-- If you deploy in docker, you must add this environment: `N8N_METRICS=true`
+> If you deploy in docker, you must add this environment: `N8N_METRICS=true`
 ```yaml
 service:
   n8n-io/n8n:
@@ -909,6 +1084,11 @@ service:
       url_commands:
         - type: regex
           regex: v([0-9.]+)$
+      require:
+        docker:
+          type: hub
+          image: nextcloud
+          tag: '{{ version }}-fpm-alpine'
     deployed_version:
       url: https://nextcloud.example.io/status.php
       json: versionstring
@@ -955,7 +1135,7 @@ service:
 ## opnsense/core
 Source: https://github.com/opnsense/core
 
-- deployed_version - Create an API Key. ([instructions](https://docs.opnsense.org/development/how-tos/api.html#creating-keys))
+> deployed_version - Create an API Key. ([instructions](https://docs.opnsense.org/development/how-tos/api.html#creating-keys))
 ```yaml
 service:
   opnsense/core:
@@ -979,7 +1159,7 @@ service:
 
 ## outline/outline
 Source: https://github.com/outline/outline
-- You must create a API Key: `Settings > API & Apps > + New API key...`
+> You must create a API Key: `Settings > API & Apps > + New API key...`
 ```yaml
 service:
   outline/outline:
@@ -1007,10 +1187,37 @@ service:
       icon: https://www.getoutline.com/images/logo.svg
 ```
 
+## paperless-ngx/paperless-ngx
+Source: https://github.com/paperless-ngx/paperless-ngx
+> deployed_version - Requires a `PAPERLESS_NGX_API_KEY`. Create a service user and generate a token in the profile. 
+```yaml
+service:
+  paperless-ngx/paperless-ngx:
+    latest_version:
+      type: github
+      url: paperless-ngx/paperless-ngx
+      require:
+        docker:
+          type: ghcr
+          image: paperless-ngx/paperless-ngx
+          tag: '{{ version }}'
+    deployed_version:
+      type: url
+      url: http://paperlessngx.example.com/api/status/
+      json: pngx_version
+      headers:
+        - key: Authorization
+          value: Token ${PAPERLESS_NGX_API_KEY}
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/paperless-ngx.png
+      icon_link_to: https://papers.nanode.su
+      web_url: https://github.com/paperless-ngx/paperless-ngx/releases/tag/v{{ version }}
+```
+
 ## Plex Media Server
 Source: https://plex.tv
 
-- deployed_version - Requires a `TOKEN`. Instructions to get one [here](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/).
+> deployed_version - Requires a `TOKEN`. Instructions to get one [here](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/).
 ```yaml
 service:
   Plex Media Server:
@@ -1077,7 +1284,7 @@ service:
 ## Prowlarr/Prowlarr
 Source: https://github.com/Prowlarr/Prowlarr
 
-- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+> deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
 ```yaml
 service:
   Prowlarr/Prowlarr:
@@ -1120,7 +1327,7 @@ service:
 ## pterodactyl/wings
 Source: https://github.com/pterodactyl/wings
 
-- deployed_version - Needs the node token which can be found in the admin GUI in the node configuration. ([instructions](https://dashflo.net/docs/api/pterodactyl/v1/#authentication))
+> deployed_version - Needs the node token which can be found in the admin GUI in the node configuration. ([instructions](https://dashflo.net/docs/api/pterodactyl/v1/#authentication))
 ```yaml
 service:
   pterodactyl/wings:
@@ -1141,10 +1348,35 @@ service:
       icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
 ```
 
+## qbittorrent/qBittorrent
+Source: https://github.com/linuxserver/docker-qbittorrent
+```yaml
+service:
+  qbittorrent/qBittorrent:
+    latest_version:
+      type: github
+      url: linuxserver/docker-qbittorrent
+      url_commands:
+        - type: regex
+          regex: ^([0-9.]+)-
+      require:
+        docker:
+          type: hub
+          image: linuxserver/qbittorrent
+          tag: '{{ version }}-libtorrentv1'
+    deployed_version:
+      type: url
+      url: http://qbittorrent.example.com/api/v2/app/version
+      regex: v?([0-9.]+)
+    dashboard:
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/qbittorrent.png
+      web_url: https://github.com/qbittorrent/qBittorrent/releases/tag/release-{{ version }}
+```
+
 ## Radarr/Radarr
 Source: https://github.com/Radarr/Radarr
 
-- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+> deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
 ```yaml
 service:
   Radarr/Radarr:
@@ -1170,7 +1402,7 @@ service:
 ## rancher/rancher
 Source: https://github.com/rancher/rancher
 
-- deployed_version - An API key must be created. This key is constructed in the format of `<username>:<password>`. ([instructions](https://rancher.com/docs/rancher/v2.5/en/user-settings/api-keys/#creating-an-api-key))
+> deployed_version - An API key must be created. This key is constructed in the format of `<username>:<password>`. ([instructions](https://rancher.com/docs/rancher/v2.5/en/user-settings/api-keys/#creating-an-api-key))
 ```yaml
 service:
   rancher/rancher:
@@ -1195,7 +1427,7 @@ service:
 ## Readarr/Readarr
 Source: https://github.com/Readarr/Readarr
 
-- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+> deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
 ```yaml
 service:
   Readarr/Readarr:
@@ -1302,7 +1534,7 @@ service:
 ## Sonarr/Sonarr
 Source: https://github.com/Sonarr/Sonarr
 
-- deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
+> deployed_version - Requires an `API_KEY` which can be retrieved at `Settings/General/Security/API Key`
 ```yaml
 service:
   Sonarr/Sonarr:
@@ -1328,7 +1560,7 @@ service:
 ## Tautulli/Tautulli
 Source: https://github.com/Tautulli/Tautulli
 
-- deployed_version - Requires `API_KEY` on the url, you can get it at `Settings/Web Interface/API`.
+> deployed_version - Requires `API_KEY` on the url, you can get it at `Settings/Web Interface/API`.
 ```yaml
 service:
   Tautulli/Tautulli:
