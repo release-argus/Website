@@ -1337,6 +1337,32 @@ service:
       icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/svg/proxmox.svg
 ```
 
+## proxmox/proxmox-virtual-environment
+Source: https://git.proxmox.com/?p=pve-manager.git;a=summary
+
+> deployed_version - Requires an `API Token` (`/version` is accessible by all authenticated users).
+```yaml
+service:
+  proxmox/pve2:
+    latest_version:
+      type: url
+      url: https://git.proxmox.com/?p=pve-manager.git;a=blob_plain;f=debian/changelog;hb=refs/heads/master
+      url_commands:
+        - type: regex
+          regex: '^pve-manager \(([^)]+)\)'
+          index: 0
+    deployed_version:
+      url: https://pve.example.com:8006/api2/json/version
+      allow_invalid_certs: true
+      headers:
+        - key: Authorization
+          value: PVEAPIToken=<User>!<Token Name>=<Token Secret>
+      json: data.version
+    dashboard:
+      web_url: https://pve.proxmox.com/wiki/Roadmap
+      icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/svg/proxmox.svg
+```
+
 ## pterodactyl/panel
 Source: https://github.com/pterodactyl/panel
 ```yaml
