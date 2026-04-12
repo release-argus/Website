@@ -1308,6 +1308,35 @@ service:
       icon: https://avatars.githubusercontent.com/u/73049443?s=200&v=4
 ```
 
+## proxmox/proxmox-backup-server
+Source: https://git.proxmox.com/?p=proxmox-backup.git;a=summary
+
+> deployed_version - Requires an `API Token` with `Audit` (Privilege `Sys.Audit` required) role on `/`.
+```yaml
+service:
+  proxmox/proxmox-backup-server:
+    options:
+      semantic_versioning: false
+    latest_version:
+      type: url
+      url: https://git.proxmox.com/?p=proxmox-backup.git;a=blob_plain;f=debian/changelog;hb=refs/heads/master
+      url_commands:
+        - type: regex
+          regex: '^rust-proxmox-backup \(([^)]+)\)'
+          index: 0
+    deployed_version:
+      url: https://pbs.example.com:8007/api2/json/nodes/<node>/apt/versions
+      allow_invalid_certs: true
+      headers:
+        - key: Authorization
+          value: PBSAPIToken=<User>!<Token Name>:<Token Secret>
+      regex: 'OldVersion":"([^"]+)"[^}]+?"Package":"proxmox-backup-server'
+      regex_template: '$1'
+    dashboard:
+      web_url: https://pbs.proxmox.com/wiki/Roadmap
+      icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/svg/proxmox.svg
+```
+
 ## pterodactyl/panel
 Source: https://github.com/pterodactyl/panel
 ```yaml
