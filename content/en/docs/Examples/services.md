@@ -1403,6 +1403,26 @@ service:
       icon: https://raw.githubusercontent.com/pterodactyl/panel/develop/public/assets/svgs/pterodactyl.svg
 ```
 
+## quay/quay
+Source: https://github.com/quay/quay
+```yaml
+service:
+  quay/quay:
+    latest_version:
+      type: github
+      url: quay/quay
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      url: https://quay.example.com/config
+      json: version_number
+      regex: Quay v([0-9.]+)
+    dashboard:
+      icon: https://github.com/quay/quay/raw/master/static/img/quay-icon-stripe.png
+      web_url: https://github.com/quay/quay/releases/tag/v{{ version }}
+```
+
 ## qbittorrent/qBittorrent
 Source: https://github.com/linuxserver/docker-qbittorrent
 ```yaml
