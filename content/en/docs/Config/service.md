@@ -347,7 +347,7 @@ The following is how you'd define a deployment to manually track the version of.
 service:
   example:
     ...
-    latest_version:
+    deployed_version:
       type: manual
       version: "1.2.3"  # Optional version to apply on startup (removed from the YAML on next save)
 ```
