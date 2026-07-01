@@ -91,7 +91,7 @@ service:
 Source to query for the latest version, `github` or `url`.
 
 {{< alert title="Note" >}}
-Environment variables in the format '${ENV_VAR}' can be used in the `url`, `access_token`, `require.docker.token` and `require.docker.username` fields.
+Environment variables in the format '${ENV_VAR}' can be used in the `url`, `access_token`, `require.docker.auth.token` and `require.docker.auth.username` fields.
 {{< /alert >}}
 
 {{< tabpane text=true right=true >}}
@@ -264,8 +264,9 @@ latest_version:
       type: hub
       image: OWNER/REPO
       tag: '{{ version }}'
-      username: USERNAME
-      token: dckr_pat_TOKEN
+      auth:
+        username: USERNAME
+        token: dckr_pat_TOKEN
 ```
   {{% /tab %}}
   {{% tab header="ghcr" %}}
@@ -278,7 +279,8 @@ latest_version:
       type: ghcr
       image: OWNER/REPO
       tag: '{{ version }}'
-      token: ghp_TOKEN
+      auth:
+        token: ghp_TOKEN
 ```
   {{% /tab %}}
   {{% tab header="quay" %}}
@@ -291,7 +293,8 @@ latest_version:
       type: quay
       image: OWNER/REPO
       tag: '{{ version }}'
-      token: v5ACkd33ynxq52dEFd9t3m943w59c2phzz37mrFx
+      auth:
+        token: v5ACkd33ynxq52dEFd9t3m943w59c2phzz37mrFx
 ```
   {{% /tab %}}
 {{% /tabpane %}}

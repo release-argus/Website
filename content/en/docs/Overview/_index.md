@@ -25,6 +25,7 @@ aliases:
   - Join
   - Mattermost
   - Matrix
+  - Notifiarr
   - Ntfy
   - OpsGenie
   - Pushbullet
