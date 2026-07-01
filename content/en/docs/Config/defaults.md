@@ -47,6 +47,7 @@ defaults:
 
 {{< alert title="Note" >}}
 Docker registry defaults are **auth-only**: each registry under `registry.*` only carries authentication (`auth.token`, and `auth.username` for Docker Hub). The `image` of a `require.docker` is never inherited from defaults — only `type` and `tag` can be defaulted.
+{{< /alert >}}
 
 #### **notify** portion
 Defaults can be defined for each `notify` type. Details about the vars for each type can be found [here](/docs/config/notify).
