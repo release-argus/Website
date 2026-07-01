@@ -18,15 +18,35 @@ defaults:
       interval: 10m              # How often to query for new releases
       semantic_versioning: true  # Whether to enforce semantic versioning (required to not alert on new patches for old versions)
     latest_version:
+      type: github                # Default lookup type for new services (github/url)
       access_token: ''            # GitHub access token to increase your rate-limit and/or access private repos
                                   # https://github.com/settings/tokens - w/ repo.public_repo/repo for public/private
       allow_invalid_certs: false  # Whether invalid HTTPS certs are allowed in queries
       use_prerelease: false       # Whether 'prerelease' GitHub tags can be used
+      require:
+        docker:
+          type: hub                # Default registry to use (ghcr/hub/quay)
+          tag: '{{ version }}'     # Default tag template (note: `image` cannot be defaulted)
+          registry:                # Per-registry auth defaults
+            ghcr:
+              auth:
+                token: ghp_TOKEN
+            hub:
+              auth:
+                username: USERNAME
+                token: dckr_pat_TOKEN
+            quay:
+              auth:
+                token: TOKEN
     deployed_version:             # Get the `current_version` from a deployed service
+      type: url                   # Default lookup type for new services (url/manual)
       allow_invalid_certs: false  # Accept invalid HTTPS certs/not
     dashboard:
       auto_approve: false  # Whether approval is required on the web UI for sending the new release WebHooks
 ```
+
+{{< alert title="Note" >}}
+Docker registry defaults are **auth-only**: each registry under `registry.*` only carries authentication (`auth.token`, and `auth.username` for Docker Hub). The `image` of a `require.docker` is never inherited from defaults — only `type` and `tag` can be defaulted.
 
 #### **notify** portion
 Defaults can be defined for each `notify` type. Details about the vars for each type can be found [here](/docs/config/notify).
@@ -44,6 +64,7 @@ defaults:
     join:
     mattermost:
     matrix:
+    notifiarr:
     ntfy:
     opsgenie:
     pushbullet:

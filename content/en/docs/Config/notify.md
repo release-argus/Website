@@ -6,7 +6,7 @@ description: >
   Configure global notifiers that can be used by any Service.
 ---
 
-We are running [Shoutrrr 0.8](https://containrrr.dev/shoutrrr/v0.8/services/overview/), which supports sending notifications to the services listed below.
+We are running [Shoutrrr 0.16](https://shoutrrr.nickfedor.com/v0.16.1/services/overview/), which supports sending notifications to the services listed below.
 
 The 'URL Fields' go under `url_fields` and 'Query/Param Props' go under `params`.
 
@@ -68,7 +68,7 @@ For further guidance and other helpful examples on the templating used, start by
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
   {{% tab header="bark" %}}
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/bark/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/bark/)
 
 ```yaml
 notify:
@@ -94,7 +94,7 @@ notify:
   {{% tab header="discord" %}}
 - As of writing, Discord Webhooks are in the format of `https://discord.com/api/webhooks/WEBHOOK_ID/TOKEN` (`<Server Settings> - <Integrations> - <Webhooks>`)
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/discord/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/discord/)
 
 ```yaml
 notify:
@@ -115,7 +115,7 @@ notify:
 #     ColorWarn: 0xffc441  # The color of the left border for warning messages
 #     JSON: no             # Whether to send the whole message as the JSON payload instead of using it as the 'content' field
 #     SplitLines: yes      # Whether to send each line as a separate embedded item
-#     ThreadID: ''         # The thread ID to send the message to
+#     Thread_ID: ''        # The thread ID to send the message to
 #     Title: Release       # Notification title
 #     Username: Argus      # Override the webhook default username
 
@@ -125,7 +125,7 @@ notify:
   {{% tab header="smtp" %}}
 - email notifications
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/email/smtp/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/email/smtp/)
 
 ```yaml
 notify:
@@ -155,7 +155,7 @@ notify:
   {{% tab header="googlechat" %}}
 - Example Google Chat incoming Webhook URL `https://chat.googleapis.com/v1/spaces/ FOO /messages?key= bar &token= baz`
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/googlechat/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/googlechat/)
 
 ```yaml
 notify:
@@ -170,7 +170,7 @@ notify:
   {{% tab header="gotify" %}}
 - Create an application on the Gotify Web UI, and use that URL with the token for the application you make.
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/gotify/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/gotify/)
 
 ```yaml
 notify:
@@ -185,7 +185,7 @@ notify:
       Token: TOKEN
 #   params:
 #     Extras: ''
-#     Date: ''
+#     Date: ''                # Custom timestamp in ISO 8601 format (e.g. 2006-01-02T15:04:05Z)
 #     DisableTLS: no          # Disable TLS certificate verification
 #     InsecureSkipVerify:: no # Whether to skip TLS certificate verification
 #     Priority: 0
@@ -194,7 +194,7 @@ notify:
 ```
   {{% /tab %}}
   {{% tab header="ifttt" %}}
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/ifttt/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/ifttt/)
 
 ```yaml
 notify:
@@ -207,8 +207,8 @@ notify:
     params:
       Events: event1,event2,...
 #     Title: Argus              # Notification title
-#     UseMessageAsValue: 2      # Sets the corresponding value field to the notification message
-#     UseTitleAsValue: 0        # Sets the corresponding value field to the notification title
+#     MessageValue: 2           # Value field (1-3) to set to the notification message
+#     TitleValue: 0             # Value field (0-3) to set to the notification title (0 = None)
 #     Value1: ''
 #     Value2: ''
 #     Value3: ''
@@ -221,7 +221,7 @@ notify:
 - Your `deviceId` is shown in the top
 - Click **Show** next to `API Key` to see your key
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/join/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/join/)
 
 ```yaml
 notify:
@@ -243,7 +243,7 @@ notify:
 
 Example Mattermost Webhook - `https://mattermost.example.io/hooks/TOKEN`
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/mattermost/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/mattermost/)
 
 ```yaml
 notify:
@@ -262,10 +262,11 @@ notify:
 #     DisableTLS: no # Disable TLS certificate verification
 #     Icon: https://release-argus.io/favicons/android-chrome-512x512.png
 #                    # Use emoji or URL as icon (based on presence of http(s):// prefix)
+#     Title: Argus   # Notification title
 ```
   {{% /tab %}}
   {{% tab header="matrix" %}}
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/matrix/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/matrix/)
 
 ```yaml
 notify:
@@ -284,8 +285,31 @@ notify:
 #     Title: Argus            # Notification title
 ```
   {{% /tab %}}
+  {{% tab header="notifiarr" %}}
+- Get your API key from your [Notifiarr account](https://notifiarr.com/) settings page.
+
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/notifiarr/)
+
+```yaml
+notify:
+  ...
+  # as many of these (below) as you like, just ensure they have unique ID's.
+  EXAMPLE_NOTIFY:
+    type: notifiarr
+    url_fields:
+      APIKey: API_KEY
+#   params:
+#     Name: Argus                              # App/script name shown in the notification
+#     Channel: '123456789'                     # Discord channel ID for the notification
+#     Thumbnail: https://example.com/thumb.png # Thumbnail URL for the embed
+#     Image: https://example.com/image.png     # Image URL for the embed
+#     Color: 50D9ff                            # Color for the embed
+```
+  {{% /tab %}}
+```
+  {{% /tab %}}
   {{% tab header="ntfy" %}}
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/ntfy/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/ntfy/)
 
 ```yaml
 notify:
@@ -304,7 +328,7 @@ notify:
 #     Attach: https://example.com        # URL of an attachment
 #     Cache: yes                         # Cache messages
 #     Click: https://example.com         # Website opened when notification is clicked
-#     DisableTLS: no                     # Disable TLS certificate verification
+#     DisableTLSVerification: no         # Disable TLS certificate verification
 #     Email: name@example                # Email address for email notifications
 #     Filename: ''                       # Filename for attachment
 #     Firebase: yes                      # Send to Firebase
@@ -318,7 +342,7 @@ notify:
   {{% tab header="opsgenie" %}}
 Go to `<Settings> - <Integration List> - <API>`
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/incident/opsgenie/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/incident/opsgenie/)
 
 ```yaml
 notify:
@@ -355,7 +379,7 @@ notify:
 - Get your `token` by creating an **Access Token** at https://www.pushbullet.com/#settings/account
 - Get your `targets` by going to https://www.pushbullet.com/#devices. Click on the device on the left pane and the URL should change to https://www.pushbullet.com/#devices/\<TARGET\>
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/pushbullet/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/pushbullet/)
 
 ```yaml
 notify:
@@ -377,7 +401,7 @@ You can also make an Application specific for Argus by clicking 'Create an Appli
 
 In the device list, the Name column is the field used to refer to your devices
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/push/pushover/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/pushover/)
 
 ```yaml
 notify:
@@ -397,7 +421,7 @@ notify:
   {{% tab header="rocketchat" %}}
 Example URL `username@host:port/TOKEN_A/TOKEN_B/CHANNEL`
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/rocketchat/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/rocketchat/)
 
 ```yaml
 notify:
@@ -413,6 +437,19 @@ notify:
       TokenA: TOKEN_A
       TokenB: TOKEN_B
       Channel: CHANNEL
+```
+  {{% /tab %}}
+  {{% tab header="shoutrrr" %}}
+Pass a raw [Shoutrrr URL](https://shoutrrr.nickfedor.com/v0.16.1/services/overview/) through directly. Use this for any service that doesn't have its own tab above, or when you'd rather build the URL yourself.
+
+```yaml
+notify:
+  ...
+  # as many of these (below) as you like, just ensure they have unique ID's.
+  EXAMPLE_NOTIFY:
+    type: shoutrrr
+    url_fields:
+      Raw: 'slack://TOKEN@CHANNEL'  # The full Shoutrrr URL to send to
 ```
   {{% /tab %}}
   {{% tab header="slack" %}}
@@ -432,7 +469,7 @@ To use Webhooks:
 - e.g. https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
 - becomes 'hook:T00000000-B00000000-XXXXXXXXXXXXXXXXXXXXXXXX
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/slack/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/slack/)
 
 ```yaml
 notify:
@@ -452,11 +489,13 @@ notify:
 ```
   {{% /tab %}}
   {{% tab header="teams" %}}
-- Create an 'Incoming Webhook' following '[Microsoft's docs](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook#create-an-incoming-webhook-1)'.
+- Microsoft retired Office 365 Connectors, so Teams notifications now use a **Power Automate workflow**. Create a 'Post to a channel when a webhook request is received' workflow following '[Microsoft's docs](https://support.microsoft.com/en-US/teams/apps-service/create-incoming-webhooks-with-workflows-for-microsoft-teams)' and copy the workflow's HTTP POST URL.
 
-Example URL `https://<organization>.webhook.office.com/webhookb2/<Group>@<Tenant>/IncomingWebhook/<AltId>/<GroupOwner>`
+{{< alert title="Note" >}}
+The old Office 365 Connector format (`Group`/`Tenant`/`AltID`/`GroupOwner` url_fields) will still pass validation, but will fail at send time. Migrate to the Power Automate workflow URL below.
+{{< /alert >}}
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/teams/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/teams/)
 
 ```yaml
 notify:
@@ -464,16 +503,11 @@ notify:
   # as many of these (below) as you like, just ensure they have unique ID's.
   EXAMPLE_NOTIFY:
     type: teams
-    url_fields:
-      Group: aaaaaaaa-1234-1234-1234-123412341234
-      Tenant: bbbbbbbb-1234-1234-1234-123412341234
-      AltID: 65f57823a6027db4bb71d156899ea2a6
-      GroupOwner: cccccccc-1234-1234-1234-123412341234
-      ExtraID: ''
     params:
-#     Color: ''
-      Host: example.webhook.office.com
-#     Title: ''
+      Host: 'https://prod-00.westus.logic.azure.com:443/workflows/.../triggers/manual/paths/invoke?...'
+                    # The full Power Automate workflow POST URL
+#     Color: 00ff00 # Message theme color (hex)
+#     Title: Argus  # Notification title
 ```
   {{% /tab %}}
   {{% tab header="telegram" %}}
@@ -483,7 +517,7 @@ notify:
     - `chat_id` is required for private channels/group chats/private chats. To get the ID, you can forward a message (from the target chat) to [@UserInfoBot](https://t.me/userinfobot) or [@JsonDumpBot](https://t.me/jsondumpbot) and view it at `Id` and `message.forward_from_chat.id` from those bots respectively.
     - (The above bots are created and hosted by [@nadam](https://github.com/nadam) and their sources are available to view at [nadam/userinfobot](https://github.com/nadam/userinfobot) and [nadam/jsondumpbot](https://github.com/nadam/jsondumpbot))
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/telegram/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/telegram/)
 
 ```yaml
 notify:
@@ -504,7 +538,7 @@ notify:
   {{% tab header="zulip" %}}
 Zulip Chat
 
-[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.13.1/services/chat/zulip/)
+[Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/zulip/)
 
 ```yaml
 notify:
@@ -517,8 +551,12 @@ notify:
       BotKey: BOT_KEY
       Host: zulip.example.io
 #   params:
-#     Stream: 'mystream'
-#     Topic: 'Argus'
+#     Stream: mystream     # Stream to send the message to
+#     Topic: Argus         # Topic within the stream
+#     Type: stream         # Message type - stream/direct
+#     To: user1@x.com,123  # Comma-separated user IDs or emails for direct messages (Type: direct)
+#     Title: Argus         # Notification title
+#     Read_By_Sender: no   # Mark the message as read by the sending bot
 ```
   {{% /tab %}}
 {{% /tabpane %}}
