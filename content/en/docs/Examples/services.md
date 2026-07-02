@@ -50,7 +50,7 @@ service:
 ## advplyr/audiobookshelf
 Source: https://github.com/advplyr/audiobookshelf
 ```yaml
-service:  
+service:
   advplyr/audiobookshelf:
     latest_version:
       type: github
@@ -618,6 +618,30 @@ service:
       icon: https://grafana.com/static/assets/img/blog/loki.png
 ```
 
+## gravitational/teleport
+Source: https://github.com/gravitational/teleport
+
+> Teleport's GitHub tags are `v`-prefixed (e.g. `v18.9.2`) but the ECR Public Gallery tags are not, so a `url_command` strips the `v` before the `require.docker` check.
+
+```yaml
+service:
+  gravitational/teleport:
+    latest_version:
+      type: github
+      url: gravitational/teleport
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+      require:
+        docker:
+          type: ecr
+          image: gravitational/teleport-distroless
+          tag: '{{ version }}'
+    dashboard:
+      web_url: https://github.com/gravitational/teleport/releases/tag/v{{ version }}
+      icon: https://github.com/gravitational/teleport/blob/master/web/packages/teleport/public/app/favicon-light.png?raw=true
+```
+
 ## hashicorp/vault
 Source: https://github.com/hashicorp/vault
 ```yaml
@@ -942,7 +966,7 @@ service:
       url: mealie-recipes/mealie
       url_commands:
         - type: regex
-          regex: ^v?([0-9.]+)$ 
+          regex: ^v?([0-9.]+)$
     deployed_version:
       url: https://example.com/api/app/about
       regex: version":\s*"v?(\d+\.\d+\.\d+)
@@ -1208,7 +1232,7 @@ service:
 
 ## paperless-ngx/paperless-ngx
 Source: https://github.com/paperless-ngx/paperless-ngx
-> deployed_version - Requires a `PAPERLESS_NGX_API_KEY`. Create a service user and generate a token in the profile. 
+> deployed_version - Requires a `PAPERLESS_NGX_API_KEY`. Create a service user and generate a token in the profile.
 ```yaml
 service:
   paperless-ngx/paperless-ngx:

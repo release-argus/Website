@@ -25,7 +25,7 @@ defaults:
       use_prerelease: false       # Whether 'prerelease' GitHub tags can be used
       require:
         docker:
-          type: hub                # Default registry to use (ghcr/hub/quay)
+          type: hub                # Default registry to use (ecr/ghcr/hub/quay)
           tag: '{{ version }}'     # Default tag template (note: `image` cannot be defaulted)
           registry:                # Per-registry auth defaults
             ghcr:
@@ -47,6 +47,8 @@ defaults:
 
 {{< alert title="Note" >}}
 Docker registry defaults are **auth-only**: each registry under `registry.*` only carries authentication (`auth.token`, and `auth.username` for Docker Hub). The `image` of a `require.docker` is never inherited from defaults — only `type` and `tag` can be defaulted.
+
+The Amazon ECR Public Gallery (`ecr`) uses anonymous auth, so it has no `registry.ecr` entry - but it can still be set as the default `type`.
 {{< /alert >}}
 
 #### **notify** portion
