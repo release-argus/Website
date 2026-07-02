@@ -31,7 +31,7 @@ service:
         regex_version: ^[0-9.]+[0-9]$                           # Version must match this RegEx
         command: ["bash", "check_version.sh", "{{ version }}"]  # Require this command to exit successfully
         docker:                                                 # Require this docker image:tag
-          type: hub                   # Docker registry (ghcr/hub/quay)
+          type: hub                   # Docker registry (ecr/ghcr/hub/quay)
           image: releaseargus/argus   # Docker image
           tag: '{{ version }}'        # Tag to look for
           username: USERNAME          # Username
@@ -122,7 +122,7 @@ service:
                                                       # version assets `name` and `browser_download_url`
         regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
         docker:                  # Require a docker image:tag for this version to be considered valid
-          type: hub              # Docker registry (ghcr/hub/quay)
+          type: hub              # Docker registry (ecr/ghcr/hub/quay)
           image: OWNER/REPO      # Docker image
           tag: '{{ version }}'   # Tag to look for
           username: USERNAME     # Username
@@ -249,24 +249,20 @@ latest_version:
 
 ##### docker
 
-To require a docker tag to exist before a version is considered valid, provide a `require.docker`. Tags of images on Docker Hub, GHCR and Quay can be checked.
+To require a docker tag to exist before a version is considered valid, provide a `require.docker`. Tags of images on the [Amazon ECR Public Gallery](https://gallery.ecr.aws/, [Docker Hub](https://hub.docker.com/), GHCR, and [Quay](https://quay.io/) can be checked.
 
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
-  {{% tab header="hub" %}}
-The Docker Hub API allows access to public repos without auth up to a [rate-limit](https://docs.docker.com/docker-hub/download-rate-limit/). If you want to query more frequently, or need access to private repos, you'll need to provide a username and token. A token can be optioned by going to settings->[security](https://hub.docker.com/settings/security) and creating a new access token.
-
+  {{% tab header="ecr" %}}
+The [Amazon ECR Public Gallery](https://gallery.ecr.aws/) is queried anonymously — no authentication is required or supported, so there is no `auth` block. The `image` is the gallery `namespace/repository` (e.g. `gravitational/teleport-distroless`).
 ```yaml
 latest_version:
   ...
   require:
     docker:
-      type: hub
-      image: OWNER/REPO
+      type: ecr
+      image: NAMESPACE/REPO
       tag: '{{ version }}'
-      auth:
-        username: USERNAME
-        token: dckr_pat_TOKEN
 ```
   {{% /tab %}}
   {{% tab header="ghcr" %}}
@@ -283,8 +279,24 @@ latest_version:
         token: ghp_TOKEN
 ```
   {{% /tab %}}
+  {{% tab header="hub" %}}
+The [Docker Hub](https://hub.docker.com/) API allows access to public repos without auth up to a [rate-limit](https://docs.docker.com/docker-hub/download-rate-limit/). If you want to query more frequently, or need access to private repos, you'll need to provide a username and token. A token can be optioned by going to settings->[security](https://hub.docker.com/settings/security) and creating a new access token.
+
+```yaml
+latest_version:
+  ...
+  require:
+    docker:
+      type: hub
+      image: OWNER/REPO
+      tag: '{{ version }}'
+      auth:
+        username: USERNAME
+        token: dckr_pat_TOKEN
+```
+  {{% /tab %}}
   {{% tab header="quay" %}}
-The Quay API allows access to public repos without auth up to a rate-limit. If you want access to private repos, you'll need to provide a token. A token can be optioned by [creating an Organization](https://quay.io/organizations/new/), going to its Applications and creating a new application. Go into that app and 'Generate Token'.
+The [Quay](https://quay.io/) API allows access to public repos without auth up to a rate-limit. If you want access to private repos, you'll need to provide a token. A token can be optioned by [creating an Organization](https://quay.io/organizations/new/), going to its Applications and creating a new application. Go into that app and 'Generate Token'.
 ```yaml
 latest_version:
   ...
