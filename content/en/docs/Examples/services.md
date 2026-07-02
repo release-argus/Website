@@ -1097,6 +1097,25 @@ service:
       icon: https://github.com/nextcloud/server/raw/master/core/img/favicon.png
 ```
 
+## NginxProxyManager/nginx-proxy-manager
+Source: https://github.com/NginxProxyManager/nginx-proxy-manager
+```yaml
+service:
+  NginxProxyManager/nginx-proxy-manager:
+    latest_version:
+      type: github
+      url: NginxProxyManager/nginx-proxy-manager
+      url_commands:
+        - type: regex
+          regex: v?([0-9.]+)$
+    deployed_version:
+      url: http://npm.example.com:81/api/version/check
+      regex: '"current"\s*:\s*"v?([0-9.]+)"'
+    dashboard:
+      icon: https://raw.githubusercontent.com/NginxProxyManager/nginx-proxy-manager/develop/docs/src/public/icon.png
+      web_url: https://github.com/NginxProxyManager/nginx-proxy-manager/releases/tag/v{{ version }}
+```
+
 ## OliveTin/OliveTin
 Source: https://github.com/OliveTin/OliveTin
 ```yaml
