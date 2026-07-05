@@ -20,6 +20,8 @@ settings:
     timestamps: false # Log with timestamps
   data:
     database_file: data/argus.db # SQLite DB file used to track the state of services
+    readonly: false              # Disable writes to the config.yml
+                                 # (create/edit/delete on the UI will not persist restarts)
   web:
     listen_host: 0.0.0.0  # IP address to listen on
     listen_port: 8080     # Port to listen on
