@@ -18,26 +18,29 @@ defaults:
       interval: 10m              # How often to query for new releases
       semantic_versioning: true  # Whether to enforce semantic versioning (required to not alert on new patches for old versions)
     latest_version:
-      type: github                # Default lookup type for new services (github/url)
-      access_token: ''            # GitHub access token to increase your rate-limit and/or access private repos
-                                  # https://github.com/settings/tokens - w/ repo.public_repo/repo for public/private
-      allow_invalid_certs: false  # Whether invalid HTTPS certs are allowed in queries
-      use_prerelease: false       # Whether 'prerelease' GitHub tags can be used
-      require:
-        docker:
-          type: hub                # Default registry to use (ecr/ghcr/hub/quay)
-          tag: '{{ version }}'     # Default tag template (note: `image` cannot be defaulted)
-          registry:                # Per-registry auth defaults
-            ghcr:
-              auth:
-                token: ghp_TOKEN
-            hub:
-              auth:
-                username: USERNAME
-                token: dckr_pat_TOKEN
-            quay:
-              auth:
-                token: TOKEN
+      type: github  # Default lookup type for new services (github/url)
+      common:
+        require:
+          docker:
+            type: hub                # Default registry to use (ecr/ghcr/hub/quay)
+            tag: '{{ version }}'     # Default tag template (note: `image` cannot be defaulted)
+            registry:                # Per-registry auth defaults
+              ghcr:
+                auth:
+                  token: ghp_TOKEN
+              hub:
+                auth:
+                  username: USERNAME
+                  token: dckr_pat_TOKEN
+              quay:
+                auth:
+                  token: TOKEN
+      github:
+        access_token: ''       # Access token to increase your rate-limit and/or access private repos
+                               # https://github.com/settings/tokens - w/ repo.public_repo/repo for public/private
+        use_prerelease: false  # Whether 'prerelease' GitHub tags can be used
+      url:
+        allow_invalid_certs: false  # Whether invalid HTTPS certs are allowed in queries
     deployed_version:             # Get the `current_version` from a deployed service
       type: url                   # Default lookup type for new services (url/manual)
       allow_invalid_certs: false  # Accept invalid HTTPS certs/not
