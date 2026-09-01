@@ -1,6 +1,15 @@
 {
   "name": "Website",
+  "private": true,
   "workspaces": [
     "packages/hugoautogen"
-  ]
+  ],
+  "scripts": {
+    "build": "hugo --gc --minify",
+    "serve": "hugo server",
+    "update:hugoautogen": "hugo mod npm pack && npm pkg set 'name=\"@release-argus/hugoautogen\"' private=true --json --prefix packages/hugoautogen && npm install"
+  },
+  "devDependencies": {
+    "sass-embedded": "1.103.1"
+  }
 }

@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "@fortawesome/fontawesome-free": "6.7.2",
+    "@fortawesome/fontawesome-free": "7.3.1",
     "bootstrap": "5.3.8"
   },
-  "devDependencies": {},
-  "name": "WebsiteMigration142",
-  "version": "0.1.0"
+  "name": "@release-argus/hugoautogen",
+  "version": "0.1.0",
+  "private": true
 }
