@@ -9,6 +9,10 @@ description: >
 ### Using vars
 To use one of the vars available to you, enclose it in double curly brackets, e.g. to use the `version` var, you must use `{{ version }}`
 
+{{< alert title="Note" >}}
+Templates are rendered in-memory only. Tags that pull in another template from disk (`{% include %}`, `{% extends %}`, `{% ssi %}`) are refused, so a template can never read local files.
+{{< /alert >}}
+
 
 ### Basic changelog through web_url
 Changelogs sometimes include some variation of the version, or the full version in. If the changelog for the release of version `1.2.3` of `example` is hosted at `https://example.com/changelog/1.2.3`, you could use a web_url of `https://example.com/changelog/{{ version }}` to direct to that changelog.

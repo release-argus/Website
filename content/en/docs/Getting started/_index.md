@@ -92,6 +92,12 @@ docker-compose up -d
 ```
 
 {{< alert title="Note" >}}
+The image's built-in `config.yml` leaves [authentication](/docs/config/settings/#auth) off, so a
+container started without a mounted config is open to anyone who can reach the port. Set
+`settings.auth.enabled: true` in the `config.yml` you mount to require a login.
+{{< /alert >}}
+
+{{< alert title="Note" >}}
 If you override the `-config.file` and/or the `-data.database-file` locations, ensure that they are read/writable by the `ARGUS_UID` (default=`911`)
 {{< /alert >}}
 
