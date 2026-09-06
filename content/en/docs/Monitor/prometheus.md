@@ -36,4 +36,6 @@ Additional to the default Prometheus Go library metrics (refer to [prometheus/cl
 | `latest_version_query_result_last` | Last latest version query was successful (`0`=no, `1`=yes, `2`=no_regex_match, `3`=semantic_version_fail, `4`=progressive_version_fail). |
 | `latest_version_query_result_total` | Number of latest version checks. |
 | `notify_result_total` | Number of notifications sent. |
+| `service_count_current` | Number of services in the configuration. |
+| `updates_current` | Total number of updates available/skipped. |
 | `webhook_result_total` | Number of webhooks sent. |

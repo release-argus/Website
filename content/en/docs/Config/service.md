@@ -12,6 +12,7 @@ service:
   ...
   # As many of these (below) as you like, just ensure they have unique ID's
   EXAMPLE_GITHUB_SERVICE:
+    name: 'Argus'                                 # Optional display name (defaults to the ID above)
     comment: 'something about the service maybe?' # Optional comment about the service
     options:
       active: true               # Disable the service without removing it from config
@@ -34,8 +35,9 @@ service:
           type: hub                   # Docker registry (ecr/ghcr/hub/quay)
           image: releaseargus/argus   # Docker image
           tag: '{{ version }}'        # Tag to look for
-          username: USERNAME          # Username
-          token: dckr_pat_TOKEN       # Token
+          auth:
+            username: USERNAME        # Username
+            token: dckr_pat_TOKEN     # Token
     deployed_version:                   # Get the `current_version` from a deployed service
       method: GET                       # HTTP Method (GET/POST)
       url: https://example.com/version  # URL to use
@@ -66,6 +68,7 @@ service:
       web_url: 'https://example.com/{{ version }}'  # Overrides URL in the Web UI and can be used in the notifiers
       icon: https://example.com/icon.png            # Icon to use on the Web UI
       icon_link_to: https://service.com             # Make the Web UI icon a clickable link to this
+      tags: [monitoring, home]                      # Tags to group the service by
 ```
 {{< alert title="Note" >}}
 the number of `notify`/`webhook`'s you give the Service can be any number (you can even omit the var altogether).
@@ -91,7 +94,7 @@ service:
 Source to query for the latest version, `github` or `url`.
 
 {{< alert title="Note" >}}
-Environment variables in the format '${ENV_VAR}' can be used in the `url`, `access_token`, `require.docker.auth.token` and `require.docker.auth.username` fields.
+Environment variables in the format '${ENV_VAR}' can be used in the `url`, `access_token`, `headers.*.key`, `headers.*.value`, `require.docker.image`, `require.docker.tag`, `require.docker.auth.token` and `require.docker.auth.username` fields.
 {{< /alert >}}
 
 {{< tabpane text=true right=true >}}
@@ -110,7 +113,6 @@ service:
     latest_version:
       type: github                       # The type of service to monitor
       url: OWNER/REPO                    # The GitHub repo to monitor
-      allow_invalid_certs: false         # Whether invalid HTTPS certificates on the query site are allowed
       access_token: GITHUB_ACCESS_TOKEN  # Useful when you want to exceed the public rate-limit, or want to query a private repo
       use_prerelease: false              # Whether a 'prerelease' tag can be used
       url_commands:
@@ -121,26 +123,31 @@ service:
                                                       # considered valid (meaning alerts will fire). This RegEx runs against the
                                                       # version assets `name` and `browser_download_url`
         regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
-        docker:                  # Require a docker image:tag for this version to be considered valid
-          type: hub              # Docker registry (ecr/ghcr/hub/quay)
-          image: OWNER/REPO      # Docker image
-          tag: '{{ version }}'   # Tag to look for
-          username: USERNAME     # Username
-          token: dckr_pat_TOKEN  # Token
+        docker:                    # Require a docker image:tag for this version to be considered valid
+          type: hub                # Docker registry (ecr/ghcr/hub/quay)
+          image: OWNER/REPO        # Docker image
+          tag: '{{ version }}'     # Tag to look for
+          auth:
+            username: USERNAME     # Username
+            token: dckr_pat_TOKEN  # Token
 ```
 
   {{% /tab %}}
   {{% tab header="url" %}}
-The following is how you'd define a service to be monitored without using the GitHub API. (The key difference is that `type` is 'web' and `url` is a full HTTP(S) address with `url_commands` to scrape the version).
+The following is how you'd define a service to be monitored without using the GitHub API. (The key difference is that `type` is 'url' and `url` is a full HTTP(S) address with `url_commands` to scrape the version).
 
 ```yaml
 service:
   example:
     ...
     latest_version:
-      type: web                    # Regular URL, not GitHub API
-      url: https://golang.org/dl/  # URL to monitor
-      url_commands:                # Commands to grab the latest version number
+      type: url                       # Regular URL, not GitHub API
+      url: https://golang.org/dl/     # URL to monitor
+      allow_invalid_certs: false      # Whether invalid HTTPS certificates on the query site are allowed
+      headers:                        # Headers to send to the URL (Usually an API Key)
+        - key: Authorization
+          value: 'Bearer <API_KEY>'
+      url_commands:                   # Commands to grab the latest version number
         - type: regex                             # RegEx type
           regex: go([0-9.]+[0-9]+)\.src\.tar\.gz  # RegEx to find the version. The most recent version download  is linked first
       require:
@@ -254,7 +261,7 @@ To require a docker tag to exist before a version is considered valid, provide a
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
   {{% tab header="ecr" %}}
-The [Amazon ECR Public Gallery](https://gallery.ecr.aws/) is queried anonymously — no authentication is required or supported, so there is no `auth` block. The `image` is the gallery `namespace/repository` (e.g. `gravitational/teleport-distroless`).
+The [Amazon ECR Public Gallery](https://gallery.ecr.aws/) is queried anonymously - no authentication is required or supported, so there is no `auth` block. The `image` is the gallery `namespace/repository` (e.g. `gravitational/teleport-distroless`).
 ```yaml
 latest_version:
   ...
@@ -392,7 +399,23 @@ service:
       web_url: 'https://example.com/{{ version }}'  # Overrides URL in the Web UI and can be used in the notifiers
       icon: https://example.com/icon.png            # Icon to use on the Web UI
       icon_link_to: https://service.com             # Make the Web UI icon a clickable link to this
+      tags: [monitoring, home]                      # Tags to group the service by
 ```
+
+### tags
+`tags` group services on the dashboard, and can be given either as a list or as a single string:
+```yaml
+service:
+  example:
+    dashboard:
+      tags:
+        - monitoring
+        - home
+  other:
+    dashboard:
+      tags: monitoring
+```
+With [`settings.auth`](/docs/config/settings/#auth) enabled, they can also be the target of a `service_tag`-scoped [permission](/docs/help/authentication/#permissions).
 
 ### web_url
 Without defining this var, the Web UI will link to `url`, but when this var has a value, the Web UI will link to that value.
