@@ -36,8 +36,12 @@ Environment variables in the format `${ENV_VAR}` (e.g. 'abc ${AUTH_TOKEN}'  or j
 * deployed_version.headers.\*.value
 * deployed_version.url
 * latest_version.access_token
-* latest_version.require.docker.token
-* latest_version.require.docker.username
+* latest_version.headers.\*.key
+* latest_version.headers.\*.value
+* latest_version.require.docker.auth.token
+* latest_version.require.docker.auth.username
+* latest_version.require.docker.image
+* latest_version.require.docker.tag
 * latest_version.url
 * notify.\*.options.\*
 * notify.\*.params.\*

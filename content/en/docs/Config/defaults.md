@@ -3,10 +3,10 @@ title: "Defaults"
 linkTitle: "Defaults"
 weight: 2
 description: >
-  Defaults to give each service/notify/slack/webhook.
+  Defaults to give each service/notify/webhook.
 ---
 
-You can define defaults for [service](/docs/config/service), [notify](/docs/config/notify), [slack](/docs/config/slack) and [webhook](/docs/config/webhook) in the `config.yml`. These defaults can also be set with environment variables in the format of `ARGUS_<YAML_PATH_UNDER_DEFAULTS>`. For example, `ARGUS_SERVICE_OPTIONS_INTERVAL=10m` would set the default interval to 10 minutes (`defaults.service.options.interval`). The YAML config format is as follows:
+You can define defaults for [service](/docs/config/service), [notify](/docs/config/notify) and [webhook](/docs/config/webhook) in the `config.yml`. These defaults can also be set with environment variables in the format of `ARGUS_<YAML_PATH_UNDER_DEFAULTS>`. For example, `ARGUS_SERVICE_OPTIONS_INTERVAL=10m` would set the default interval to 10 minutes (`defaults.service.options.interval`). The YAML config format is as follows:
 
 
 #### **service** portion
@@ -49,7 +49,7 @@ defaults:
 ```
 
 {{< alert title="Note" >}}
-Docker registry defaults are **auth-only**: each registry under `registry.*` only carries authentication (`auth.token`, and `auth.username` for Docker Hub). The `image` of a `require.docker` is never inherited from defaults — only `type` and `tag` can be defaulted.
+Docker registry defaults are **auth-only**: each registry under `registry.*` only carries authentication (`auth.token`, and `auth.username` for Docker Hub). The `image` of a `require.docker` is never inherited from defaults - only `type` and `tag` can be defaulted.
 
 The Amazon ECR Public Gallery (`ecr`) uses anonymous auth, so it has no `registry.ecr` entry - but it can still be set as the default `type`.
 {{< /alert >}}
@@ -63,7 +63,7 @@ defaults:
   notify:
     bark:
     discord:
-    email:
+    generic:
     gotify:
     googlechat:
     ifttt:
@@ -77,6 +77,7 @@ defaults:
     pushover:
     rocketchat:
     slack:
+    smtp:
     teams:
     telegram:
     zulip:

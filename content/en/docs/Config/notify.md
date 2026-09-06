@@ -6,7 +6,7 @@ description: >
   Configure global notifiers that can be used by any Service.
 ---
 
-We are running [Shoutrrr 0.16](https://shoutrrr.nickfedor.com/v0.16.1/services/overview/), which supports sending notifications to the services listed below.
+We are running [Shoutrrr 0.19](https://shoutrrr.nickfedor.com/v0.19.0/services/overview/), which supports sending notifications to the services listed below.
 
 The 'URL Fields' go under `url_fields` and 'Query/Param Props' go under `params`.
 
@@ -68,7 +68,7 @@ For further guidance and other helpful examples on the templating used, start by
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
   {{% tab header="bark" %}}
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/bark/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/push/bark/)
 
   ```yaml
   notify:
@@ -79,7 +79,8 @@ For further guidance and other helpful examples on the templating used, start by
       url_fields:
         DeviceKey: DEVICE_KEY
         Host: your_host
-  #     Path: /foo
+  #     Port: 443
+  #     Path: sub/path                     # e.g. for your_host/sub/path
   #   params:
   #     Badge: 0                           # Number displayed next to App icon
   #     Copy: foo                          # Value to be copied
@@ -94,7 +95,7 @@ For further guidance and other helpful examples on the templating used, start by
   {{% tab header="discord" %}}
   - As of writing, Discord Webhooks are in the format of `https://discord.com/api/webhooks/WEBHOOK_ID/TOKEN` (`<Server Settings> - <Integrations> - <Webhooks>`)
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/discord/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/chat/discord/)
 
   ```yaml
   notify:
@@ -123,7 +124,7 @@ For further guidance and other helpful examples on the templating used, start by
   {{% tab header="smtp" %}}
   - email notifications
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/email/smtp/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/email/smtp/)
 
   ```yaml
   notify:
@@ -140,20 +141,50 @@ For further guidance and other helpful examples on the templating used, start by
         FromAddress: foo@bar.com                # E-mail address that the mail are sent from
   #     FromName: Argus                         # Name of the sender
         ToAddresses: name@you.com,other@you.com # List of recipient e-mails (comma-separated)
-  #     Auth: Plain                             # SMTP authentication method - None/Plain/CRAMMD5/Unknown/OAuth2
+  #     Auth: Plain                             # SMTP authentication method - None/Plain/Login/CRAMMD5/OAuth2/Unknown
   #     ClientHost: ''                          # SMTP client hostname
   #     Encryption: Auto                        # Encryption method - None/ExplicitTLS/ImplicitTLS/Auto
   #     Subject: '{{ service_id }} Release'     # The subject of the sent mail
+  #     Timeout: 10s                            # Timeout for the dial and SMTP session (a positive 'AhBmCs' duration)
   #     UseHTML: no                             # Whether the message being sent is in HTML
   #     UseStartTLS: yes                        # Whether to use StartTLS encryption
   #     RequireStartTLS: no                     # Fail if StartTLS is enabled but unsupported
   #     SkipTLSVerify: no                       # Whether to skip TLS certificate verification
   ```
   {{% /tab %}}
+  {{% tab header="generic" %}}
+  - Post to any HTTP endpoint.
+  - `Headers`, `JSON_Payload_Vars` and `Query_Vars` each take a JSON map as a string.
+
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/specialized/generic/)
+
+  ```yaml
+  notify:
+    ...
+    # as many of these (below) as you like, just ensure they have unique ID's.
+    EXAMPLE_NOTIFY:
+      type: generic
+      url_fields:
+        Host: generic.example.io
+  #     Port: 443
+  #     Path: sub/path                            # e.g. for generic.example.io/sub/path
+  #     Headers: '{"X-Example": "foo"}'           # Additional HTTP headers
+  #     JSON_Payload_Vars: '{"key": "value"}'     # Extra keys to add to the JSON payload
+  #     Query_Vars: '{"foo": "bar"}'              # Extra query parameters (prefix a reserved name with an underscore)
+  #   params:
+  #     ContentType: application/json             # Value of the Content-Type header
+  #     DisableTLS: no                            # Disable TLS certificate verification
+  #     MessageKey: message                       # Payload key to put the message under
+  #     Method: POST                              # HTTP request method - CONNECT/DELETE/GET/HEAD/OPTIONS/POST/PUT/TRACE
+  #     Template: ''                              # Template used to build the request payload
+  #     Title: Argus                              # Notification title
+  #     TitleKey: title                           # Payload key to put the title under
+  ```
+  {{% /tab %}}
   {{% tab header="googlechat" %}}
   - Example Google Chat incoming Webhook URL `https://chat.googleapis.com/v1/spaces/ FOO /messages?key= bar &token= baz`
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/googlechat/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/chat/googlechat/)
 
   ```yaml
   notify:
@@ -168,7 +199,7 @@ For further guidance and other helpful examples on the templating used, start by
   {{% tab header="gotify" %}}
   - Create an application on the Gotify Web UI, and use that URL with the token for the application you make.
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/gotify/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/push/gotify/)
 
   ```yaml
   notify:
@@ -185,14 +216,14 @@ For further guidance and other helpful examples on the templating used, start by
   #     Extras: ''
   #     Date: ''                # Custom timestamp in ISO 8601 format (e.g. 2006-01-02T15:04:05Z)
   #     DisableTLS: no          # Disable TLS certificate verification
-  #     InsecureSkipVerify:: no # Whether to skip TLS certificate verification
+  #     InsecureSkipVerify: no  # Whether to skip TLS certificate verification
   #     Priority: 0
   #     Title: Argus            # Notification title
-  #     UseHeader:: no          # Enable header-based authentication
+  #     UseHeader: no           # Enable header-based authentication
   ```
   {{% /tab %}}
   {{% tab header="ifttt" %}}
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/ifttt/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/push/ifttt/)
 
   ```yaml
   notify:
@@ -219,7 +250,7 @@ For further guidance and other helpful examples on the templating used, start by
   - Your `deviceId` is shown in the top
   - Click **Show** next to `API Key` to see your key
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/join/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/push/join/)
 
   ```yaml
   notify:
@@ -241,7 +272,7 @@ For further guidance and other helpful examples on the templating used, start by
 
   Example Mattermost Webhook - `https://mattermost.example.io/hooks/TOKEN`
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/mattermost/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/chat/mattermost/)
 
   ```yaml
   notify:
@@ -253,7 +284,6 @@ For further guidance and other helpful examples on the templating used, start by
   #     Username: Argus
         Host: mattermost.example.io
   #     Port: 443
-  #     Path: sub/path              # e.g. for mattermost.example.io/sub/path/hooks/TOKEN
         Token: TOKEN
   #     Channel: releases
   #   params:
@@ -264,7 +294,7 @@ For further guidance and other helpful examples on the templating used, start by
   ```
   {{% /tab %}}
   {{% tab header="matrix" %}}
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/matrix/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/chat/matrix/)
 
   ```yaml
   notify:
@@ -286,7 +316,7 @@ For further guidance and other helpful examples on the templating used, start by
   {{% tab header="notifiarr" %}}
   - Get your API key from your [Notifiarr account](https://notifiarr.com/) settings page.
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/notifiarr/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/push/notifiarr/)
 
   ```yaml
   notify:
@@ -305,7 +335,7 @@ For further guidance and other helpful examples on the templating used, start by
   ```
   {{% /tab %}}
   {{% tab header="ntfy" %}}
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/ntfy/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/push/ntfy/)
 
   ```yaml
   notify:
@@ -316,7 +346,7 @@ For further guidance and other helpful examples on the templating used, start by
       url_fields:
   #     Username: Argus
   #     Password: PASS123           # username not required when using an access token (e.g. 'tk_xxxxxxxx')
-        Host: mattermost.example.io
+        Host: ntfy.example.io
   #     Port: 443
         Topic: Release123
   #   params:
@@ -338,7 +368,7 @@ For further guidance and other helpful examples on the templating used, start by
   {{% tab header="opsgenie" %}}
   Go to `<Settings> - <Integration List> - <API>`
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/incident/opsgenie/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/incident/opsgenie/)
 
   ```yaml
   notify:
@@ -375,7 +405,7 @@ For further guidance and other helpful examples on the templating used, start by
   - Get your `token` by creating an **Access Token** at https://www.pushbullet.com/#settings/account
   - Get your `targets` by going to https://www.pushbullet.com/#devices. Click on the device on the left pane and the URL should change to https://www.pushbullet.com/#devices/\<TARGET\>
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/pushbullet/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/push/pushbullet/)
 
   ```yaml
   notify:
@@ -397,7 +427,7 @@ For further guidance and other helpful examples on the templating used, start by
 
   In the device list, the Name column is the field used to refer to your devices
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/push/pushover/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/push/pushover/)
 
   ```yaml
   notify:
@@ -410,6 +440,8 @@ For further guidance and other helpful examples on the templating used, start by
         User: USER_KEY # User Key OR API Token/Key
   #   params:
   #     Devices: 'device1,device2'
+  #     EncryptionKey: ''          # 256-bit AES key as 64 hex characters (matching the key set in the Pushover app),
+  #                                # to end-to-end encrypt the title and message
   #     Priority: 0
   #     Title: Argus               # Notification title
   ```
@@ -417,7 +449,7 @@ For further guidance and other helpful examples on the templating used, start by
   {{% tab header="rocketchat" %}}
   Example URL `username@host:port/TOKEN_A/TOKEN_B/CHANNEL`
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/rocketchat/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/chat/rocketchat/)
 
   ```yaml
   notify:
@@ -429,14 +461,13 @@ For further guidance and other helpful examples on the templating used, start by
   #     Username: foo
         Host: rocketchat.example.io
   #     Port: 443
-  #     Path: sub/path              # e.g. for rocketchat.example.io/sub/path
         TokenA: TOKEN_A
         TokenB: TOKEN_B
         Channel: CHANNEL
   ```
   {{% /tab %}}
   {{% tab header="shoutrrr" %}}
-  Pass a raw [Shoutrrr URL](https://shoutrrr.nickfedor.com/v0.16.1/services/overview/) through directly. Use this for any service that doesn't have its own tab above, or when you'd rather build the URL yourself.
+  Pass a raw [Shoutrrr URL](https://shoutrrr.nickfedor.com/v0.19.0/services/overview/) through directly. Use this for any service that doesn't have its own tab above, or when you'd rather build the URL yourself.
 
   ```yaml
   notify:
@@ -465,7 +496,7 @@ For further guidance and other helpful examples on the templating used, start by
   - e.g. https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
   - becomes 'hook:T00000000-B00000000-XXXXXXXXXXXXXXXXXXXXXXXX
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/slack/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/chat/slack/)
 
   ```yaml
   notify:
@@ -481,7 +512,7 @@ For further guidance and other helpful examples on the templating used, start by
   #     Color: ''                                                          # Message left-hand border color
   #     Icon: https://release-argus.io/favicons/android-chrome-512x512.png # URL or Emoji to use
   #     Title: Release                                                     # Prepended text above the message
-  #     ThreadTS: ''                                                       # TS value of the parent message (to send message as reply in thread)
+  #     Thread_TS: ''                                                      # TS value of the parent message (to send message as reply in thread)
   ```
   {{% /tab %}}
   {{% tab header="teams" %}}
@@ -491,7 +522,7 @@ For further guidance and other helpful examples on the templating used, start by
   The old Office 365 Connector format (`Group`/`Tenant`/`AltID`/`GroupOwner` url_fields) will still pass validation, but will fail at send time. Migrate to the Power Automate workflow URL below.
   {{< /alert >}}
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/teams/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/chat/teams/)
 
   ```yaml
   notify:
@@ -513,7 +544,7 @@ For further guidance and other helpful examples on the templating used, start by
       - `chat_id` is required for private channels/group chats/private chats. To get the ID, you can forward a message (from the target chat) to [@UserInfoBot](https://t.me/userinfobot) or [@JsonDumpBot](https://t.me/jsondumpbot) and view it at `Id` and `message.forward_from_chat.id` from those bots respectively.
       - (The above bots are created and hosted by [@nadam](https://github.com/nadam) and their sources are available to view at [nadam/userinfobot](https://github.com/nadam/userinfobot) and [nadam/jsondumpbot](https://github.com/nadam/jsondumpbot))
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/telegram/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/chat/telegram/)
 
   ```yaml
   notify:
@@ -534,7 +565,7 @@ For further guidance and other helpful examples on the templating used, start by
   {{% tab header="zulip" %}}
   Zulip Chat
 
-  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.16.1/services/chat/zulip/)
+  [Shoutrrr docs](https://shoutrrr.nickfedor.com/v0.19.0/services/chat/zulip/)
 
   ```yaml
   notify:
@@ -546,6 +577,7 @@ For further guidance and other helpful examples on the templating used, start by
         BotMail: bot@release-argus.io
         BotKey: BOT_KEY
         Host: zulip.example.io
+  #     Port: 443
   #   params:
   #     Stream: mystream     # Stream to send the message to
   #     Topic: Argus         # Topic within the stream
