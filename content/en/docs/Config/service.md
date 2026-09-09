@@ -10,7 +10,7 @@ config.yml
 ```yaml
 service:
   ...
-  # As many of these (below) as you like, just ensure they have unique ID's
+  # As many of these (below) as you like, just ensure they have unique IDs
   EXAMPLE_GITHUB_SERVICE:
     name: 'Argus'                                 # Optional display name (defaults to the ID above)
     comment: 'something about the service maybe?' # Optional comment about the service
