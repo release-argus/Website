@@ -60,7 +60,7 @@ service:
         message: 'overriding template'
     command:                         # Commands for this Service
       - ["COMMAND", "ARG1", "ARG2"]
-    webhook:                               # WebHooks for this Service
+    webhook:                               # Webhooks for this Service
       EXAMPLE_WEBHOOK_ID:
         secret: 'service-specific secret'
     dashboard:
@@ -395,7 +395,7 @@ service:
     ...
     dashboard:
       auto_approve: false                           # Whether approval is required for new versions in the Web UI, or whether
-                                                    # WebHooks are automatically sent (required for their delay to be used)
+                                                    # Webhooks are automatically sent (required for their delay to be used)
       web_url: 'https://example.com/{{ version }}'  # Overrides URL in the Web UI and can be used in the notifiers
       icon: https://example.com/icon.png            # Icon to use on the Web UI
       icon_link_to: https://service.com             # Make the Web UI icon a clickable link to this
