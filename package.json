@@ -10,6 +10,6 @@
     "update:hugoautogen": "hugo mod npm pack && npm pkg set 'name=\"@release-argus/hugoautogen\"' private=true --json --prefix packages/hugoautogen && npm install"
   },
   "devDependencies": {
-    "sass-embedded": "1.103.1"
+    "sass-embedded": "1.104.0"
   }
 }
