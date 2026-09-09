@@ -66,6 +66,7 @@ defaults:
     generic:
     gotify:
     googlechat:
+    homeassistant:
     ifttt:
     join:
     mattermost:
