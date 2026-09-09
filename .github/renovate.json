@@ -4,6 +4,9 @@
   "commitMessageTopic": "{{depName}}",
   "commitMessageExtra": "from {{currentVersion}} to {{newVersion}}",
   "extends": ["config:best-practices", ":semanticCommits"],
+  "lockFileMaintenance": {
+    "enabled": false
+  },
   "enabledManagers": ["gomod", "npm"],
   "packageRules": [
     {
