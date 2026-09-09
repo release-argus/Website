@@ -69,13 +69,19 @@ Sessions are cookie-based (`argus_session`, `HttpOnly`, `SameSite=Strict`) and b
 
 Each user is capped at `session.max_per_user` concurrent sessions (10 by default); logging in past the cap evicts the least recently active one.
 
-Changes take effect immediately rather than at the next login (permissions are re-read on every request). Changing a password, disabling an account, or editing a group's grants ends or updates the affected sessions straight away and disconnects their live dashboard connections.
+Changes take effect immediately rather than at the next login (permissions are re-read on every request). Changing a password, disabling an account, or editing a group's grants ends or updates the affected sessions straight away and disconnects their live dashboard connections. The one exception is changing your own password from [Settings](#your-own-account) - that session is re-issued, so you stay signed in where you made the change.
 
 Failed logins are rate limited per (IP, username) and per IP. Behind a reverse proxy, set [`trusted_proxies`](/docs/config/settings/#trusted_proxies) so the limiter counts real client addresses rather than the proxy's.
 
+## Your own account
+
+Every signed-in user can edit their own account under **Settings → Account**, reached from the user menu, whatever permissions they hold. Three things are editable - display name, email, and password. Usernames are fixed at account creation.
+
+Setting a new password signs out your **other** sessions and disconnects their dashboards, leaving only the one you changed it in. API tokens are untouched by it - see [losing access](#losing-access).
+
 ## API tokens
 
-Users mint their own tokens under **Account → API Tokens**, optionally with an expiry. The token is shown once, at creation, and stored only as a hash - if it is lost, revoke it and create another.
+Users mint their own tokens under **Settings → API Tokens**, optionally with an expiry. The token is shown once, at creation, and stored only as a hash - if it is lost, revoke it and create another.
 
 Use one as a bearer token:
 
@@ -86,7 +92,7 @@ curl -H "Authorization: Bearer argus_xxxxxxxx…" \
 
 A token carries its owner's permissions. Two limits apply:
 
-- Tokens cannot create or revoke tokens (token management needs a browser session).
+- Tokens cannot manage tokens or change their owner's account details (both need a browser session).
 - Revoking a token is immediate, but a password reset does **not** revoke tokens.
 
 ### Scraping metrics
