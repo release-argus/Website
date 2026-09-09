@@ -22,7 +22,7 @@ The config for each of these is laid out in the format of
 ```yaml
 notify:
   ...
-  # As many of these (below) as you like, just ensure they have unique ID's
+  # As many of these (below) as you like, just ensure they have unique IDs
   EXAMPLE_NOTIFY_ID:
     type: gotify
     options:
@@ -73,7 +73,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: bark
       url_fields:
@@ -100,7 +99,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: discord
       url_fields:
@@ -129,7 +127,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: smtp
       url_fields:
@@ -161,7 +158,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: generic
       url_fields:
@@ -189,7 +185,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: googlechat
       url_fields:
@@ -204,7 +199,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: gotify
       url_fields:
@@ -230,7 +224,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: homeassistant
       url_fields:
@@ -253,7 +246,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: ifttt
       url_fields:
@@ -280,7 +272,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: join
       url_fields:
@@ -302,7 +293,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: mattermost
       url_fields:
@@ -324,7 +314,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: matrix
       url_fields:
@@ -346,7 +335,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: notifiarr
       url_fields:
@@ -365,7 +353,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: ntfy
       url_fields:
@@ -398,7 +385,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: opsgenie
       url_fields:
@@ -435,7 +421,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: pushbullet
       url_fields:
@@ -457,7 +442,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: pushover
       url_fields:
@@ -479,7 +463,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: rocketchat
       url_fields:
@@ -497,7 +480,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: shoutrrr
       url_fields:
@@ -526,7 +508,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: slack
       url_fields:
@@ -552,7 +533,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: teams
       params:
@@ -574,7 +554,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: telegram
       url_fields:
@@ -595,7 +574,6 @@ For further guidance and other helpful examples on the templating used, start by
   ```yaml
   notify:
     ...
-    # as many of these (below) as you like, just ensure they have unique ID's.
     EXAMPLE_NOTIFY:
       type: zulip
       url_fields:

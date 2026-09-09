@@ -20,7 +20,7 @@ config.yml:
 ```yaml
 webhook:
   ...
-  # As many of these (below) as you like, just ensure they have unique ID's
+  # As many of these (below) as you like, just ensure they have unique IDs
   EXAMPLE_WEBHOOK_ID:
     type: github                # Type of Webhook to send
     url: https://WEBHOOK_URL    # Webhook URL to send to
@@ -77,7 +77,7 @@ config.yml
 ```yaml
 webhook:
   ...
-  # As many of these (below) as you like, just ensure they have unique ID's
+  # As many of these (below) as you like, just ensure they have unique IDs
   EXAMPLE_WEBHOOK_ID:
     type: gitlab                # Type of Webhook to send
     url: https://WEBHOOK_URL    # Webhook URL to send to
