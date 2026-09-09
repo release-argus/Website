@@ -45,7 +45,7 @@ defaults:
       type: url                   # Default lookup type for new services (url/manual)
       allow_invalid_certs: false  # Accept invalid HTTPS certs/not
     dashboard:
-      auto_approve: false  # Whether approval is required on the web UI for sending the new release WebHooks
+      auto_approve: false  # Whether approval is required on the web UI for sending the new release Webhooks
 ```
 
 {{< alert title="Note" >}}

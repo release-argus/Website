@@ -36,7 +36,7 @@ aliases:
   - Telegram
   - Zulip
 
-- To be able to send WebHook(s) to services in order to trigger the upgrade. (e.g. an AWX server with PlayBooks that will deploy the latest version, thanks to [awx-operator](https://github.com/ansible/awx-operator))
+- To be able to send Webhook(s) to services in order to trigger the upgrade. (e.g. an AWX server with PlayBooks that will deploy the latest version, thanks to [awx-operator](https://github.com/ansible/awx-operator))
 
 - To have a nice* web UI that displays all this tracking (see the [demo](/demo/approvals)).
 

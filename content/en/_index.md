@@ -33,7 +33,7 @@ linkTitle: Argus
 Argus provides a way for you to monitor the versions of software and trigger alerts when a new
 release is been found.
 
-It provides a Web UI for your viewing pleasure, and this UI allows you to approve new releases which could, for example, send a GitHub-style WebHook to an AWX server to trigger a Playbook that updates to that new version. Alerts could also be in many other forms, e.g. gotify/slack/telegram.
+It provides a Web UI for your viewing pleasure, and this UI allows you to approve new releases which could, for example, send a GitHub-style Webhook to an AWX server to trigger a Playbook that updates to that new version. Alerts could also be in many other forms, e.g. gotify/slack/telegram.
 {{% /blocks/lead %}}
 
 {{% blocks/section color="dark" type="row" %}}
@@ -53,11 +53,11 @@ It provides a Web UI for your viewing pleasure, and this UI allows you to approv
   Alerting when a new release has been found. This can be done in many ways, e.g. discord, gotify, mattermost, pushbullet, pushover, slack, teams, telegram, with no (realistic) limit to the amount of messages that can be sent when a new release is found.
   {{% /blocks/feature %}}
 
-  {{% blocks/feature icon="fa-anchor" title="WebHooks" %}}
-  WebHooks can be approved (or auto-approved) and sent when a new release has been found.
+  {{% blocks/feature icon="fa-anchor" title="Webhooks" %}}
+  Webhooks can be approved (or auto-approved) and sent when a new release has been found.
   {{% /blocks/feature %}}
 
   {{% blocks/feature icon="fa-window-maximize" title="Web UI" %}}
-  Web UI to visually see the latest versions for the software you're tracking, as well as for approving the WebHooks for these new releases.
+  Web UI to visually see the latest versions for the software you're tracking, as well as for approving the Webhooks for these new releases.
   {{% /blocks/feature %}}
 {{% /blocks/section %}}
