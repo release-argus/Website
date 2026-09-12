@@ -254,8 +254,8 @@ service:
       regex: "[0-9].+"
       json: rel_vsn
     dashboard:
-      icon: https://static-00.iconduck.com/assets.00/emqx-icon-1775x2048-z0dsscdr.png
-      web_url: https://www.emqx.io/docs/en/latest/changes/changes-ce-v5.html#_{{ rel_vsn | split:"." | slice:":2" | join:"-"  }}
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/emqx.svg
+      web_url: https://github.com/emqx/emqx/releases/tag/{{ version }}
 ```
 
 ## Fallenbagel/jellyseerr
