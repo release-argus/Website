@@ -424,7 +424,7 @@ service:
       url: https://glance.example.io
       regex: v([0-9.]+)
     dashboard:
-      icon: https://raw.githubusercontent.com/glanceapp/glance/main/internal/assets/static/app-icon.png
+      icon: https://raw.githubusercontent.com/glanceapp/glance/main/internal/glance/static/app-icon.png
       web_url: https://github.com/glanceapp/glance/releases/tag/v{{ version }}
 ```
 
