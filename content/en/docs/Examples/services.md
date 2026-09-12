@@ -1691,11 +1691,12 @@ service:
     options:
       semantic_versioning: false
     latest_version:
-      type: url
-      url: https://github.com/Sonarr/Sonarr/tags
+      type: github
+      url: Sonarr/Sonarr
+      use_prerelease: true
       url_commands:
         - type: regex
-          regex: \/releases\/tag\/v?([0-9.]+)\"
+          regex: ^v?([0-9.]+)$
     deployed_version:
       url: https://sonarr.example.io/api/v3/system/status
       headers:
