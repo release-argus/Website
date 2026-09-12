@@ -722,6 +722,21 @@ service:
       icon: https://github.com/home-assistant/core/raw/dev/tests/components/image_upload/logo.png
 ```
 
+## HugoBlox/kit
+Source: https://github.com/HugoBlox/kit
+```yaml
+service:
+  HugoBlox/kit:
+    latest_version:
+      type: github
+      url: HugoBlox/kit
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    dashboard:
+      web_url: https://github.com/HugoBlox/kit/releases
+```
+
 ## immich-app/immich
 Source: https://github.com/immich-app/immich
 > deployed_version - Requires an `IMMICH_API_KEY` which can be retrieved at `Account Settings/API Keys`
@@ -1814,19 +1829,4 @@ service:
     dashboard:
       web_url: https://wordpress.org/news/category/releases/
       icon: https://github.com/WordPress/WordPress/raw/master/wp-admin/images/wordpress-logo.svg
-```
-
-## wowchemy/wowchemy-hugo-themes
-Source: https://github.com/wowchemy/wowchemy-hugo-themes
-```yaml
-service:
-  wowchemy/wowchemy-hugo-themes:
-    latest_version:
-      type: github
-      url: wowchemy/wowchemy-hugo-themes
-      url_commands:
-        - type: regex
-          regex: v([0-9.]+)$
-    dashboard:
-      web_url: https://github.com/wowchemy/wowchemy-hugo-themes/releases/v{{ version }}
 ```
