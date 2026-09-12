@@ -681,26 +681,6 @@ service:
       icon: https://raw.githubusercontent.com/hedgedoc/hedgedoc/master/public/icons/android-chrome-512x512.png
 ```
 
-## hoarder-app/hoarder
-Source: https://github.com/hoarder-app/hoarder
-```yaml
-service:
-  hoarder-app/hoarder:
-    latest_version:
-      type: github
-      url: hoarder-app/hoarder
-      url_commands:
-        - type: regex
-          regex: v([0-9.]+)$
-    deployed_version:
-      method: GET
-      url: https://hoarder.example.io/
-      regex: \\"serverVersion\\":\\"([0-9.]+)\\"
-    dashboard:
-      icon: https://raw.githubusercontent.com/hoarder-app/hoarder/main/apps/web/public/icons/logo-128.png
-      web_url: https://github.com/hoarder-app/hoarder/releases/v{{ version }}
-```
-
 ## home-assistant/core
 Source: https://github.com/home-assistant/core
 
@@ -805,6 +785,26 @@ service:
     dashboard:
       web_url: https://github.com/jgraph/drawio/releases/v{{ version }}
       icon: https://github.com/jgraph/drawio/raw/dev/src/main/webapp/images/drawlogo-color.svg
+```
+
+## karakeep-app/karakeep
+Source: https://github.com/karakeep-app/karakeep
+```yaml
+service:
+  karakeep-app/karakeep:
+    latest_version:
+      type: github
+      url: karakeep-app/karakeep
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      method: GET
+      url: https://karakeep.example.io/
+      regex: \\"serverVersion\\":\\"([0-9.]+)\\"
+    dashboard:
+      icon: https://raw.githubusercontent.com/karakeep-app/karakeep/main/apps/web/public/icons/logo-128.png
+      web_url: https://github.com/karakeep-app/karakeep/releases/v{{ version }}
 ```
 
 ## Lidarr/Lidarr
