@@ -1646,7 +1646,7 @@ service:
       json: version
     dashboard:
       web_url: https://github.com/smallstep/certificates/releases/tag/v{{ version }}
-      icon: https://github.com/smallstep/docs/raw/main/static/graphics/logo-icon-white.svg
+      icon: https://github.com/smallstep/certificates/raw/master/icon.svg
 ```
 
 ## Sonarr/Sonarr
