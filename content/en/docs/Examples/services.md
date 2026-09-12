@@ -1253,7 +1253,6 @@ service:
           value: Token ${PAPERLESS_NGX_API_KEY}
     dashboard:
       icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/paperless-ngx.png
-      icon_link_to: https://papers.nanode.su
       web_url: https://github.com/paperless-ngx/paperless-ngx/releases/tag/v{{ version }}
 ```
 
