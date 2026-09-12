@@ -501,7 +501,7 @@ service:
           value: bearer <API_Token>
       json: version_current
     dashboard:
-      web_url: https://goauthentik.io/docs/releases/{{ version | split:"." | slice:":-1" | join:"."  }}
+      web_url: https://docs.goauthentik.io/releases/{{ version | split:"." | slice:":-1" | join:"."  }}
       icon: https://goauthentik.io/img/press-kit/icon-color.svg
 ```
 
