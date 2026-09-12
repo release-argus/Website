@@ -658,7 +658,7 @@ service:
       json: version
     dashboard:
       web_url: https://github.com/hashicorp/vault/releases/v{{ version }}
-      icon: https://raw.githubusercontent.com/hashicorp/vault/main/ui/public/vault-logo.svg
+      icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/vault.svg
 ```
 
 ## healthchecks/healthchecks
