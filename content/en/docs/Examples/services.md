@@ -1094,7 +1094,7 @@ service:
       json: netbox-version
     dashboard:
       web_url: https://github.com/netbox-community/netbox/releases/tag/v{{ version }}
-      icon: https://github.com/netbox-community/netbox/raw/develop/netbox/project-static/img/netbox_icon.svg
+      icon: https://github.com/netbox-community/netbox/raw/main/netbox/project-static/img/netbox_icon.svg
 ```
 
 ## nextcloud/server
