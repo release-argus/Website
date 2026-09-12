@@ -258,25 +258,6 @@ service:
       web_url: https://github.com/emqx/emqx/releases/tag/{{ version }}
 ```
 
-## Fallenbagel/jellyseerr
-Source: https://github.com/Fallenbagel/jellyseerr
-```yaml
-service:
-  Fallenbagel/jellyseerr:
-    latest_version:
-      type: github
-      url: Fallenbagel/jellyseerr
-      url_commands:
-        - type: regex
-          regex: v([0-9.]+)$
-    deployed_version:
-      url: http://jellyseerr.example.io/api/v1/status
-      json: version
-    dashboard:
-      web_url: https://github.com/Fallenbagel/jellyseerr/releases/v{{ version }}
-      icon: https://raw.githubusercontent.com/Fallenbagel/jellyseerr/develop/public/os_icon.svg
-```
-
 ## firefly-iii/firefly-iii
 Source: https://github.com/firefly-iii/firefly-iii
 
@@ -1627,6 +1608,25 @@ service:
     dashboard:
       icon: https://raw.githubusercontent.com/sct/overseerr/develop/public/android-chrome-512x512.png
       web_url: https://github.com/sct/overseerr/releases/v{{ version }}
+```
+
+## seerr-team/seerr
+Source: https://github.com/seerr-team/seerr
+```yaml
+service:
+  seerr-team/seerr:
+    latest_version:
+      type: github
+      url: seerr-team/seerr
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      url: http://seerr.example.io/api/v1/status
+      json: version
+    dashboard:
+      web_url: https://github.com/seerr-team/seerr/releases/v{{ version }}
+      icon: https://raw.githubusercontent.com/seerr-team/seerr/develop/public/os_icon.svg
 ```
 
 ## smallstep/certificates
