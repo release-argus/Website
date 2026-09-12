@@ -552,7 +552,7 @@ service:
       semantic_versioning: false
     latest_version:
       type: url
-      url: https://golang.org/dl/
+      url: https://go.dev/dl/
       url_commands:
         - type: regex
           regex: go([0-9.]+[0-9]+)\.src\.tar\.gz
