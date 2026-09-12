@@ -1424,7 +1424,7 @@ service:
 ## pterodactyl/wings
 Source: https://github.com/pterodactyl/wings
 
-> deployed_version - Needs the node token which can be found in the admin GUI in the node configuration. ([instructions](https://dashflo.net/docs/api/pterodactyl/v1/#authentication))
+> deployed_version - Needs the node token which can be found in the admin GUI in the node configuration. ([instructions](https://pteroapi.com/docs/authentication))
 ```yaml
 service:
   pterodactyl/wings:
