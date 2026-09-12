@@ -202,6 +202,24 @@ service:
       icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/changedetection.png
 ```
 
+## element-hq/element-web
+Source: https://github.com/element-hq/element-web
+```yaml
+service:
+  element-hq/element-web:
+    latest_version:
+      type: github
+      url: element-hq/element-web
+      url_commands:
+        - type: regex
+          regex: v([0-9.]+)$
+    deployed_version:
+      url: https://element.example.io/version
+    dashboard:
+      web_url: https://github.com/element-hq/element-web/releases/tag/v{{ version }}
+      icon: https://github.com/element-hq/element-web/raw/develop/apps/web/res/vector-icons/512.png
+```
+
 ## element-hq/synapse
 Source: https://github.com/element-hq/synapse
 ```yaml
@@ -1757,24 +1775,6 @@ service:
     dashboard:
       icon: https://raw.githubusercontent.com/usememos/memos/main/web/public/logo.webp
       web_url: https://github.com/usememos/memos/releases/tag/v{{ version }}
-```
-
-## vector-im/element-web
-Source: https://github.com/vector-im/element-web
-```yaml
-service:
-  vector-im/element-web:
-    latest_version:
-      type: github
-      url: vector-im/element-web
-      url_commands:
-        - type: regex
-          regex: v([0-9.]+)$
-    deployed_version:
-      url: https://element.example.io/version
-    dashboard:
-      web_url: https://github.com/vector-im/element-web/releases/tag/v{{ version }}
-      icon: https://github.com/vector-im/element-web/raw/develop/res/vector-icons/150.png
 ```
 
 ## wekan/wekan
