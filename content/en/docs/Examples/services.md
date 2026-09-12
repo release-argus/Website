@@ -765,7 +765,7 @@ service:
         - key: x-api-key
           value: ${IMMICH_API_KEY}
     dashboard:
-      icon: https://raw.githubusercontent.com/immich-app/immich/main/web/static/immich-logo.svg
+      icon: https://raw.githubusercontent.com/immich-app/immich/main/design/immich-logo.svg
       web_url: https://github.com/immich-app/immich/releases/tag/v{{ version }}
 ```
 
