@@ -83,7 +83,7 @@ service:
       regex: 'meta name="version" content="([0-9.]+)"'
     dashboard:
       web_url: https://github.com/aizhimou/pigeon-pod/releases/tag/{{ version }}
-      icon: https://pigeonpod.cloud/assets/pigeonpod-YAUI8Oed.svg
+      icon: https://pigeonpod.cloud/favicon.png
 ```
 
 ## ansible/awx
