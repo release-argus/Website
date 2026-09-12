@@ -1155,7 +1155,7 @@ service:
       url: https://olivetin.example.io/webUiSettings.json
       json: CurrentVersion
     dashboard:
-      icon: https://github.com/OliveTin/OliveTin/raw/main/webui.dev/OliveTinLogo.png
+      icon: https://github.com/OliveTin/OliveTin/raw/main/frontend/OliveTinLogo.png
       web_url: https://github.com/OliveTin/OliveTin/releases/tag/{{ version }}
 ```
 
