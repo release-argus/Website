@@ -1172,7 +1172,7 @@ service:
           regex: v([0-9.]+)$
     dashboard:
       web_url: https://github.com/opencve/opencve/releases/v{{ version }}
-      icon: https://raw.githubusercontent.com/opencve/opencve/master/opencve/static/img/logo_white.png
+      icon: https://raw.githubusercontent.com/opencve/opencve/master/web/static/img/logo_opencve_white.svg
 ```
 
 ## opnsense/core
