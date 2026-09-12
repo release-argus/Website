@@ -502,7 +502,7 @@ service:
       json: version_current
     dashboard:
       web_url: https://goauthentik.io/docs/releases/{{ version | split:"." | slice:":-1" | join:"."  }}
-      icon: https://raw.githubusercontent.com/goauthentik/authentik/master/web/icons/icon.png
+      icon: https://goauthentik.io/img/press-kit/icon-color.svg
 ```
 
 ## goharbor/harbor
