@@ -473,7 +473,7 @@ service:
       regex: v?([0-9.]+)
     dashboard:
       web_url: https://github.com/go-vikunja/vikunja/releases/tag/v{{ version }}
-      icon: https://vikunja.io/images/vikunja.png
+      icon: https://vikunja.io/favicon.svg
 ```
 
 ## goauthentik/authentik
