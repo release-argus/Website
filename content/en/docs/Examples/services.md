@@ -1519,7 +1519,7 @@ service:
 ## rancher/rancher
 Source: https://github.com/rancher/rancher
 
-> deployed_version - An API key must be created. This key is constructed in the format of `<username>:<password>`. ([instructions](https://rancher.com/docs/rancher/v2.5/en/user-settings/api-keys/#creating-an-api-key))
+> deployed_version - An API key must be created. This key is constructed in the format of `<username>:<password>`. ([instructions](https://ranchermanager.docs.rancher.com/reference-guides/user-settings/api-keys#_creating_an_api_key))
 ```yaml
 service:
   rancher/rancher:
