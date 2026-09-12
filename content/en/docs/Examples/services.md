@@ -1080,14 +1080,14 @@ Source: https://github.com/n8n-io/n8n
 service:
   n8n-io/n8n:
     latest_version:
-      type: url
-      url: https://github.com/n8n-io/n8n/tags
+      type: github
+      url: n8n-io/n8n
       url_commands:
         - type: regex
-          regex: n8n\%40([0-9.]+)
+          regex: ^n8n@([0-9.]+)$
     dashboard:
       web_url: https://github.com/n8n-io/n8n/blob/master/CHANGELOG.md
-      icon: https://raw.githubusercontent.com/n8n-io/n8n-docs/main/docs/_images/n8n-docs-icon.svg
+      icon: https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png
 ```
 
 ## netbox-community/netbox
