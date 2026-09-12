@@ -954,19 +954,19 @@ service:
       icon: https://raw.githubusercontent.com/matomo-org/matomo/4.x-dev/plugins/CoreHome/images/applogo_732.png
 ```
 
-## mattermost/mattermost-server
-Source: https://github.com/mattermost/mattermost-server
+## mattermost/mattermost
+Source: https://github.com/mattermost/mattermost
 ```yaml
 service:
-  mattermost/mattermost-server:
+  mattermost/mattermost:
     latest_version:
-      type: url
-      url: https://mattermost.com/deploy/
+      type: github
+      url: mattermost/mattermost
       url_commands:
         - type: regex
-          regex: releases\.mattermost\.com\/([^\/]+)\/mattermost-[0-9.]+-linux\-amd64\.tar\.gz
+          regex: ^v([0-9.]+)$
     dashboard:
-      web_url: https://docs.mattermost.com/install/self-managed-changelog.html
+      web_url: https://docs.mattermost.com/install/self-managed-changelog
 ```
 
 ## mealie-recipes/mealie:
