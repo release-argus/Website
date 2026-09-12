@@ -386,7 +386,7 @@ Source: https://gitlab.com/gitlab-org/gitlab
 
  To get the latest version of the 'Enterprise Edition', change the `ce` to `ee` in the `url_commands` `regex`.
 
-> deployed_version - Requires an `Access_Token` from your GitLab instance. ([instructions](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#create-a-personal-access-token))
+> deployed_version - Requires an `Access_Token` from your GitLab instance. ([instructions](https://docs.gitlab.com/user/profile/personal_access_tokens/#create-a-personal-access-token))
 
 ```yaml
 service:
