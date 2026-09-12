@@ -429,7 +429,7 @@ service:
 ```
 
 ## go-gitea/gitea
-Source: https://github.com/go-gitea/gitea:
+Source: https://github.com/go-gitea/gitea
 ```yaml
 service:
   go-gitea/gitea:
