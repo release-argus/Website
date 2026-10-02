@@ -327,11 +327,12 @@ Source: https://codeberg.org/forgejo
 service:
   Forgejo:
     latest_version:
-      type: url
-      url: https://code.forgejo.org/api/v1/repos/forgejo/forgejo/releases
+      type: forgejo
+      host: https://codeberg.org
+      url: forgejo/forgejo
       url_commands:
         - type: regex
-          regex: "['\"]tag_name['\"]: *['\"]v?([0-9.]+)['\"]"
+          regex: ^v?([0-9.]+)$
     deployed_version:
       type: url
       url: http://git.example.com
