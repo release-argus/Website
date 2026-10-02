@@ -18,7 +18,7 @@ defaults:
       interval: 10m              # How often to query for new releases
       semantic_versioning: true  # Whether to enforce semantic versioning (required to not alert on new patches for old versions)
     latest_version:
-      type: github  # Default lookup type for new services (github/url)
+      type: github  # Default lookup type for new services (forgejo/github/url)
       common:
         require:
           docker:
@@ -35,10 +35,18 @@ defaults:
               quay:
                 auth:
                   token: TOKEN
+      forgejo:
+        common:
+          use_prerelease: false         # Whether 'prerelease' releases are matched
+        host:                           # Instances that a service's `latest_version.host` can name
+          codeberg:                     # Name to address the instance by
+            url: https://codeberg.org   # Instance to query (required)
+            access_token: ''            # Access token to increase your rate-limit and/or access private repos
+            allow_invalid_certs: false  # Whether invalid HTTPS certs are allowed in queries
       github:
         access_token: ''       # Access token to increase your rate-limit and/or access private repos
                                # https://github.com/settings/tokens - w/ repo.public_repo/repo for public/private
-        use_prerelease: false  # Whether 'prerelease' GitHub tags can be used
+        use_prerelease: false  # Whether 'prerelease' releases are matched
       url:
         allow_invalid_certs: false  # Whether invalid HTTPS certs are allowed in queries
     deployed_version:             # Get the `current_version` from a deployed service
@@ -52,6 +60,10 @@ defaults:
 Docker registry defaults are **auth-only**: each registry under `registry.*` only carries authentication (`auth.token`, and `auth.username` for Docker Hub). The `image` of a `require.docker` is never inherited from defaults - only `type` and `tag` can be defaulted.
 
 The Amazon ECR Public Gallery (`ecr`) uses anonymous auth, so it has no `registry.ecr` entry - but it can still be set as the default `type`.
+{{< /alert >}}
+
+{{< alert title="Note" >}}
+A `forgejo` instance can also be named by environment variable - the name sits inside the variable, between `HOST` and the field it sets, so `ARGUS_SERVICE_LATEST_VERSION_FORGEJO_HOST_CODEBERG_ACCESS_TOKEN=TOKEN` sets `host.codeberg.access_token` and creates the `codeberg` entry if the `config.yml` does not already have one. Names are matched case-insensitively, and one named only by environment variable is stored lower-cased.
 {{< /alert >}}
 
 #### **notify** portion
