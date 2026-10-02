@@ -38,6 +38,7 @@ Environment variables in the format `${ENV_VAR}` (e.g. 'abc ${AUTH_TOKEN}'  or j
 * latest_version.access_token
 * latest_version.headers.\*.key
 * latest_version.headers.\*.value
+* latest_version.host
 * latest_version.require.docker.auth.token
 * latest_version.require.docker.auth.username
 * latest_version.require.docker.image
@@ -50,3 +51,10 @@ Environment variables in the format `${ENV_VAR}` (e.g. 'abc ${AUTH_TOKEN}'  or j
 * webhook.\*.headers.\*.value
 * webhook.\*.secret
 * webhook.\*.url
+
+
+#### Why does a query fail with "response body is larger than the 50 MiB limit"
+
+A response that big is refused rather than cut short, so a `latest_version`/`deployed_version` query against it fails with that error instead of silently searching a partial page.
+
+Point the `url` at something smaller - an API endpoint or a downloads list rather than a whole site. `url_commands`/`regex` will not help here, as they filter the response after it has been read.

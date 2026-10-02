@@ -91,20 +91,60 @@ service:
 
 ## Latest Version
 
-Source to query for the latest version, `github` or `url`.
+Source to query for the latest version - `forgejo`, `github` or `url`.
 
 {{< alert title="Note" >}}
-Environment variables in the format '${ENV_VAR}' can be used in the `url`, `access_token`, `headers.*.key`, `headers.*.value`, `require.docker.image`, `require.docker.tag`, `require.docker.auth.token` and `require.docker.auth.username` fields.
+Environment variables in the format '${ENV_VAR}' can be used in the `url`, `host`, `access_token`, `headers.*.key`, `headers.*.value`, `require.docker.image`, `require.docker.tag`, `require.docker.auth.token` and `require.docker.auth.username` fields.
 {{< /alert >}}
 
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
+  {{% tab header="forgejo" %}}
+
+This monitors a repository on a [Forgejo](https://forgejo.org) instance - [Codeberg](https://codeberg.org), or one you host yourself.
+
+This will monitor the most recent 'tag_name' that matches both your `regex_content` and `regex_version` at
+https://HOST/api/v1/repos/OWNER/REPO/releases.
+
+It will go through each item in that list and try 'tag_name' as the version. It will run the `url_commands` on each version, check it with `regex_version` and then check the assets against `regex_content`. If all of these pass, that version will be used.
+
+```yaml
+service:
+  example:
+    ...
+    latest_version:
+      type: forgejo               # The type of service to monitor
+      host: https://codeberg.org  # The instance to query - a URL, or the name of a `defaults` entry
+      url: OWNER/REPO             # The repo on that instance to monitor
+      access_token: TOKEN         # Useful when you want to exceed the instance's rate-limit, or want to query a private repo
+      allow_invalid_certs: false  # Whether invalid HTTPS certificates on the instance are allowed
+      use_prerelease: false       # Whether a 'prerelease' tag can be used
+      url_commands:
+        - type: regex           # Since the above `type` is 'forgejo', this searches the tag_names, so the '$' is used to ensure
+          regex: ^v?([0-9.]+)$  # the tag name ends in this RegEx and doesn't omit a '-beta' or similar details
+      require:
+        regex_content: 'example-{{ version }}-amd64'  # Release assets of a tag must match this RegEx for the new version to be
+                                                      # considered valid (meaning alerts will fire). This RegEx runs against the
+                                                      # version assets `name` and `browser_download_url`
+        regex_version: ^[0-9.]+[0-9]$                 # Version found must match this RegEx to be considered valid
+        docker:                    # Require a docker image:tag for this version to be considered valid
+          type: hub                # Docker registry (ecr/ghcr/hub/quay)
+          image: OWNER/REPO        # Docker image
+          tag: '{{ version }}'     # Tag to look for
+          auth:
+            username: USERNAME     # Username
+            token: dckr_pat_TOKEN  # Token
+```
+
+`host` is looked up as the name of an entry under [`defaults.service.latest_version.forgejo.host`](/docs/config/defaults) first, and only used as an address when no entry is found. As an address it is the instance itself: `https://codeberg.org`, or `git.example.com:8443/forge` where it is not served from the root. `https://` is assumed when no scheme is given.
+
+  {{% /tab %}}
   {{% tab header="github" %}}
 
 This will monitor the most recent 'tag_name' that matches both your `regex_content` and `regex_version` at
 https://api.github.com/repos/OWNER/REPO/releases.
 
-It will go through each item in that list and try using 'tag_name' as the version. It will run the `url_commands` on this version, check it with `regex_version` and then check the assets against `regex_content`. If all of these pass, that version will be used.
+It will go through each item in that list and try 'tag_name' as the version. It will run the `url_commands` on each version, check it with `regex_version` and then check the assets against `regex_content`. If all of these pass, that version will be used.
 
 ```yaml
 service:
@@ -117,7 +157,7 @@ service:
       use_prerelease: false              # Whether a 'prerelease' tag can be used
       url_commands:
         - type: regex           # Since the above `type` is 'github', this searches the tag_names, so the '$' is used to ensure
-          regex: ^v?([0-9.]+)$  # the tag name ends in this RegEx and doesn't just omit a '-beta' or similar details
+          regex: ^v?([0-9.]+)$  # the tag name ends in this RegEx and doesn't omit a '-beta' or similar details
       require:
         regex_content: 'example-{{ version }}-amd64'  # Release assets of a tag much match this RegEx for the new version to be
                                                       # considered valid (meaning alerts will fire). This RegEx runs against the
@@ -157,6 +197,11 @@ service:
 ```
   {{% /tab %}}
 {{% /tabpane %}}
+
+The `forgejo` and `github` types share two behaviours:
+
+- Where the repo publishes no releases at all, its tags are used instead - `/tags` rather than `/releases`. Setting `require.regex_content` prevents this, as a tag carries no assets to match against.
+- A release counts as a pre-release when the forge has flagged it as one, **or** when the version carries a semantic-version pre-release identifier - `1.2.3-beta1`. `use_prerelease: false` skips it either way.
 
 ### Filters
 
