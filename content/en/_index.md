@@ -30,8 +30,7 @@ linkTitle: Argus
 {{< /blocks/cover >}}
 
 {{% blocks/lead color="primary" %}}
-Argus provides a way for you to monitor the versions of software and trigger alerts when a new
-release is been found.
+Argus provides a way for you to monitor the versions of software and trigger alerts when a new release is found.
 
 It provides a Web UI for your viewing pleasure, and this UI allows you to approve new releases which could, for example, send a GitHub-style Webhook to an AWX server to trigger a Playbook that updates to that new version. Alerts could also be in many other forms, e.g. gotify/slack/telegram.
 {{% /blocks/lead %}}
