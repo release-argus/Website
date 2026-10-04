@@ -48,8 +48,14 @@ blog = "/:section/:year/:month/:day/:slug/"
 # Image processing configuration.
 [imaging]
 resampleFilter = "CatmullRom"
-quality = 75
 anchor = "smart"
+
+[imaging.jpeg]
+quality = 75
+[imaging.webp]
+quality = 75
+[imaging.avif]
+quality = 75
 
 # Language configuration
 
