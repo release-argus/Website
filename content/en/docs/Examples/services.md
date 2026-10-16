@@ -386,13 +386,15 @@ Source: https://gitlab.com/gitlab-org/gitlab-foss
 
 > deployed_version - Requires an `Access_Token` from your GitLab instance. ([instructions](https://docs.gitlab.com/user/profile/personal_access_tokens/#create-a-personal-access-token))
 
- gitlab-org/gitlab:
-   latest_version:
-     type: url
+```yaml
+service:
+  gitlab-org/gitlab:
+    latest_version:
+      type: url
       url: https://gitlab.com/api/v4/projects/13083/repository/tags  # Community Edition
 #     url: https://gitlab.com/api/v4/projects/278964/repository/tags # Enterprise Edition
-     url_commands:
-       - type: regex
+      url_commands:
+        - type: regex
           regex: \"name\":\"v([0-9.]+)\"    # Community Edition
 #         regex: \"name\":\"v([0-9.]+)-ee\" # Enterprise Edition
     deployed_version:
