@@ -380,11 +380,12 @@ service:
       icon: https://raw.githubusercontent.com/FreshRSS/FreshRSS/edge/p/themes/icons/favicon-256.png
       web_url: https://github.com/FreshRSS/FreshRSS/releases/tag/{{ version }}
 ```
+
+## gitlab-org/gitlab
 Source: https://gitlab.com/gitlab-org/gitlab-foss
 
 > deployed_version - Requires an `Access_Token` from your GitLab instance. ([instructions](https://docs.gitlab.com/user/profile/personal_access_tokens/#create-a-personal-access-token))
 
-@@ -393,10 +393,10 @@ service:
  gitlab-org/gitlab:
    latest_version:
      type: url
