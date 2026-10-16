@@ -422,7 +422,7 @@ service:
     deployed_version:
       method: GET
       url: https://glance.example.io
-      regex: v([0-9.]+)
+      regex: tag/v([0-9.]+)
     dashboard:
       icon: https://raw.githubusercontent.com/glanceapp/glance/main/internal/glance/static/app-icon.png
       web_url: https://github.com/glanceapp/glance/releases/tag/v{{ version }}
