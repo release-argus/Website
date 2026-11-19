@@ -365,7 +365,7 @@ latest_version:
 
 ## Deployed Version
 
-Track the version you have deployed and compare it to the latest_version. `url` or `manual`.
+Track the version you have deployed and compare it to the latest_version. The lookup types are `url`, `file`, and `manual`.
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
   {{% tab header="url" %}}
@@ -406,6 +406,26 @@ Deployed version queries support both GET (default) and POST methods.
 With `method: POST`, you may give a `body: str` to be sent with the request.
 
 With `method: GET`, you may give a `target_header: str` to target a header rather than the response body.
+  {{% /tab %}}
+  {{% tab header="file" %}}
+Read the deployed version from a local file available to the Argus process. The path must be absolute and beneath a directory configured in `settings.data.file_read_roots`; see [Settings](/docs/config/settings/#data). For container deployments, mount the files into the container and use the path inside the container.
+
+The regular expression must include a capture group with the version in the first group. Argus uses that group from the first match. Only regular files up to 1 MiB are read, and paths outside the configured roots are rejected.
+
+For example, given a `VERSION` file containing `productversion="7.2.2-72806"`:
+```yaml
+settings:
+  data:
+    file_read_roots:
+      - /path/to/allowed/files
+service:
+  example:
+    ...
+    deployed_version:
+      type: file
+      path: /path/to/allowed/files/VERSION
+      regex: 'productversion="([^"]+)"'
+```
   {{% /tab %}}
   {{% tab header="manual" %}}
 The following is how you'd define a deployment to manually track the version of.
