@@ -30,6 +30,7 @@ settings:
     timestamps: false # Log with timestamps
   data:
     database_file: data/argus.db # SQLite DB file used to track the state of services
+    file_read_roots: []          # Directories or individual files allowed for local-file deployed-version lookups
     readonly: false              # Disable writes to the config.yml
                                  # (create/edit/delete on the UI will not persist restarts)
   web:
@@ -94,6 +95,19 @@ A password reset does **not** revoke that user's API tokens.
 
 See [Authentication](/docs/help/authentication/) for the permission catalogue, the built-in groups, API tokens and reverse-proxy notes.
 
+## data
+
+### file_read_roots
+
+`settings.data.file_read_roots` is the allowlist for [file-based deployed-version lookups](/docs/config/service/#deployed-version). It defaults to an empty list, which disables local-file reads. Configure one or more existing directories or regular files. A directory allows files beneath it; a file entry allows only that exact file. Each service's file path must be absolute. Argus reads only regular files up to 1 MiB. In a container, both allowlist entries and service file paths refer to paths inside the container.
+
+```yaml
+settings:
+  data:
+    file_read_roots:
+      - /path/to/allowed/files      # Directory: allows files beneath it
+      - /path/to/specific/VERSION   # File: allows only this exact file
+```
 
 ## web
 

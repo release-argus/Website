@@ -12,7 +12,7 @@ With Argus, RegEx can be used in a few places
 - `service.name.regex_content` - RegEx used on the content of the page @ `url` that needs to match before Argus considers it a valid version.
 - `service.name.regex_version` - RegEx used on the version found that needs to match before Argus considers it a valid version.
 - `service.url_commands[*].regex` - RegEx used in a `url_command` to extract the version from the page.
-- `service.deployed_version.regex` - RegEx to get the `deployed_version` from the page @ `url`
+- `service.deployed_version.regex` - RegEx to get the `deployed_version` from the URL response or (with `type: file`) local file contents. For file lookups, the first capture group must contain the version.
 
 | Character | Description | Example | Matches |
 | --------- | ----------- | ------- | ------- |
