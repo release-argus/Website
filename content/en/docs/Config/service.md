@@ -408,7 +408,7 @@ With `method: POST`, you may give a `body: str` to be sent with the request.
 With `method: GET`, you may give a `target_header: str` to target a header rather than the response body.
   {{% /tab %}}
   {{% tab header="file" %}}
-Read the deployed version from a local file available to the Argus process. The path must be absolute and beneath a directory configured in `settings.data.file_read_roots`; see [Settings](/docs/config/settings/#data). For container deployments, mount the files into the container and use the path inside the container.
+Read the deployed version from a local file available to the Argus process. The path must be absolute and either beneath a directory or exactly match a file configured in `settings.data.file_read_roots`; see [Settings](/docs/config/settings/#data). For container deployments, mount the files into the container and use the path inside the container.
 
 The regular expression must include a capture group with the version in the first group. Argus uses that group from the first match. Only regular files up to 1 MiB are read, and paths outside the configured roots are rejected.
 
