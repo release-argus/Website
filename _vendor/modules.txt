@@ -1,0 +1,2 @@
+# github.com/docsy/docsy/theme v0.18.1
+# github.com/divinerites/plausible-hugo v1.22.2
