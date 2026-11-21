@@ -76,25 +76,33 @@ defaults:
     bark:
     discord:
     generic:
-    gotify:
     googlechat:
+    gotify:
     homeassistant:
     ifttt:
     join:
-    mattermost:
+    lark:
     matrix:
+    mattermost:
+    mqtt:
     notifiarr:
     ntfy:
     opsgenie:
+    pagerduty:
     pushbullet:
     pushover:
     rocketchat:
+    shoutrrr:
+    signal:
+    signalgrid:
     slack:
     smtp:
     teams:
     telegram:
+    twilio:
+    wecom:
+    xmpp:
     zulip:
-    shoutrrr:
 ```
 
 
