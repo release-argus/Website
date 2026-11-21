@@ -14,9 +14,9 @@ Below I have used capitals in some key naming for better readability (ignore tha
 
 The lines prefixed with a # are optional vars that aren't required.
 
-{{< alert title="Note" >}}
+{{% alert title="Note" %}}
 Environment variables in the format '${ENV_VAR}' can be used in the `options.*`, `params.*` and `url_fields.*` fields.
-{{< /alert >}}
+{{% /alert %}}
 
 {{% alert title="Renamed params" %}}
 For Shoutrrr 0.25, Argus renames these when it loads the config, logging a deprecation warning for each:
@@ -30,9 +30,9 @@ For Shoutrrr 0.25, Argus renames these when it loads the config, logging a depre
 - gotify: `Date` is removed, as Gotify sets the date of each message
 {{% /alert %}}
 
-{{< alert title="Note" >}}
+{{% alert title="Note" %}}
 When the config loads, Argus logs a warning for a notifier whose URL Shoutrrr rejects, and that notifier fails each send. It also logs any `params` the notifier's type does not support, and leaves them out of each send.
-{{< /alert >}}
+{{% /alert %}}
 
 The config for each of these is laid out in the format of
 ```yaml
@@ -678,9 +678,9 @@ For further guidance and other helpful examples on the templating used, start by
   {{% tab header="teams" %}}
   - Microsoft retired Office 365 Connectors, so Teams notifications now use a **Power Automate workflow**. Create a 'Post to a channel when a webhook request is received' workflow following '[Microsoft's docs](https://support.microsoft.com/en-US/teams/apps-service/create-incoming-webhooks-with-workflows-for-microsoft-teams)' and copy the workflow's HTTP POST URL.
 
-  {{< alert title="Note" >}}
+  {{% alert title="Note" %}}
   The old Office 365 Connector format (`Group`/`Tenant`/`AltID`/`GroupOwner` url_fields) will still pass validation, but will fail at send time. Migrate to the Power Automate workflow URL below.
-  {{< /alert >}}
+  {{% /alert %}}
 
   - The URL must keep its `sig` query parameter, and its host must be `*.logic.azure.com` (or `.us`/`.cn`) or `*.environment.api.powerplatform.com`.
 

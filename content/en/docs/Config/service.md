@@ -70,10 +70,10 @@ service:
       icon_link_to: https://service.com             # Make the Web UI icon a clickable link to this
       tags: [monitoring, home]                      # Tags to group the service by
 ```
-{{< alert title="Note" >}}
+{{% alert title="Note" %}}
 the number of `notify`/`webhook`'s you give the Service can be any number (you can even omit the var altogether).
 For these vars, if you provide a var with the same ID as in the globals for that var, the options provided in the service will override those globals. e.g. if you have `slack.main` defined in the `config.yml` with all the required fields, but would like to override the message on some services for example, you can simply set `slack.main.message` inside the service, and it will use that var in messages for this service.
-{{< /alert >}}
+{{% /alert %}}
 
 ## Options
 
@@ -93,9 +93,9 @@ service:
 
 Source to query for the latest version - `forgejo`, `github` or `url`.
 
-{{< alert title="Note" >}}
+{{% alert title="Note" %}}
 Environment variables in the format '${ENV_VAR}' can be used in the `url`, `host`, `access_token`, `headers.*.key`, `headers.*.value`, `require.docker.image`, `require.docker.tag`, `require.docker.auth.token` and `require.docker.auth.username` fields.
-{{< /alert >}}
+{{% /alert %}}
 
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}
@@ -209,9 +209,9 @@ The `forgejo` and `github` types share two behaviours:
 `url_commands` are defined in a YAML list, with them being executed in order starting from the top.
 There are (currently) three different types of url_command that can be performed:
 
-{{< alert title="Note" >}}
+{{% alert title="Note" %}}
 For a service of `type` 'github', `url_commands` will run against every release 'tag_name' until a version is found that matches no `url_command` fails on and both `regex_version` and `regex_content` pass. (`regex_content` acts on every assets 'name' and 'browser_download_url')
-{{< /alert >}}
+{{% /alert %}}
 
 {{< tabpane text=true right=true >}}
   {{% tab header="**types**:" disabled=true /%}}

@@ -56,15 +56,15 @@ defaults:
       auto_approve: false  # Whether approval is required on the web UI for sending the new release Webhooks
 ```
 
-{{< alert title="Note" >}}
+{{% alert title="Note" %}}
 Docker registry defaults are **auth-only**: each registry under `registry.*` only carries authentication (`auth.token`, and `auth.username` for Docker Hub). The `image` of a `require.docker` is never inherited from defaults - only `type` and `tag` can be defaulted.
 
 The Amazon ECR Public Gallery (`ecr`) uses anonymous auth, so it has no `registry.ecr` entry - but it can still be set as the default `type`.
-{{< /alert >}}
+{{% /alert %}}
 
-{{< alert title="Note" >}}
+{{% alert title="Note" %}}
 A `forgejo` instance can also be named by environment variable - the name sits inside the variable, between `HOST` and the field it sets, so `ARGUS_SERVICE_LATEST_VERSION_FORGEJO_HOST_CODEBERG_ACCESS_TOKEN=TOKEN` sets `host.codeberg.access_token` and creates the `codeberg` entry if the `config.yml` does not already have one. Names are matched case-insensitively, and one named only by environment variable is stored lower-cased.
-{{< /alert >}}
+{{% /alert %}}
 
 #### **notify** portion
 Defaults can be defined for each `notify` type. Details about the vars for each type can be found [here](/docs/config/notify).
