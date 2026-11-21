@@ -59,9 +59,9 @@ Scopes narrow a grant to a subset of services:
 
 A user with no `service:read` grant sees an empty dashboard rather than an error, and the WebSocket only delivers updates for services they may read.
 
-{{< alert title="Note" >}}
+{{% alert title="Note" %}}
 Renaming a service moves any `service`-scoped grants pointing at it, so a rename never silently revokes someone's access. Deleting a service prunes them.
-{{< /alert >}}
+{{% /alert %}}
 
 ## Sessions
 

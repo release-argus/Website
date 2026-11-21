@@ -8,9 +8,9 @@ description: >
 
 Below are the options available in their default state. These values can be set with environment variables in the format of `ARGUS_<YAML_PATH_UNDER_SETTINGS>`. For example, `ARGUS_DATA_DATABASE_FILE=/opt/argus.db` would set the default database file location to `/opt/argus.db` (`settings.data.database_file`).
 
-{{< alert title="Note" >}}
+{{% alert title="Note" %}}
 Environment variables in the format ${ENV_VAR} can be used in the `settings.web.basic_auth.password` and `settings.web.basic_auth.username` fields.
-{{< /alert >}}
+{{% /alert %}}
 
 config.yml:
 ```yaml
@@ -53,9 +53,9 @@ settings:
 
 With `settings.auth.enabled: true`, Argus serves a login page and every API route is governed by per-user RBAC grants.
 
-{{< alert title="Note" >}}
+{{% alert title="Note" %}}
 `settings.auth` and `settings.web.basic_auth` are mutually exclusive, pick one.
-{{< /alert >}}
+{{% /alert %}}
 
 | Field | Default | Description |
 | --- | --- | --- |
@@ -86,9 +86,9 @@ argus -auth.reset-password <username>
 
 Generates a new password for an existing user, prints it to stdout and revokes their sessions.
 
-{{< alert title="Note" >}}
+{{% alert title="Note" %}}
 A password reset does **not** revoke that user's API tokens.
-{{< /alert >}}
+{{% /alert %}}
 
 ### Permissions
 

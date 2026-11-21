@@ -8,7 +8,7 @@ description: >
 
 Argus exports Prometheus metrics on the `/metrics` endpoint. You can use the Prometheus exporter to monitor your Argus instance.
 
-{{< alert title="Note" >}}
+{{% alert title="Note" %}}
 With [`settings.auth`](/docs/config/settings/#auth) enabled, `/metrics` requires the `metric:read` permission. Create a user whose group holds only that grant, mint an [API token](/docs/help/authentication/#api-tokens) for it, and give the token to Prometheus:
 
 ```yaml
@@ -21,7 +21,7 @@ scrape_configs:
 ```
 
 With auth disabled (the default), `/metrics` needs no credentials.
-{{< /alert >}}
+{{% /alert %}}
 
 ## List of metrics
 
